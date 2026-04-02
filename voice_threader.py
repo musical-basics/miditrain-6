@@ -219,30 +219,30 @@ class VoiceThreader:
                 is_top = False
                 is_bottom = False
                 is_inner = False
-                if len(chord) > 1:
-                    if p is chord[0]:
-                        # It is the top struck note. But is it the top resonating note globally?
-                        # Check actively sustaining wires.
-                        physically_top = True
-                        for t in threads:
-                            if t.last_pitch is not None and t.last_end_time > p.onset:
-                                if t.last_pitch > p.pitch:
-                                    physically_top = False
-                        if physically_top:
-                            is_top = True
-                            
-                    elif p is chord[-1]:
-                        physically_bottom = True
-                        for t in threads:
-                            if t.last_pitch is not None and t.last_end_time > p.onset:
-                                if t.last_pitch < p.pitch:
-                                    physically_bottom = False
-                        
-                        if physically_bottom and (p.pitch <= threads[-1].ideal_pitch + 24 or p.pitch < 60):
-                            is_bottom = True
-                            
-                    if not is_top and not is_bottom:
-                        is_inner = True
+
+                # Check if this note is the physically highest or lowest sounding pitch,
+                # considering both the chord cluster and any actively sustaining threads.
+                if p is chord[0]:
+                    physically_top = True
+                    for t in threads:
+                        if t.last_pitch is not None and t.last_end_time > p.onset:
+                            if t.last_pitch > p.pitch:
+                                physically_top = False
+                    if physically_top:
+                        is_top = True
+
+                if not is_top and p is chord[-1]:
+                    physically_bottom = True
+                    for t in threads:
+                        if t.last_pitch is not None and t.last_end_time > p.onset:
+                            if t.last_pitch < p.pitch:
+                                physically_bottom = False
+
+                    if physically_bottom and (p.pitch <= threads[-1].ideal_pitch + 24 or p.pitch < 60):
+                        is_bottom = True
+
+                if len(chord) > 1 and not is_top and not is_bottom:
+                    is_inner = True
                         
                 best_thread = None
                 lowest_cost = float('inf')
