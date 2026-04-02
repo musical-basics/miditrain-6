@@ -265,9 +265,14 @@ class VoiceThreader:
                 is_bottom = False
                 is_inner = False
 
-                # Check if this note is the physically highest or lowest sounding pitch,
-                # considering both the chord cluster and any actively sustaining threads.
-                if p is chord[0]:
+                # Mono-run notes are part of a fast running passage (e.g. LH arpeggios).
+                # They should NOT receive is_top/is_bottom affinity because during gaps
+                # between RH chords, every single arpeggio note momentarily becomes "the
+                # highest sounding pitch" and gets yanked to soprano.  Let register gravity
+                # and elasticity route them instead.
+                if p._mono_run:
+                    pass  # skip is_top / is_bottom — go straight to cost auction
+                elif p is chord[0]:
                     physically_top = True
                     for t in threads:
                         if t.last_pitch is not None and t.last_end_time > p.onset:
@@ -288,7 +293,7 @@ class VoiceThreader:
                         if not inner_continuation:
                             is_top = True
 
-                if not is_top and p is chord[-1]:
+                if not p._mono_run and not is_top and p is chord[-1]:
                     physically_bottom = True
                     for t in threads:
                         if t.last_pitch is not None and t.last_end_time > p.onset:
