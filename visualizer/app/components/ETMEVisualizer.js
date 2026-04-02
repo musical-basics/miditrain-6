@@ -8,6 +8,7 @@ import {
   formatTime, hsl
 } from './etme-constants';
 import { renderPhase1Regimes, getPhase1NoteColor, renderPhase1DebugLabels, Phase1Legend } from './Phase1Renderer';
+import { getPhase2NoteColor, Phase2Legend } from './Phase2Renderer';
 
 // ===== MAIN COMPONENT =====
 export default function ETMEVisualizer() {
@@ -156,7 +157,7 @@ export default function ETMEVisualizer() {
       return false;
     };
 
-    setEngineLogs(prev => [...prev, '\n[1/1] Running Phase 1 (export_etme_data.py)...']);
+    setEngineLogs(prev => [...prev, '\n[1/1] Running Phase 1 & 2 (export_etme_data.py)...']);
     const s1 = await runScript('export_etme_data.py', [
       '--midi_key', midiFile,
       '--angle_map', angleMap,
@@ -470,6 +471,14 @@ export default function ETMEVisualizer() {
         if (p1.shadow) {
           ctx.shadowColor = p1.shadow.color;
           ctx.shadowBlur = p1.shadow.blur;
+        }
+      } else if (currentView === 'phase2') {
+        const p2 = getPhase2NoteColor(n);
+        fillColor = p2.fillColor;
+        strokeColor = p2.strokeColor;
+        if (p2.shadow) {
+          ctx.shadowColor = p2.shadow.color;
+          ctx.shadowBlur = p2.shadow.blur;
         }
       }
 
@@ -980,7 +989,8 @@ export default function ETMEVisualizer() {
         x: e.clientX + 14, y: e.clientY + 14,
         noteName, pitch: hit.pitch, velocity: hit.velocity,
         onset: hit.onset, duration: hit.duration,
-        hue: hit.hue, sat: hit.sat, lightness: hit.lightness, tonal_distance: hit.tonal_distance
+        hue: hit.hue, sat: hit.sat, lightness: hit.lightness, tonal_distance: hit.tonal_distance,
+        voice_tag: hit.voice_tag, id_score: hit.id_score
       });
     } else {
       setTooltip(null);
@@ -1044,6 +1054,7 @@ export default function ETMEVisualizer() {
         <div className="legend-item"><div className="legend-swatch" style={{ background: hsl(220,70,60,1) }} />Loud Note</div>
       </>
     );
+    if (currentView === 'phase2') return <Phase2Legend />;
     return (
       <Phase1Legend minBreakMass={minBreakMass} setMinBreakMass={setMinBreakMass} showComparison={showComparison} />
     );
@@ -1052,6 +1063,7 @@ export default function ETMEVisualizer() {
   const views = [
     { id: 'raw', label: 'Piano Roll', color: 'var(--accent-blue)' },
     { id: 'phase1', label: 'Phase 1 -- Harmonic Regimes', color: 'var(--accent-green)' },
+    { id: 'phase2', label: 'Phase 2 -- Voice Threading', color: 'var(--accent-pink)' },
   ];
 
   // Comparison logic
@@ -1065,6 +1077,9 @@ export default function ETMEVisualizer() {
         <div className="stats">
           <div>Notes<span className="stat-value">{data?.stats?.total_notes ?? '--'}</span></div>
           <div>Regimes<span className="stat-value">{data?.stats?.total_regimes ?? '--'}</span></div>
+          {data?.stats?.voice_counts && Object.entries(data.stats.voice_counts).sort().map(([tag, count]) => (
+            <div key={tag}>{tag}<span className="stat-value">{count}</span></div>
+          ))}
           <div>Markers<span className="stat-value">{markers.length}</span></div>
         </div>
       </div>
@@ -1394,6 +1409,8 @@ export default function ETMEVisualizer() {
             <strong>4D Chord Color:</strong><br />
             H: {tooltip.hue} | S: {tooltip.sat}% | L: {tooltip.lightness}%<br />
             Tension: {tooltip.tonal_distance}
+            {tooltip.voice_tag && (<><br /><br /><strong>Voice:</strong> {tooltip.voice_tag}</>)}
+            {tooltip.id_score != null && (<><br />I<sub>d</sub> Score: {tooltip.id_score}</>)}
           </div>
         </div>
       )}

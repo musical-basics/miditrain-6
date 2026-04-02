@@ -1,9 +1,11 @@
 """
-Exports ETME Phase 1 analysis of a real MIDI file as JSON
+Exports ETME Phase 1 + Phase 2 analysis of a real MIDI file as JSON
 for the browser-based piano roll visualizer.
 
 Phase 1 uses the HarmonicRegimeDetector
 (vector-based color wheel with HSL output).
+Phase 2 uses the VoiceThreader
+(thermodynamic polyphonic voice separation).
 """
 import json
 import math
@@ -13,6 +15,7 @@ import argparse
 from symusic import Score
 from particle import Particle
 from harmonic_regime_detector import HarmonicRegimeDetector, SEMITONE_MAP, ANGLE_MAPS, INTERVAL_ANGLES_DISSONANCE
+from voice_threader import VoiceThreader
 
 # Map MIDI pitch class (0-11) to interval names for the regime detector
 PC_TO_INTERVAL = {
@@ -204,6 +207,19 @@ def export_analysis(midi_path, output_json="etme_analysis.json", angle_map='diss
             "debug": frame.get("debug", {})
         })
 
+    # =============================================
+    # Phase 2: Thermodynamic Voice Threading
+    # =============================================
+    print("Running Phase 2: Thermodynamic Voice Threading...")
+    threader = VoiceThreader(max_voices=4)
+    scored_particles = threader.thread_particles(particles, frame_lookup)
+
+    voice_counts = {}
+    for p in scored_particles:
+        voice_counts[p.voice_tag] = voice_counts.get(p.voice_tag, 0) + 1
+    for tag, count in sorted(voice_counts.items()):
+        print(f"  {tag}: {count} notes")
+
     print("Computing per-note chord colors (truncating past regimes)...")
     notes_json = []
 
@@ -229,6 +245,8 @@ def export_analysis(midi_path, output_json="etme_analysis.json", angle_map='diss
             "velocity": p.velocity,
             "onset": p.onset,
             "duration": p.duration,
+            "id_score": round(p.id_score, 2),
+            "voice_tag": p.voice_tag,
             "hue": color["hue"],
             "sat": color["sat"],
             "lightness": color["lightness"],
@@ -263,6 +281,7 @@ def export_analysis(midi_path, output_json="etme_analysis.json", angle_map='diss
         "stats": {
             "total_notes": len(notes_json),
             "total_regimes": len(regimes_json),
+            "voice_counts": voice_counts
         }
     }
 
@@ -273,7 +292,7 @@ def export_analysis(midi_path, output_json="etme_analysis.json", angle_map='diss
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Export ETME Data (Phase 1 Only)")
+    parser = argparse.ArgumentParser(description="Export ETME Data (Phase 1 + Phase 2)")
     parser.add_argument('--midi_key', type=str, help='e.g. pathetique_full_chunk')
     parser.add_argument('--angle_map', type=str, help='e.g. dissonance, fifths')
     parser.add_argument('--break_method', type=str, help='e.g. centroid, histogram, hybrid, hybrid_split')

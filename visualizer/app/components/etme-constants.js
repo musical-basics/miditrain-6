@@ -26,3 +26,12 @@ export function formatTime(ms) {
 export function hsl(h, s, l, a = 1) {
   return `hsla(${h}, ${s}%, ${l}%, ${a})`;
 }
+
+// Voice thread colors: distinct hues for each voice wire
+export const VOICE_COLORS = {
+  'Voice 1': { h: 330, s: 85, l: 60, label: 'Soprano (V1)' },
+  'Voice 2': { h: 200, s: 80, l: 55, label: 'Alto (V2)' },
+  'Voice 3': { h: 45,  s: 85, l: 50, label: 'Tenor (V3)' },
+  'Voice 4': { h: 140, s: 70, l: 45, label: 'Bass (V4)' },
+  'Overflow (Chord)': { h: 0, s: 0, l: 50, label: 'Overflow' },
+};
