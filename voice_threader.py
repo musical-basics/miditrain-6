@@ -282,7 +282,9 @@ class VoiceThreader:
                             if t.last_pitch < p.pitch:
                                 physically_bottom = False
 
-                    if physically_bottom and (p.pitch <= threads[-1].ideal_pitch + 24 or p.pitch < 60):
+                    # Only grant is_bottom if the note is plausibly in the bass register.
+                    # Use V4's ideal pitch + a reasonable margin, NOT a fixed pitch cutoff.
+                    if physically_bottom and p.pitch <= threads[-1].ideal_pitch + 24:
                         is_bottom = True
 
                 if len(chord) > 1 and not is_top and not is_bottom:
