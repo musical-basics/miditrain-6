@@ -342,7 +342,54 @@ class VoiceThreader:
                     p.voice_tag = "Overflow (Chord)"
                     p.voice_id = -1
 
+        # ── Post-processing: stabilize inner voice assignments ──
+        # When V2 and V3 swap the same pitch back and forth (e.g. pitch 56 flipping
+        # between V2/V3 due to collision with a sustained inner note), pick the
+        # majority voice for that pitch in each local window and normalize the rest.
+        self._stabilize_inner_voices(sorted_particles)
+
         return sorted_particles
+
+    def _stabilize_inner_voices(self, particles):
+        """Post-pass: for each pitch that flip-flops between V2 and V3,
+        detect contiguous runs and normalize short interruptions.
+        Within each run of the same pitch, the first voice assignment wins."""
+        inner_ids = {1, 2}  # voice_id 1=V2, 2=V3
+        from collections import defaultdict
+
+        # Group inner-voice particles by pitch, sorted by onset
+        by_pitch = defaultdict(list)
+        for p in particles:
+            if p.voice_id in inner_ids:
+                by_pitch[p.pitch].append(p)
+
+        for pitch, notes in by_pitch.items():
+            voices_used = set(n.voice_id for n in notes)
+            if len(voices_used) < 2:
+                continue
+
+            notes.sort(key=lambda n: n.onset)
+
+            # Detect contiguous runs (notes within 200ms of each other)
+            runs = []
+            current_run = [notes[0]]
+            for n in notes[1:]:
+                if n.onset - current_run[-1].onset <= 200:
+                    current_run.append(n)
+                else:
+                    runs.append(current_run)
+                    current_run = [n]
+            runs.append(current_run)
+
+            # For each run, normalize to the first note's voice assignment
+            for run in runs:
+                if len(run) < 3:
+                    continue
+                target_id = run[0].voice_id
+                for n in run:
+                    if n.voice_id != target_id:
+                        n.voice_id = target_id
+                        n.voice_tag = f"Voice {target_id + 1}"
 
     def _is_phase1_anchor(self, p, regime_frames):
         """Check if this particle's onset aligns with a TRANSITION SPIKE! regime frame."""
