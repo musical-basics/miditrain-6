@@ -18,6 +18,7 @@ class VoiceThread:
         self.last_is_structural = False
         self.momentum = 0.0  # +1 for ascending trajectory, -1 for descending
         self.ideal_pitch = None  # Set dynamically from actual pitch range
+        self.recent_pitches = []  # List of (pitch, onset) for continuation detection
 
 
 class VoiceThreader:
@@ -273,7 +274,19 @@ class VoiceThreader:
                             if t.last_pitch > p.pitch:
                                 physically_top = False
                     if physically_top:
-                        is_top = True
+                        # Don't flag as top if an inner voice recently carried this pitch
+                        # (tremolo/arpeggio continuation, not a new soprano entry).
+                        inner_continuation = False
+                        for t in threads:
+                            if t.voice_id != 0 and t.voice_id != self.max_voices - 1:
+                                for rp, ro in t.recent_pitches:
+                                    if abs(rp - p.pitch) <= 2 and p.onset - ro <= 200:
+                                        inner_continuation = True
+                                        break
+                                if inner_continuation:
+                                    break
+                        if not inner_continuation:
+                            is_top = True
 
                 if not is_top and p is chord[-1]:
                     physically_bottom = True
@@ -316,6 +329,9 @@ class VoiceThreader:
                     best_thread.particles.append(p)
                     best_thread.last_pitch = p.pitch
                     best_thread.last_onset = p.onset
+                    # Track recent pitches for continuation detection (expire >200ms old)
+                    best_thread.recent_pitches = [(pp, po) for pp, po in best_thread.recent_pitches if p.onset - po <= 200]
+                    best_thread.recent_pitches.append((p.pitch, p.onset))
                     # If this is a simultaneous block chord on the same thread, stretch the sustain envelope logically
                     best_thread.last_end_time = max(best_thread.last_end_time, p.onset + p.duration) if best_thread.last_end_time != -9999 else p.onset + p.duration
                     best_thread.last_is_structural = is_structural
