@@ -282,10 +282,19 @@ class VoiceThreader:
                             if t.last_pitch < p.pitch:
                                 physically_bottom = False
 
-                    # Only grant is_bottom if the note is plausibly in the bass register.
-                    # Use V4's ideal pitch + a reasonable margin, NOT a fixed pitch cutoff.
-                    if physically_bottom and p.pitch <= threads[-1].ideal_pitch + 24:
-                        is_bottom = True
+                    # Only grant is_bottom if the note is plausibly in the bass register
+                    # AND not a continuation of an inner voice's line.
+                    if physically_bottom and p.pitch <= threads[-1].ideal_pitch + 31:
+                        # Don't flag as bottom if an inner voice just had this exact pitch
+                        # (it's a tremolo/repetition continuation, not a new bass entry)
+                        inner_continuation = False
+                        for t in threads:
+                            if t.voice_id != 0 and t.voice_id != self.max_voices - 1:
+                                if t.last_pitch == p.pitch and abs(t.last_end_time - p.onset) <= 80:
+                                    inner_continuation = True
+                                    break
+                        if not inner_continuation:
+                            is_bottom = True
 
                 if len(chord) > 1 and not is_top and not is_bottom:
                     is_inner = True
