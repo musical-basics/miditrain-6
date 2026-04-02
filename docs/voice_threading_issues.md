@@ -15,4 +15,6 @@
 
 **Risk**: Merging could cause edge cases in true 4-voice passages where V1 and V2 are genuinely independent (e.g. fugal entries). Needs careful scoping.
 
+**Additional occurrence**: ~21500-22062ms — fast descending scale (77→75→74→72→70→69→68→65) is a single soprano melody, but 80ms chord clustering splits it into pairs. Within each pair V1 takes the first note, V2 gets the second. Same root cause: the threader sees chord pairs, not a continuous melodic run.
+
 **Status**: Documented. Revisit after clearing other voice threading issues.
