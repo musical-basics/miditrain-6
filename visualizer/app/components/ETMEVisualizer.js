@@ -157,14 +157,22 @@ export default function ETMEVisualizer() {
       return false;
     };
 
-    setEngineLogs(prev => [...prev, '\n[1/1] Running Phase 1 & 2 (export_etme_data.py)...']);
-    const s1 = await runScript('export_etme_data.py', [
-      '--midi_key', midiFile,
-      '--angle_map', angleMap,
-      '--break_method', breakModel,
-      '--jaccard', jaccardThreshold.toString(),
-      '--min_break_mass', minBreakMass.toString()
-    ]);
+    let s1;
+    if (midiFile.startsWith('__optimized__:')) {
+      // Optimized output — run Phase 2 only on the existing JSON
+      const jsonFile = 'visualizer/public/' + midiFile.replace('__optimized__:', '');
+      setEngineLogs(prev => [...prev, '\n[1/1] Running Phase 2 only on optimized output (run_phase2.py)...']);
+      s1 = await runScript('run_phase2.py', [jsonFile]);
+    } else {
+      setEngineLogs(prev => [...prev, '\n[1/1] Running Phase 1 & 2 (export_etme_data.py)...']);
+      s1 = await runScript('export_etme_data.py', [
+        '--midi_key', midiFile,
+        '--angle_map', angleMap,
+        '--break_method', breakModel,
+        '--jaccard', jaccardThreshold.toString(),
+        '--min_break_mass', minBreakMass.toString()
+      ]);
+    }
     if (!s1) {
       setEngineLogs(prev => [...prev, '\nPipeline failed. Check logs above.']);
       setIsEngineDone(true);
