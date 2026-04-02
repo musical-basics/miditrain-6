@@ -35,6 +35,7 @@ class VoiceThreader:
         self.W_COLLISION = 10.0       # Soft Pauli exclusion for pedal overlaps
 
         self.LEGATO_GRACE_MS = 40     # Allow 40ms of overlap for human legato
+        self.ORNAMENT_GRACE_MS = 80   # Short notes under this duration get relaxed collision
 
     def _calculate_connection_cost(self, p, thread, all_threads, is_structural, is_top=False, is_bottom=False, is_inner=False):
         """Calculates the energy (ΔE) required to append particle 'p' to 'thread'."""
@@ -66,23 +67,29 @@ class VoiceThreader:
 
         # 1. COLLISION (Soft Pauli Exclusion)
         cost_collision = 0.0
-        
+
         # Nullify collision for completely identical simultaneous onsets (Block Chords ringing polyphonically on the same track)
         if p.onset == thread.last_onset:
             # We apply a 35.0 Pauli Exclusion penalty to discourage a single string from arbitrarily swallowing a full chord.
             # This precisely overcomes the 40.0 'empty wire' inertia, guaranteeing empty adjacent strings wake up to capture harmony notes.
-            # However, it remains vastly cheaper than the ~150+ collision cost of overlapping a non-simultaneous sustained string, 
+            # However, it remains vastly cheaper than the ~150+ collision cost of overlapping a non-simultaneous sustained string,
             # allowing overflowing 5-note chords to naturally stack inside their closest active register.
             cost_collision = 35.0
         else:
             # Instead of throwing 'inf' for pedal overlaps, allow them but penalize them heavily.
             overlap_ms = thread.last_end_time - p.onset
             if overlap_ms > self.LEGATO_GRACE_MS:
-                # Multiply by 10 to ensure collision behaves as a semi-hard wall (e.g. 500ms = 150 penalty)
-                cost_collision = (overlap_ms / 1000.0) * self.W_COLLISION * 10.0
-                # Protect structural anchors from being easily truncated by passing arpeggios
-                if thread.last_is_structural:
-                    cost_collision *= 2.0
+                # Ornamental grace: if the previous note was very short (e.g. 62ms sixteenth),
+                # the tiny overlap at the tail is melodic continuation, not a real pedal clash.
+                last_dur = thread.last_end_time - thread.last_onset
+                if last_dur <= self.ORNAMENT_GRACE_MS:
+                    cost_collision = 0.0
+                else:
+                    # Multiply by 10 to ensure collision behaves as a semi-hard wall (e.g. 500ms = 150 penalty)
+                    cost_collision = (overlap_ms / 1000.0) * self.W_COLLISION * 10.0
+                    # Protect structural anchors from being easily truncated by passing arpeggios
+                    if thread.last_is_structural:
+                        cost_collision *= 2.0
 
         # 2. ELASTICITY (Pitch Leaps)
         delta_p = abs(p.pitch - thread.last_pitch)
@@ -177,12 +184,18 @@ class VoiceThreader:
 
         i = 0
         while i < len(sorted_particles):
-            # Collect chord cluster (within 50ms)
+            # Collect chord cluster (within 80ms — wide enough to capture fast ornamental runs
+            # like sixteenth-note grace notes at 62ms spacing, which are melodic continuation
+            # not independent voices)
             chord_start = sorted_particles[i].onset
             chord = []
-            while i < len(sorted_particles) and sorted_particles[i].onset - chord_start <= 50:
+            while i < len(sorted_particles) and sorted_particles[i].onset - chord_start <= 80:
                 chord.append(sorted_particles[i])
                 i += 1
+
+            # Sort chord by pitch descending so highest notes get outer voices first,
+            # even if a grace note arrives a few ms later than the chord's anchor.
+            chord.sort(key=lambda p: -p.pitch)
 
             # Assign notes greedily (highest to lowest).
             for p in chord:
