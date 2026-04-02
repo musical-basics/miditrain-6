@@ -274,13 +274,13 @@ class VoiceThreader:
                             if t.last_pitch > p.pitch:
                                 physically_top = False
                     if physically_top:
-                        # Don't flag as top if an inner voice recently carried this pitch
-                        # (tremolo/arpeggio continuation, not a new soprano entry).
+                        # Don't flag as top if an inner voice recently carried this exact pitch
+                        # (tremolo/repetition continuation, not a new soprano entry).
                         inner_continuation = False
                         for t in threads:
                             if t.voice_id != 0 and t.voice_id != self.max_voices - 1:
                                 for rp, ro in t.recent_pitches:
-                                    if abs(rp - p.pitch) <= 2 and p.onset - ro <= 200:
+                                    if rp == p.pitch and p.onset - ro <= 200:
                                         inner_continuation = True
                                         break
                                 if inner_continuation:
