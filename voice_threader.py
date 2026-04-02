@@ -164,7 +164,22 @@ class VoiceThreader:
                     if p.pitch >= other.last_pitch:
                         cost_topology += 60.0
             
-        return max(0.0, cost_collision + cost_elastic + cost_temp + cost_momentum + cost_register + cost_gravity + cost_topology)
+        # 8. OUTER VOICE AFFINITY
+        # The highest note in a chord cluster belongs in V1 (soprano), the lowest in V4 (bass).
+        # This discount counteracts collision inertia that would otherwise push top notes to inner voices.
+        cost_affinity = 0.0
+        if is_top:
+            if thread.voice_id == 0:
+                cost_affinity = -20.0   # Strong soprano magnet
+            elif thread.voice_id == 1:
+                cost_affinity = 10.0    # Mild repel from alto
+        if is_bottom:
+            if thread.voice_id == self.max_voices - 1:
+                cost_affinity = -20.0   # Strong bass magnet
+            elif thread.voice_id == self.max_voices - 2:
+                cost_affinity = 10.0    # Mild repel from tenor
+
+        return max(0.0, cost_collision + cost_elastic + cost_temp + cost_momentum + cost_register + cost_gravity + cost_topology + cost_affinity)
 
     def thread_particles(self, sorted_particles, regime_frames):
         """Scans left-to-right, threading particles into the path of least resistance."""
