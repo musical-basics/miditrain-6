@@ -15,6 +15,20 @@
 
 **Risk**: Merging could cause edge cases in true 4-voice passages where V1 and V2 are genuinely independent (e.g. fugal entries). Needs careful scoping.
 
-**Additional occurrence**: ~21500-22062ms — fast descending scale (77→75→74→72→70→69→68→65) is a single soprano melody, but 80ms chord clustering splits it into pairs. Within each pair V1 takes the first note, V2 gets the second. Same root cause: the threader sees chord pairs, not a continuous melodic run.
-
 **Status**: Documented. Revisit after clearing other voice threading issues.
+
+## Issue 2: V1 Instability in Fast Melodic Runs (21500-22062ms, Opt #1)
+
+**Location**: ~21500-22062ms in pathetique_64s_chunk_optimized_1
+
+**Symptom**: A fast descending soprano scale (77→75→74→72→70→69→68→65, all 62ms notes) alternates V1/V2 on every other note. V1 is unstable — it should carry this entire line.
+
+**Root cause**: The 80ms chord clustering window groups the fast run into pairs: (77,75), (74,72), (70,69). Within each pair, V1 takes the highest note, then V2 gets the second because V1 just consumed a note in the same cluster. The threader sees chord pairs, not a continuous melodic run.
+
+**Why this matters**: V1 (soprano) and V4 (bass) are the structurally critical outer voices. They must be stable. V2/V3 instability is tolerable, but V1 flickering breaks the model.
+
+**Proposed fix (deferred)**: Possible approaches:
+- Post-processing pass: if a sequence of alternating V1/V2 notes forms a stepwise or near-stepwise melody, merge them all into V1
+- Within-cluster awareness: if V1 just took a short note (≤80ms) in this cluster, allow the next note to also go to V1 with relaxed collision
+
+**Status**: Documented. Distinct from Issue 1 (which is about simultaneous top notes splitting lower voices).
