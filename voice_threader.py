@@ -75,6 +75,10 @@ class VoiceThreader:
             # However, it remains vastly cheaper than the ~150+ collision cost of overlapping a non-simultaneous sustained string,
             # allowing overflowing 5-note chords to naturally stack inside their closest active register.
             cost_collision = 35.0
+            # Outer voices (V1/V4) must carry exactly one line — strongly repel a second
+            # simultaneous note so they don't steal inner-voice notes from V2/V3.
+            if thread.voice_id == 0 or thread.voice_id == self.max_voices - 1:
+                cost_collision = 80.0
         else:
             # Instead of throwing 'inf' for pedal overlaps, allow them but penalize them heavily.
             overlap_ms = thread.last_end_time - p.onset
@@ -167,17 +171,26 @@ class VoiceThreader:
         # 8. OUTER VOICE AFFINITY
         # The highest note in a chord cluster belongs in V1 (soprano), the lowest in V4 (bass).
         # This discount counteracts collision inertia that would otherwise push top notes to inner voices.
+        # Conversely, inner notes are repelled from outer voices to keep V1/V4 as single lines.
         cost_affinity = 0.0
         if is_top:
             if thread.voice_id == 0:
                 cost_affinity = -20.0   # Strong soprano magnet
             elif thread.voice_id == 1:
                 cost_affinity = 10.0    # Mild repel from alto
+        elif is_inner or is_bottom:
+            # Non-top notes should NOT go to V1
+            if thread.voice_id == 0:
+                cost_affinity = 30.0
         if is_bottom:
             if thread.voice_id == self.max_voices - 1:
                 cost_affinity = -20.0   # Strong bass magnet
             elif thread.voice_id == self.max_voices - 2:
                 cost_affinity = 10.0    # Mild repel from tenor
+        elif is_inner or is_top:
+            # Non-bottom notes should NOT go to V4
+            if thread.voice_id == self.max_voices - 1:
+                cost_affinity = max(cost_affinity, 30.0)
 
         return max(0.0, cost_collision + cost_elastic + cost_temp + cost_momentum + cost_register + cost_gravity + cost_topology + cost_affinity)
 
