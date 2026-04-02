@@ -56,10 +56,16 @@ def run_phase2_on_json(input_json, output_json=None):
     for tag, count in sorted(voice_counts.items()):
         print(f"  {tag}: {count} notes")
 
-    # Update notes in the JSON with voice_tag and id_score
-    for i, p in enumerate(scored_particles):
-        notes[i]["voice_tag"] = p.voice_tag
-        notes[i]["id_score"] = round(p.id_score, 2)
+    # Update notes in the JSON with voice_tag and id_score.
+    # scored_particles may be reordered by thread_particles, so match by (onset, pitch).
+    voice_map = {}
+    for p in scored_particles:
+        voice_map[(p.onset, p.pitch)] = (p.voice_tag, round(p.id_score, 2))
+    for n in notes:
+        key = (n["onset"], n["pitch"])
+        if key in voice_map:
+            n["voice_tag"] = voice_map[key][0]
+            n["id_score"] = voice_map[key][1]
 
     data["notes"] = notes
     data["stats"]["voice_counts"] = voice_counts
