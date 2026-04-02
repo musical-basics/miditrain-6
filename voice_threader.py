@@ -188,6 +188,35 @@ class VoiceThreader:
         # Sort strictly by onset ascending, then pitch DESCENDING
         sorted_particles = sorted(sorted_particles, key=lambda p: (p.onset, -p.pitch))
 
+        # ── Monophonic run detection (IFFY FIX — see docs/voice_threading_issues.md) ──
+        # Mark particles that are part of a fast monophonic run so they don't get
+        # falsely clustered as chord pairs. This fixes V1 instability in fast scales
+        # but may be papering over a deeper structural issue with chord clustering.
+        # A particle is "monophonic at its onset" if no other particle shares its
+        # exact onset (±5ms). A monophonic run is 3+ consecutive monophonic particles.
+        for p in sorted_particles:
+            p._mono_run = False
+        mono_streak = []
+        for idx, p in enumerate(sorted_particles):
+            # Check if any other particle is simultaneous (within 5ms)
+            has_simultaneous = False
+            for other in sorted_particles[max(0, idx-4):idx+5]:
+                if other is not p and abs(other.onset - p.onset) <= 5:
+                    has_simultaneous = True
+                    break
+            if not has_simultaneous:
+                mono_streak.append(p)
+            else:
+                # End of streak — mark if 3+ notes
+                if len(mono_streak) >= 3:
+                    for mp in mono_streak:
+                        mp._mono_run = True
+                mono_streak = []
+        # Flush final streak
+        if len(mono_streak) >= 3:
+            for mp in mono_streak:
+                mp._mono_run = True
+
         # Dynamically calibrate ideal_pitch from actual pitch range
         if sorted_particles:
             pitch_min = min(p.pitch for p in sorted_particles)
@@ -199,12 +228,14 @@ class VoiceThreader:
 
         i = 0
         while i < len(sorted_particles):
-            # Collect chord cluster (within 80ms — wide enough to capture fast ornamental runs
-            # like sixteenth-note grace notes at 62ms spacing, which are melodic continuation
-            # not independent voices)
+            # Collect chord cluster (within 80ms window).
+            # Monophonic run notes are excluded from merging — each becomes its own cluster.
             chord_start = sorted_particles[i].onset
-            chord = []
+            chord = [sorted_particles[i]]
+            i += 1
             while i < len(sorted_particles) and sorted_particles[i].onset - chord_start <= 80:
+                if sorted_particles[i]._mono_run:
+                    break  # Don't merge mono run notes into previous cluster
                 chord.append(sorted_particles[i])
                 i += 1
 

@@ -27,8 +27,10 @@
 
 **Why this matters**: V1 (soprano) and V4 (bass) are the structurally critical outer voices. They must be stable. V2/V3 instability is tolerable, but V1 flickering breaks the model.
 
-**Proposed fix (deferred)**: Possible approaches:
-- Post-processing pass: if a sequence of alternating V1/V2 notes forms a stepwise or near-stepwise melody, merge them all into V1
-- Within-cluster awareness: if V1 just took a short note (≤80ms) in this cluster, allow the next note to also go to V1 with relaxed collision
+**Partial fix applied (IFFY FIX)**: Monophonic run detection — pre-scans for sequences of 3+ consecutive solo notes (no simultaneous onsets within 5ms) and prevents them from being clustered together. Each solo run note becomes its own cluster, gets `is_top=True`, V1 wins.
 
-**Status**: Documented. Distinct from Issue 1 (which is about simultaneous top notes splitting lower voices).
+**What it fixes**: Pure monophonic runs (21500→21687: 77→75→74→72) are now all V1.
+
+**What it doesn't fix**: When the run passes through a chord onset (e.g. 21750 where pitch 70 coincides with chord tones 56/50/46), the mono bypass can't help — the note IS simultaneous. Pitch 70 gets clustered with the chord, loses `is_top` to a higher carryover note, and falls to V2. This may need a structural rethink of how clustering interacts with melodic continuation.
+
+**Status**: Partially fixed. Remaining edge cases at chord intersections are structural.
