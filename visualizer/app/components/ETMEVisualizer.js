@@ -23,6 +23,7 @@ export default function ETMEVisualizer() {
   const [breakModel, setBreakModel] = useState('hybrid');
   const [jaccardThreshold, setJaccardThreshold] = useState(0.5);
   const [minBreakMass, setMinBreakMass] = useState(0.75);
+  const [phase2Model, setPhase2Model] = useState('greedy');
   const [hZoom, setHZoom] = useState(10);
   const [vZoom, setVZoom] = useState(10);
   const [tooltip, setTooltip] = useState(null);
@@ -170,7 +171,8 @@ export default function ETMEVisualizer() {
         '--angle_map', angleMap,
         '--break_method', breakModel,
         '--jaccard', jaccardThreshold.toString(),
-        '--min_break_mass', minBreakMass.toString()
+        '--min_break_mass', minBreakMass.toString(),
+        '--phase2_model', phase2Model
       ]);
     }
     if (!s1) {
@@ -182,7 +184,7 @@ export default function ETMEVisualizer() {
     setEngineLogs(prev => [...prev, '\nPipeline Complete! Dismiss to view results.']);
     setRefreshTrigger(prev => prev + 1);
     setIsEngineDone(true);
-  }, [midiFile, angleMap, breakModel, jaccardThreshold, minBreakMass]);
+  }, [midiFile, angleMap, breakModel, jaccardThreshold, minBreakMass, phase2Model]);
 
   // ===== BATCH RUN ENGINE =====
   const BATCH_CONFIGS = [
@@ -1182,6 +1184,12 @@ export default function ETMEVisualizer() {
             <option value={0.7}>J: 0.7</option>
           </select>
         )}
+        <select value={phase2Model} onChange={e => setPhase2Model(e.target.value)}
+          style={{ marginLeft: '4px', padding: '4px 8px', fontSize: '11px', background: '#1a1a2e', color: '#e0e0e0', border: '1px solid #e91e63', borderRadius: '4px', cursor: 'pointer' }}
+        >
+          <option value="greedy">P2: Greedy (Thermo)</option>
+          <option value="beam">P2: Beam Search</option>
+        </select>
       </div>
 
       {/* MARKER TOOLBAR */}

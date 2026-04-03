@@ -1,0 +1,24 @@
+{
+  "output": {
+    "filePath": "repomix-output.xml",
+    "style": "xml"
+  },
+  "ignore": {
+    "useGitignore": true,
+    "useDefaultPatterns": true,
+    "customPatterns": [
+      "_backup_files/**",
+      "midis/**",
+      "markers/**",
+      "visualizer/public/etme_*.json",
+      "visualizer/node_modules/**",
+      "visualizer/.next/**",
+      "visualizer/package-lock.json",
+      "visualizer/pnpm-lock.yaml",
+      "__pycache__/**",
+      ".DS_Store",
+      "repomix-output.xml",
+      "*.mid"
+    ]
+  }
+}

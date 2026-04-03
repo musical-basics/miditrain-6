@@ -16,6 +16,7 @@ from symusic import Score
 from particle import Particle
 from harmonic_regime_detector import HarmonicRegimeDetector, SEMITONE_MAP, ANGLE_MAPS, INTERVAL_ANGLES_DISSONANCE
 from voice_threader import VoiceThreader
+from voice_threader_beam import BeamVoiceThreader
 
 # Map MIDI pitch class (0-11) to interval names for the regime detector
 PC_TO_INTERVAL = {
@@ -138,7 +139,7 @@ def extract_keyframes(midi_path, group_window_ms=50):
     return keyframes
 
 
-def export_analysis(midi_path, output_json="etme_analysis.json", angle_map='dissonance', break_method='centroid', jaccard_threshold=0.5, min_break_mass=0.75, break_angle=15.0, merge_angle=20.0, debounce_ms=100, trim_ms=None, **extra_params):
+def export_analysis(midi_path, output_json="etme_analysis.json", angle_map='dissonance', break_method='centroid', jaccard_threshold=0.5, min_break_mass=0.75, break_angle=15.0, merge_angle=20.0, debounce_ms=100, trim_ms=None, phase2_model='greedy', **extra_params):
     print(f"Loading MIDI: {midi_path}")
     print(f"  Angle map: {angle_map}, Break method: {break_method}, Jaccard: {jaccard_threshold}, Min Break Mass: {min_break_mass}")
     print(f"  Break angle: {break_angle}°, Merge angle: {merge_angle}°, Debounce: {debounce_ms}ms")
@@ -210,8 +211,12 @@ def export_analysis(midi_path, output_json="etme_analysis.json", angle_map='diss
     # =============================================
     # Phase 2: Thermodynamic Voice Threading
     # =============================================
-    print("Running Phase 2: Thermodynamic Voice Threading...")
-    threader = VoiceThreader(max_voices=4)
+    if phase2_model == 'beam':
+        print("Running Phase 2: Beam Search Voice Threading...")
+        threader = BeamVoiceThreader(max_voices=4, beam_width=64)
+    else:
+        print("Running Phase 2: Thermodynamic Voice Threading (Greedy)...")
+        threader = VoiceThreader(max_voices=4)
     scored_particles = threader.thread_particles(particles, frame_lookup)
 
     voice_counts = {}
@@ -298,6 +303,7 @@ if __name__ == "__main__":
     parser.add_argument('--break_method', type=str, help='e.g. centroid, histogram, hybrid, hybrid_split')
     parser.add_argument('--jaccard', type=float, default=0.5, help='Jaccard threshold')
     parser.add_argument('--min_break_mass', type=float, default=0.75, help='Minimum mass to trigger regime break')
+    parser.add_argument('--phase2_model', type=str, default='greedy', choices=['greedy', 'beam'], help='Phase 2 voice threading model')
     args = parser.parse_args()
 
     # Auto-discover all .mid files in midis/ so new chunks work immediately
@@ -321,10 +327,10 @@ if __name__ == "__main__":
         out = f"visualizer/public/etme_{base_key}_{args.angle_map}_{args.break_method}"
         if args.break_method in ('hybrid', 'hybrid_split', 'jaccard_only', 'jaccard_only_split', 'hybrid_v2', 'hybrid_v2_split'):
             out += f"_{args.jaccard}.json"
-            export_analysis(midi_path, output_json=out, angle_map=args.angle_map, break_method=args.break_method, jaccard_threshold=args.jaccard, min_break_mass=args.min_break_mass)
+            export_analysis(midi_path, output_json=out, angle_map=args.angle_map, break_method=args.break_method, jaccard_threshold=args.jaccard, min_break_mass=args.min_break_mass, phase2_model=args.phase2_model)
         else:
             out += ".json"
-            export_analysis(midi_path, output_json=out, angle_map=args.angle_map, break_method=args.break_method, min_break_mass=args.min_break_mass)
+            export_analysis(midi_path, output_json=out, angle_map=args.angle_map, break_method=args.break_method, min_break_mass=args.min_break_mass, phase2_model=args.phase2_model)
     else:
         out = "visualizer/public/etme_pathetique_full_chunk_dissonance_hybrid_0.5.json"
         export_analysis('midis/pathetique_full_chunk.mid', output_json=out,
