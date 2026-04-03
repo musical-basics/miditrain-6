@@ -50,7 +50,7 @@ class BeamVoiceThreader:
         self.LEGATO_GRACE_MS = 40     # Allow 40ms human legato overlap
         self.ANCHOR_DISCOUNT = 12.0   # Discount for Phase 1 anchors on outer voices
 
-    def _calculate_transition_cost(self, note, v_idx, state, ideal_pitches, is_anchor, is_top=False, is_bottom=False):
+    def _calculate_transition_cost(self, note, v_idx, state, ideal_pitches, is_anchor, is_top=False, is_bottom=False, is_mono=False):
         """Cost to assign `note` to voice `v_idx` in the given state."""
         if v_idx == self.max_voices:  # Overflow
             return self.W_OVERFLOW
@@ -64,10 +64,18 @@ class BeamVoiceThreader:
             cost += (overlap_ms - self.LEGATO_GRACE_MS) * self.W_COLLISION
 
         # 2. ELASTICITY (Squared Pitch Leap — L2 norm)
-        # Only applies if the voice has been active (has a real pitch assignment)
+        # Only applies if the voice has been active (has a real pitch assignment).
+        # Decays with time gap so stale voices don't attract new notes.
         if v['active']:
             delta_p = note.pitch - v['pitch']
-            cost += (delta_p ** 2) * self.W_ELASTICITY
+            gap_ms = max(0, note.onset - v['end_time'])
+            decay = 1.0 / (1.0 + gap_ms / 500.0) if gap_ms > 200 else 1.0
+            cost += (delta_p ** 2) * self.W_ELASTICITY * decay
+            # CONTINUATION BONUS: for monophonic notes, the most recently active
+            # voice gets a discount. This keeps arpeggios on one voice even when
+            # they cross register lanes. The bonus scales with recency.
+            if is_mono and gap_ms < 200:
+                cost -= 15.0 * decay
 
         # 3. TOPOLOGY (Voice Crossing)
         for i, other_v in enumerate(state.voices):
@@ -79,18 +87,22 @@ class BeamVoiceThreader:
                     cost += self.W_CROSSING
                 elif v_idx < i and note.pitch < other_v['pitch']:
                     cost += self.W_CROSSING
-            else:
+            elif not is_mono:
                 # Soft crossing: penalize crossing ideal pitch lanes even when
                 # the other voice is dormant. This prevents a single voice from
                 # riding a long scale across all registers.
+                # Suppressed for monophonic notes — arpeggios should stay on
+                # one voice even when they span multiple register lanes.
                 if v_idx > i and note.pitch > ideal_pitches[i]:
                     cost += self.W_CROSSING * 0.3
                 elif v_idx < i and note.pitch < ideal_pitches[i]:
                     cost += self.W_CROSSING * 0.3
 
         # 4. REGISTER GRAVITY (quadratic — exponential resistance to lane drift)
+        # Dampened for monophonic notes so elasticity keeps arpeggios together
         lane_dist = abs(note.pitch - ideal_pitches[v_idx])
-        cost += (lane_dist ** 2) * self.W_REGISTER * 0.02 + lane_dist * self.W_REGISTER * 0.5
+        reg_scale = 0.05 if is_mono else 1.0
+        cost += ((lane_dist ** 2) * self.W_REGISTER * 0.02 + lane_dist * self.W_REGISTER * 0.5) * reg_scale
 
         # 5. MACRO GRAVITY (Phase 1 anchor discount for outer voices)
         if is_anchor and v_idx in (0, self.max_voices - 1):
@@ -154,6 +166,7 @@ class BeamVoiceThreader:
         # A note is "bottom" if it's the lowest. Monophonic notes get neither.
         note_is_top = {}
         note_is_bottom = {}
+        note_is_mono = set()
         i_group = 0
         while i_group < len(notes):
             group = [notes[i_group]]
@@ -169,6 +182,8 @@ class BeamVoiceThreader:
                         note_is_top[id(n)] = True
                     if n.pitch == bot_pitch:
                         note_is_bottom[id(n)] = True
+            else:
+                note_is_mono.add(id(group[0]))
             i_group = j
 
         total = len(notes)
@@ -181,6 +196,7 @@ class BeamVoiceThreader:
             note_anchor = is_anchor(note)
             n_top = note_is_top.get(id(note), False)
             n_bot = note_is_bottom.get(id(note), False)
+            n_mono = id(note) in note_is_mono
             next_beam = []
 
             for state in beam:
@@ -188,7 +204,7 @@ class BeamVoiceThreader:
                 for v_idx in range(self.max_voices + 1):
                     delta = self._calculate_transition_cost(
                         note, v_idx, state, ideal_pitches, note_anchor,
-                        is_top=n_top, is_bottom=n_bot
+                        is_top=n_top, is_bottom=n_bot, is_mono=n_mono
                     )
                     new_state = state.clone()
                     new_state.cumulative_cost += delta
