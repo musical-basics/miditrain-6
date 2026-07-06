@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "dreamflow": "file:../../../UltimatePianist Repos/dreamflow",
     "lucide-react": "^0.479.0",
     "next": "16.2.1",
     "react": "19.2.4",

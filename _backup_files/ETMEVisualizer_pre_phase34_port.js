@@ -9,19 +9,6 @@ import {
 } from './etme-constants';
 import { renderPhase1Regimes, getPhase1NoteColor, renderPhase1DebugLabels, Phase1Legend } from './Phase1Renderer';
 import { getPhase2NoteColor, Phase2Legend } from './Phase2Renderer';
-import { getPhase3NoteColor, renderBarlineGrid, renderThermoOverlay, Phase3ThermoLegend, Phase3GridLegend } from './Phase3Renderer';
-import { getQuantizedGeometry, getPhase4NoteColor, Phase4QuantizeLegend, Phase4NotationLegend } from './Phase4Renderer';
-import NotationView from './NotationView';
-
-// Derive the Phase 3 base key from an ETME filename, mirroring the Python
-// scripts' logic (strip etme_/.json, split on the angle-map token).
-function phase3BaseKey(etmeFile) {
-  const middle = etmeFile.replace(/^etme_/, '').replace(/\.json$/, '');
-  for (const am of ['dissonance', 'fifths']) {
-    if (middle.includes(`_${am}`)) return middle.split(`_${am}`)[0];
-  }
-  return middle;
-}
 
 // ===== MAIN COMPONENT =====
 export default function ETMEVisualizer() {
@@ -37,13 +24,6 @@ export default function ETMEVisualizer() {
   const [jaccardThreshold, setJaccardThreshold] = useState(0.5);
   const [minBreakMass, setMinBreakMass] = useState(0.75);
   const [phase2Model, setPhase2Model] = useState('greedy');
-  // Phase 3/4 data + controls
-  const [thermoData, setThermoData] = useState(null);      // phase3_thermo_*.json
-  const [gridData, setGridData] = useState(null);          // phase3_grid_*.json
-  const [phase4aData, setPhase4aData] = useState(null);    // phase4_quantized_*.json
-  const [phase4bData, setPhase4bData] = useState(null);    // phase4_notation_*.json
-  const [keyAlgorithm, setKeyAlgorithm] = useState('temperley');
-  const [layoutMode, setLayoutMode] = useState('horizontal'); // notation layout
   const [hZoom, setHZoom] = useState(10);
   const [vZoom, setVZoom] = useState(10);
   const [tooltip, setTooltip] = useState(null);
@@ -178,25 +158,14 @@ export default function ETMEVisualizer() {
       return false;
     };
 
-    // Resolve the ETME JSON filename this run reads/writes (same naming rule as export_etme_data.py)
-    let etmeFileName;
-    if (midiFile.startsWith('__optimized__:')) {
-      etmeFileName = midiFile.replace('__optimized__:', '');
-    } else {
-      const baseKey = getBaseKey();
-      etmeFileName = (['hybrid', 'hybrid_split', 'jaccard_only', 'jaccard_only_split', 'hybrid_v2', 'hybrid_v2_split'].includes(breakModel))
-        ? `etme_${baseKey}_${angleMap}_${breakModel}_${jaccardThreshold}.json`
-        : `etme_${baseKey}_${angleMap}_${breakModel}.json`;
-    }
-    const jsonTarget = 'visualizer/public/' + etmeFileName;
-
     let s1;
     if (midiFile.startsWith('__optimized__:')) {
       // Optimized output — run Phase 2 only on the existing JSON
-      setEngineLogs(prev => [...prev, '\n[1/5] Running Phase 2 only on optimized output (run_phase2.py)...']);
-      s1 = await runScript('run_phase2.py', [jsonTarget]);
+      const jsonFile = 'visualizer/public/' + midiFile.replace('__optimized__:', '');
+      setEngineLogs(prev => [...prev, '\n[1/1] Running Phase 2 only on optimized output (run_phase2.py)...']);
+      s1 = await runScript('run_phase2.py', [jsonFile]);
     } else {
-      setEngineLogs(prev => [...prev, '\n[1/5] Running Phase 1 & 2 (export_etme_data.py)...']);
+      setEngineLogs(prev => [...prev, '\n[1/1] Running Phase 1 & 2 (export_etme_data.py)...']);
       s1 = await runScript('export_etme_data.py', [
         '--midi_key', midiFile,
         '--angle_map', angleMap,
@@ -212,45 +181,10 @@ export default function ETMEVisualizer() {
       return;
     }
 
-    // Phase 3: thermodynamic meter (visual overlay — non-fatal if it fails)
-    setEngineLogs(prev => [...prev, '\n[2/5] Running Phase 3 Thermo Meter (phase3_thermo_meter.py)...']);
-    const s2 = await runScript('phase3_thermo_meter.py', [jsonTarget, '--json']);
-    if (!s2) {
-      setEngineLogs(prev => [...prev, '\nPhase 3 thermo meter failed (non-fatal). Continuing...']);
-    }
-
-    // Phase 3: spike grid (feeds Phase 4 — fatal if it fails)
-    setEngineLogs(prev => [...prev, '\n[3/5] Running Phase 3 Spike Grid (phase3_spike_meter.py)...']);
-    const s3 = await runScript('phase3_spike_meter.py', [jsonTarget, '--json']);
-    if (!s3) {
-      setEngineLogs(prev => [...prev, '\nPipeline failed at Phase 3 spike grid. Check logs above.']);
-      setIsEngineDone(true);
-      return;
-    }
-
-    const gridTarget = `visualizer/public/phase3_grid_${phase3BaseKey(etmeFileName)}.json`;
-
-    setEngineLogs(prev => [...prev, '\n[4/5] Running Phase 4A Quantize (phase4_quantize.py)...']);
-    const s4 = await runScript('phase4_quantize.py', [jsonTarget, gridTarget]);
-    if (!s4) {
-      setEngineLogs(prev => [...prev, '\nPipeline failed at Phase 4A quantize. Check logs above.']);
-      setIsEngineDone(true);
-      return;
-    }
-
-    setEngineLogs(prev => [...prev, '\n[5/5] Running Phase 4B Notation (phase4_notation.py)...']);
-    const quantizedTarget = 'visualizer/public/phase4_quantized_' + etmeFileName.replace(/^etme_/, '');
-    const s5 = await runScript('phase4_notation.py', [quantizedTarget, gridTarget, '--algo', keyAlgorithm]);
-    if (!s5) {
-      setEngineLogs(prev => [...prev, '\nPipeline failed at Phase 4B notation. Check logs above.']);
-      setIsEngineDone(true);
-      return;
-    }
-
     setEngineLogs(prev => [...prev, '\nPipeline Complete! Dismiss to view results.']);
     setRefreshTrigger(prev => prev + 1);
     setIsEngineDone(true);
-  }, [midiFile, angleMap, breakModel, jaccardThreshold, minBreakMass, phase2Model, keyAlgorithm, getBaseKey]);
+  }, [midiFile, angleMap, breakModel, jaccardThreshold, minBreakMass, phase2Model]);
 
   // ===== BATCH RUN ENGINE =====
   const BATCH_CONFIGS = [
@@ -411,20 +345,6 @@ export default function ETMEVisualizer() {
         });
       })
       .catch(() => setData(null));
-
-    // Phase 3/4 outputs derived from the same ETME filename
-    const p3Base = phase3BaseKey(etmeFile);
-    const middle = etmeFile.replace(/^etme_/, '').replace(/\.json$/, '');
-    const fetchJson = (file, setter) => {
-      fetch(`/${file}?t=${Date.now()}_${refreshTrigger}`)
-        .then(r => { if (!r.ok) return null; return r.json(); })
-        .then(setter)
-        .catch(() => setter(null));
-    };
-    fetchJson(`phase3_thermo_${p3Base}.json`, setThermoData);
-    fetchJson(`phase3_grid_${p3Base}.json`, setGridData);
-    fetchJson(`phase4_quantized_${middle}.json`, setPhase4aData);
-    fetchJson(`phase4_notation_${middle}.json`, setPhase4bData);
   }, [midiFile, angleMap, breakModel, jaccardThreshold, refreshTrigger, getBaseKey]);
 
   // Load saved markers
@@ -542,17 +462,11 @@ export default function ETMEVisualizer() {
       renderPhase1Regimes(ctx, regimes, { effectiveScale, noteHeight, rollH, canvasW });
     }
 
-    // Draw notes — Phase 4A renders the quantized dataset at snapped positions
-    const activeNotes = (currentView === 'phase4a' && phase4aData?.notes) ? phase4aData.notes : notes;
-    for (const n of activeNotes) {
-      let x = n.onset * effectiveScale;
-      let w = Math.max(n.duration * effectiveScale, 2);
+    // Draw notes
+    for (const n of notes) {
+      const x = n.onset * effectiveScale;
+      const w = Math.max(n.duration * effectiveScale, 2);
       const y = (PITCH_MAX - n.pitch) * noteHeight;
-
-      if (currentView === 'phase4a') {
-        const snapped = getQuantizedGeometry(n, gridData, { effectiveScale });
-        if (snapped) { x = snapped.x; w = snapped.w; }
-      }
 
       let fillColor, strokeColor;
 
@@ -576,18 +490,6 @@ export default function ETMEVisualizer() {
           ctx.shadowColor = p2.shadow.color;
           ctx.shadowBlur = p2.shadow.blur;
         }
-      } else if (currentView === 'phase3' || currentView === 'phase3_grid') {
-        const p3 = getPhase3NoteColor(n, currentView);
-        fillColor = p3.fillColor;
-        strokeColor = p3.strokeColor;
-      } else if (currentView === 'phase4a' || currentView === 'phase4b') {
-        const p4 = getPhase4NoteColor(n);
-        fillColor = p4.fillColor;
-        strokeColor = p4.strokeColor;
-        if (p4.shadow) {
-          ctx.shadowColor = p4.shadow.color;
-          ctx.shadowBlur = p4.shadow.blur;
-        }
       }
 
       ctx.fillStyle = fillColor;
@@ -604,14 +506,6 @@ export default function ETMEVisualizer() {
       if (currentView === 'phase1') {
         renderPhase1DebugLabels(ctx, n, x, y);
       }
-    }
-
-    // ===== Phase 3/4 overlays =====
-    if (currentView === 'phase3') {
-      renderThermoOverlay(ctx, thermoData, { effectiveScale, rollH, canvasW });
-    }
-    if (currentView === 'phase3_grid' || currentView === 'phase4a') {
-      renderBarlineGrid(ctx, gridData, { effectiveScale, rollH, canvasW, maxTime, showTopLabels: true });
     }
 
     // ===== Draw comparison: model SPIKE boundaries as cyan lines =====
@@ -732,7 +626,7 @@ export default function ETMEVisualizer() {
       ctx.closePath(); ctx.fill();
     }
 
-  }, [data, currentView, msPxInput, noteHeight, markers, selectedMarkerIds, showComparison, dragSelect, thermoData, gridData, phase4aData]);
+  }, [data, currentView, msPxInput, noteHeight, markers, selectedMarkerIds, showComparison, dragSelect]);
 
   // Keep renderRef always pointing to the latest render function
   useEffect(() => { renderRef.current = render; }, [render]);
@@ -1101,23 +995,17 @@ export default function ETMEVisualizer() {
 
     if (hit) {
       const noteName = NOTE_NAMES[hit.pitch % 12] + (Math.floor(hit.pitch / 12) - 1);
-      // Attach Phase 4A quantized coordinates when available
-      let quantized = hit.quantized;
-      if (!quantized && phase4aData?.notes) {
-        const q = phase4aData.notes.find(qn => qn.onset === hit.onset && qn.pitch === hit.pitch);
-        quantized = q?.quantized;
-      }
       setTooltip({
         x: e.clientX + 14, y: e.clientY + 14,
         noteName, pitch: hit.pitch, velocity: hit.velocity,
         onset: hit.onset, duration: hit.duration,
         hue: hit.hue, sat: hit.sat, lightness: hit.lightness, tonal_distance: hit.tonal_distance,
-        voice_tag: hit.voice_tag, id_score: hit.id_score, quantized
+        voice_tag: hit.voice_tag, id_score: hit.id_score
       });
     } else {
       setTooltip(null);
     }
-  }, [data, noteHeight, phase4aData]);
+  }, [data, noteHeight]);
 
   // Save markers
   const saveMarkers = async () => {
@@ -1177,10 +1065,6 @@ export default function ETMEVisualizer() {
       </>
     );
     if (currentView === 'phase2') return <Phase2Legend />;
-    if (currentView === 'phase3') return <Phase3ThermoLegend thermoData={thermoData} />;
-    if (currentView === 'phase3_grid') return <Phase3GridLegend gridData={gridData} />;
-    if (currentView === 'phase4a') return <Phase4QuantizeLegend gridData={gridData} />;
-    if (currentView === 'phase4b') return <Phase4NotationLegend notationData={phase4bData} />;
     return (
       <Phase1Legend minBreakMass={minBreakMass} setMinBreakMass={setMinBreakMass} showComparison={showComparison} />
     );
@@ -1192,14 +1076,6 @@ export default function ETMEVisualizer() {
     { id: 'phase2', label: 'Phase 2 -- Voice Threading', color: 'var(--accent-pink)' },
   ];
 
-  const phase34Views = [
-    { id: 'phase3', label: 'Phase 3 -- Thermo Meter' },
-    { id: 'phase3_grid', label: 'Phase 3 -- Spike Grid (Legacy)' },
-    { id: 'phase4a', label: 'Phase 4A -- Micro-Quantize' },
-    { id: 'phase4b', label: 'Phase 4B -- Notation' },
-  ];
-  const isPhase34View = ['phase3', 'phase3_grid', 'phase4a', 'phase4b'].includes(currentView);
-
   // Comparison logic
   const comparisonStats = computeComparison(markers, data?.regimes, compTolerance);
 
@@ -1207,7 +1083,7 @@ export default function ETMEVisualizer() {
     <>
       {/* HEADER */}
       <div className="header">
-        <h1><span>ETME</span> Pipeline Tester</h1>
+        <h1><span>ETME</span> Phase 1 Tester</h1>
         <div className="stats">
           <div>Notes<span className="stat-value">{data?.stats?.total_notes ?? '--'}</span></div>
           <div>Regimes<span className="stat-value">{data?.stats?.total_regimes ?? '--'}</span></div>
@@ -1230,26 +1106,6 @@ export default function ETMEVisualizer() {
             {v.label}
           </button>
         ))}
-
-        <select
-          value={isPhase34View ? currentView : 'phase34_placeholder'}
-          onChange={e => { if (e.target.value !== 'phase34_placeholder') setCurrentView(e.target.value); }}
-          className={`view-tab ${isPhase34View ? 'active' : ''}`}
-          style={{
-            marginLeft: '8px', padding: '6px 12px', fontSize: '11px', fontWeight: 'bold',
-            backgroundColor: isPhase34View ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.03)',
-            color: isPhase34View ? '#fff' : '#a0a0b0',
-            border: isPhase34View ? '1px solid rgba(255,255,255,0.2)' : '1px solid rgba(255,255,255,0.1)',
-            borderRadius: '6px', cursor: 'pointer', outline: 'none'
-          }}
-        >
-          <option value="phase34_placeholder" disabled>Phase 3 / 4...</option>
-          {phase34Views.map(v => (
-            <option key={v.id} value={v.id} style={{ background: '#1a1a2e', color: '#e0e0e0' }}>
-              {v.label}
-            </option>
-          ))}
-        </select>
 
         <button
           onClick={runEngine}
@@ -1334,26 +1190,6 @@ export default function ETMEVisualizer() {
           <option value="greedy">P2: Greedy (Thermo)</option>
           <option value="beam">P2: Beam Search</option>
         </select>
-        <select value={keyAlgorithm} onChange={e => setKeyAlgorithm(e.target.value)}
-          title="Phase 4B key detection algorithm"
-          style={{ marginLeft: '4px', padding: '4px 8px', fontSize: '11px', background: '#1a1a2e', color: '#e0e0e0', border: '1px solid #4caf50', borderRadius: '4px', cursor: 'pointer' }}
-        >
-          <option value="temperley">Key: Temperley (CBMS)</option>
-          <option value="krumhansl">Key: Krumhansl-Schmuckler</option>
-        </select>
-        {currentView === 'phase4b' && (
-          <button
-            onClick={() => setLayoutMode(layoutMode === 'horizontal' ? 'paged' : 'horizontal')}
-            title="Toggle notation layout (horizontal / paged)"
-            style={{
-              marginLeft: '4px', padding: '4px 8px', fontSize: '11px',
-              background: '#1a1a2e', color: '#e0e0e0', border: '1px solid #333',
-              borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold'
-            }}
-          >
-            {layoutMode === 'horizontal' ? 'Horizontal' : 'Paged'}
-          </button>
-        )}
       </div>
 
       {/* MARKER TOOLBAR */}
@@ -1530,15 +1366,6 @@ export default function ETMEVisualizer() {
             onContextMenu={handleCanvasContextMenu}
             style={{ cursor: dragSelect?.active ? 'col-resize' : 'crosshair' }}
           />
-          {currentView === 'phase4b' && (
-            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: isDarkMode ? '#0d0d12' : '#f8f9fa', zIndex: 10 }}>
-              <NotationView
-                notationData={phase4bData}
-                darkMode={isDarkMode}
-                layoutMode={layoutMode}
-              />
-            </div>
-          )}
         </div>
       </div>
 
@@ -1600,13 +1427,6 @@ export default function ETMEVisualizer() {
             Tension: {tooltip.tonal_distance}
             {tooltip.voice_tag && (<><br /><br /><strong>Voice:</strong> {tooltip.voice_tag}</>)}
             {tooltip.id_score != null && (<><br />I<sub>d</sub> Score: {tooltip.id_score}</>)}
-            {tooltip.quantized && (
-              <span style={{ color: '#ffb300' }}>
-                <br /><br /><strong>Micro-Quantized:</strong><br />
-                M{tooltip.quantized.measure}.B{tooltip.quantized.beat} (Sub {tooltip.quantized.sub_tick})<br />
-                Abs Ticks: {tooltip.quantized.abs_tick_start} → {tooltip.quantized.abs_tick_end} (Dur: {tooltip.quantized.duration_ticks})
-              </span>
-            )}
           </div>
         </div>
       )}

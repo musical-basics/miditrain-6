@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      dreamflow:
+        specifier: file:../../../UltimatePianist Repos/dreamflow
+        version: file:../../../UltimatePianist Repos/dreamflow
       lucide-react:
         specifier: ^0.479.0
         version: 0.479.0(react@19.2.4)
@@ -259,6 +262,9 @@ packages:
     resolution: {integrity: sha512-Btj2BOOO83o3WyH59e8MgXsxEQVcarkUOpEYrubB0urwnN10yQ364rsiByU11nZlqWYZm05i/of7io4mzihBtQ==}
     engines: {node: '>=8'}
 
+  dreamflow@file:../../../UltimatePianist Repos/dreamflow:
+    resolution: {directory: ../../../UltimatePianist Repos/dreamflow, type: directory}
+
   lucide-react@0.479.0:
     resolution: {integrity: sha512-aBhNnveRhorBOK7uA4gDjgaf+YlHMdMhQ/3cupk6exM10hWlEU+2QtWYOfhXhjAsmdb6LeKR+NZnow4UxRRiTQ==}
     peerDependencies:
@@ -321,6 +327,9 @@ packages:
   source-map-js@1.2.1:
     resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
     engines: {node: '>=0.10.0'}
+
+  structured-clone-es@1.0.0:
+    resolution: {integrity: sha512-FL8EeKFFyNQv5cMnXI31CIMCsFarSVI2bF0U0ImeNE3g/F1IvJQyqzOXxPBRXiwQfyBTlbNe88jh1jFW0O/jiQ==}
 
   styled-jsx@5.1.6:
     resolution: {integrity: sha512-qSVyDTeMotdvQYoHWLNGwRFJHC+i+ZvdBRYosOFgC+Wg1vx4frN2/RG/NA7SYqqvKNLf39P2LSRA2pu6n0XYZA==}
@@ -503,6 +512,10 @@ snapshots:
   detect-libc@2.1.2:
     optional: true
 
+  dreamflow@file:../../../UltimatePianist Repos/dreamflow:
+    dependencies:
+      structured-clone-es: 1.0.0
+
   lucide-react@0.479.0(react@19.2.4):
     dependencies:
       react: 19.2.4
@@ -586,6 +599,8 @@ snapshots:
     optional: true
 
   source-map-js@1.2.1: {}
+
+  structured-clone-es@1.0.0: {}
 
   styled-jsx@5.1.6(react@19.2.4):
     dependencies:
