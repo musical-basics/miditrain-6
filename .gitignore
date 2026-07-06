@@ -5,3 +5,4 @@ __pycache__/
 repomix-output.xml
 corpus_runs/
 corpus files/corpus_demo.zip
+corpus files/venv/

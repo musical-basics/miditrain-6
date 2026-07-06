@@ -1,0 +1,7565 @@
+{
+ "id": "bach_bwv846",
+ "title": null,
+ "convention": {
+  "tpq": 480,
+  "ms_per_quarter": 500.0
+ },
+ "anacrusis_ms": 0,
+ "downbeats_ms": [
+  0,
+  2000,
+  4000,
+  6000,
+  8000,
+  10000,
+  12000,
+  14000,
+  16000,
+  18000,
+  20000,
+  22000,
+  24000,
+  26000,
+  28000,
+  30000,
+  32000,
+  34000,
+  36000,
+  38000,
+  40000,
+  42000,
+  44000,
+  46000,
+  48000,
+  50000,
+  52000,
+  54000,
+  56000,
+  58000,
+  60000,
+  62000,
+  64000,
+  66000
+ ],
+ "meter_map": [
+  {
+   "start_ms": 0,
+   "time_signature": "4/4",
+   "measure_ms": 2000,
+   "beat_ms": 500,
+   "beats_per_measure": 4
+  }
+ ],
+ "key_map": [
+  {
+   "start_ms": 0,
+   "sharps": 0
+  }
+ ],
+ "analyzed_key": {
+  "tonic": "C",
+  "mode": "major",
+  "confidence": 0.9186
+ },
+ "notes": [
+  {
+   "onset_ms": 0,
+   "duration_ms": 1000,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 125,
+   "duration_ms": 875,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 250,
+   "duration_ms": 125,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 375,
+   "duration_ms": 125,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 500,
+   "duration_ms": 125,
+   "pitch": 76,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 5,
+    "name": "E5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 625,
+   "duration_ms": 125,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 750,
+   "duration_ms": 125,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 875,
+   "duration_ms": 125,
+   "pitch": 76,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 5,
+    "name": "E5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 1000,
+   "duration_ms": 1000,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 1125,
+   "duration_ms": 875,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 1250,
+   "duration_ms": 125,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 1375,
+   "duration_ms": 125,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 1500,
+   "duration_ms": 125,
+   "pitch": 76,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 5,
+    "name": "E5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 1625,
+   "duration_ms": 125,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 1750,
+   "duration_ms": 125,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 1875,
+   "duration_ms": 125,
+   "pitch": 76,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 5,
+    "name": "E5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 2000,
+   "duration_ms": 1000,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 2125,
+   "duration_ms": 875,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 2250,
+   "duration_ms": 125,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 2375,
+   "duration_ms": 125,
+   "pitch": 74,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 5,
+    "name": "D5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 2500,
+   "duration_ms": 125,
+   "pitch": 77,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 5,
+    "name": "F5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 2625,
+   "duration_ms": 125,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 2750,
+   "duration_ms": 125,
+   "pitch": 74,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 5,
+    "name": "D5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 2875,
+   "duration_ms": 125,
+   "pitch": 77,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 5,
+    "name": "F5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 3000,
+   "duration_ms": 1000,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 3125,
+   "duration_ms": 875,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 3250,
+   "duration_ms": 125,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 3375,
+   "duration_ms": 125,
+   "pitch": 74,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 5,
+    "name": "D5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 3500,
+   "duration_ms": 125,
+   "pitch": 77,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 5,
+    "name": "F5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 3625,
+   "duration_ms": 125,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 3750,
+   "duration_ms": 125,
+   "pitch": 74,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 5,
+    "name": "D5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 3875,
+   "duration_ms": 125,
+   "pitch": 77,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 5,
+    "name": "F5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 4000,
+   "duration_ms": 1000,
+   "pitch": 59,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 3,
+    "name": "B3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 4125,
+   "duration_ms": 875,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 4250,
+   "duration_ms": 125,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 4375,
+   "duration_ms": 125,
+   "pitch": 74,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 5,
+    "name": "D5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 4500,
+   "duration_ms": 125,
+   "pitch": 77,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 5,
+    "name": "F5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 4625,
+   "duration_ms": 125,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 4750,
+   "duration_ms": 125,
+   "pitch": 74,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 5,
+    "name": "D5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 4875,
+   "duration_ms": 125,
+   "pitch": 77,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 5,
+    "name": "F5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 5000,
+   "duration_ms": 1000,
+   "pitch": 59,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 3,
+    "name": "B3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 5125,
+   "duration_ms": 875,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 5250,
+   "duration_ms": 125,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 5375,
+   "duration_ms": 125,
+   "pitch": 74,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 5,
+    "name": "D5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 5500,
+   "duration_ms": 125,
+   "pitch": 77,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 5,
+    "name": "F5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 5625,
+   "duration_ms": 125,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 5750,
+   "duration_ms": 125,
+   "pitch": 74,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 5,
+    "name": "D5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 5875,
+   "duration_ms": 125,
+   "pitch": 77,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 5,
+    "name": "F5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 6000,
+   "duration_ms": 1000,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 6125,
+   "duration_ms": 875,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 6250,
+   "duration_ms": 125,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 6375,
+   "duration_ms": 125,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 6500,
+   "duration_ms": 125,
+   "pitch": 76,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 5,
+    "name": "E5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 6625,
+   "duration_ms": 125,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 6750,
+   "duration_ms": 125,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 6875,
+   "duration_ms": 125,
+   "pitch": 76,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 5,
+    "name": "E5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 7000,
+   "duration_ms": 1000,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 7125,
+   "duration_ms": 875,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 7250,
+   "duration_ms": 125,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 7375,
+   "duration_ms": 125,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 7500,
+   "duration_ms": 125,
+   "pitch": 76,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 5,
+    "name": "E5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 7625,
+   "duration_ms": 125,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 7750,
+   "duration_ms": 125,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 7875,
+   "duration_ms": 125,
+   "pitch": 76,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 5,
+    "name": "E5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 8000,
+   "duration_ms": 1000,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 8125,
+   "duration_ms": 875,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 8250,
+   "duration_ms": 125,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 8375,
+   "duration_ms": 125,
+   "pitch": 76,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 5,
+    "name": "E5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 8500,
+   "duration_ms": 125,
+   "pitch": 81,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 5,
+    "name": "A5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 8625,
+   "duration_ms": 125,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 8750,
+   "duration_ms": 125,
+   "pitch": 76,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 5,
+    "name": "E5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 8875,
+   "duration_ms": 125,
+   "pitch": 81,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 5,
+    "name": "A5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 9000,
+   "duration_ms": 1000,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 9125,
+   "duration_ms": 875,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 9250,
+   "duration_ms": 125,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 9375,
+   "duration_ms": 125,
+   "pitch": 76,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 5,
+    "name": "E5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 9500,
+   "duration_ms": 125,
+   "pitch": 81,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 5,
+    "name": "A5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 9625,
+   "duration_ms": 125,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 9750,
+   "duration_ms": 125,
+   "pitch": 76,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 5,
+    "name": "E5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 9875,
+   "duration_ms": 125,
+   "pitch": 81,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 5,
+    "name": "A5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 10000,
+   "duration_ms": 1000,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 10125,
+   "duration_ms": 875,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 10250,
+   "duration_ms": 125,
+   "pitch": 66,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 1,
+    "octave": 4,
+    "name": "F#4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 10375,
+   "duration_ms": 125,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 10500,
+   "duration_ms": 125,
+   "pitch": 74,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 5,
+    "name": "D5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 10625,
+   "duration_ms": 125,
+   "pitch": 66,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 1,
+    "octave": 4,
+    "name": "F#4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 10750,
+   "duration_ms": 125,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 10875,
+   "duration_ms": 125,
+   "pitch": 74,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 5,
+    "name": "D5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 11000,
+   "duration_ms": 1000,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 11125,
+   "duration_ms": 875,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 11250,
+   "duration_ms": 125,
+   "pitch": 66,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 1,
+    "octave": 4,
+    "name": "F#4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 11375,
+   "duration_ms": 125,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 11500,
+   "duration_ms": 125,
+   "pitch": 74,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 5,
+    "name": "D5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 11625,
+   "duration_ms": 125,
+   "pitch": 66,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 1,
+    "octave": 4,
+    "name": "F#4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 11750,
+   "duration_ms": 125,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 11875,
+   "duration_ms": 125,
+   "pitch": 74,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 5,
+    "name": "D5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 12000,
+   "duration_ms": 1000,
+   "pitch": 59,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 3,
+    "name": "B3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 12125,
+   "duration_ms": 875,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 12250,
+   "duration_ms": 125,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 12375,
+   "duration_ms": 125,
+   "pitch": 74,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 5,
+    "name": "D5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 12500,
+   "duration_ms": 125,
+   "pitch": 79,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 5,
+    "name": "G5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 12625,
+   "duration_ms": 125,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 12750,
+   "duration_ms": 125,
+   "pitch": 74,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 5,
+    "name": "D5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 12875,
+   "duration_ms": 125,
+   "pitch": 79,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 5,
+    "name": "G5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 13000,
+   "duration_ms": 1000,
+   "pitch": 59,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 3,
+    "name": "B3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 13125,
+   "duration_ms": 875,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 13250,
+   "duration_ms": 125,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 13375,
+   "duration_ms": 125,
+   "pitch": 74,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 5,
+    "name": "D5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 13500,
+   "duration_ms": 125,
+   "pitch": 79,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 5,
+    "name": "G5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 13625,
+   "duration_ms": 125,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 13750,
+   "duration_ms": 125,
+   "pitch": 74,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 5,
+    "name": "D5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 13875,
+   "duration_ms": 125,
+   "pitch": 79,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 5,
+    "name": "G5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 14000,
+   "duration_ms": 1000,
+   "pitch": 59,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 3,
+    "name": "B3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 14125,
+   "duration_ms": 875,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 14250,
+   "duration_ms": 125,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 14375,
+   "duration_ms": 125,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 14500,
+   "duration_ms": 125,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 14625,
+   "duration_ms": 125,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 14750,
+   "duration_ms": 125,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 14875,
+   "duration_ms": 125,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 15000,
+   "duration_ms": 1000,
+   "pitch": 59,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 3,
+    "name": "B3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 15125,
+   "duration_ms": 875,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 15250,
+   "duration_ms": 125,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 15375,
+   "duration_ms": 125,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 15500,
+   "duration_ms": 125,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 15625,
+   "duration_ms": 125,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 15750,
+   "duration_ms": 125,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 15875,
+   "duration_ms": 125,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 16000,
+   "duration_ms": 1000,
+   "pitch": 57,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 3,
+    "name": "A3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 16125,
+   "duration_ms": 875,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 16250,
+   "duration_ms": 125,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 16375,
+   "duration_ms": 125,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 16500,
+   "duration_ms": 125,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 16625,
+   "duration_ms": 125,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 16750,
+   "duration_ms": 125,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 16875,
+   "duration_ms": 125,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 17000,
+   "duration_ms": 1000,
+   "pitch": 57,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 3,
+    "name": "A3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 17125,
+   "duration_ms": 875,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 17250,
+   "duration_ms": 125,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 17375,
+   "duration_ms": 125,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 17500,
+   "duration_ms": 125,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 17625,
+   "duration_ms": 125,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 17750,
+   "duration_ms": 125,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 17875,
+   "duration_ms": 125,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 18000,
+   "duration_ms": 1000,
+   "pitch": 50,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 3,
+    "name": "D3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 18125,
+   "duration_ms": 875,
+   "pitch": 57,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 3,
+    "name": "A3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 18250,
+   "duration_ms": 125,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 18375,
+   "duration_ms": 125,
+   "pitch": 66,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 1,
+    "octave": 4,
+    "name": "F#4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 18500,
+   "duration_ms": 125,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 18625,
+   "duration_ms": 125,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 18750,
+   "duration_ms": 125,
+   "pitch": 66,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 1,
+    "octave": 4,
+    "name": "F#4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 18875,
+   "duration_ms": 125,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 19000,
+   "duration_ms": 1000,
+   "pitch": 50,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 3,
+    "name": "D3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 19125,
+   "duration_ms": 875,
+   "pitch": 57,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 3,
+    "name": "A3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 19250,
+   "duration_ms": 125,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 19375,
+   "duration_ms": 125,
+   "pitch": 66,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 1,
+    "octave": 4,
+    "name": "F#4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 19500,
+   "duration_ms": 125,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 19625,
+   "duration_ms": 125,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 19750,
+   "duration_ms": 125,
+   "pitch": 66,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 1,
+    "octave": 4,
+    "name": "F#4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 19875,
+   "duration_ms": 125,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 20000,
+   "duration_ms": 1000,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 20125,
+   "duration_ms": 875,
+   "pitch": 59,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 3,
+    "name": "B3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 20250,
+   "duration_ms": 125,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 20375,
+   "duration_ms": 125,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 20500,
+   "duration_ms": 125,
+   "pitch": 71,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 4,
+    "name": "B4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 20625,
+   "duration_ms": 125,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 20750,
+   "duration_ms": 125,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 20875,
+   "duration_ms": 125,
+   "pitch": 71,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 4,
+    "name": "B4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 21000,
+   "duration_ms": 1000,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 21125,
+   "duration_ms": 875,
+   "pitch": 59,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 3,
+    "name": "B3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 21250,
+   "duration_ms": 125,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 21375,
+   "duration_ms": 125,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 21500,
+   "duration_ms": 125,
+   "pitch": 71,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 4,
+    "name": "B4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 21625,
+   "duration_ms": 125,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 21750,
+   "duration_ms": 125,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 21875,
+   "duration_ms": 125,
+   "pitch": 71,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 4,
+    "name": "B4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 22000,
+   "duration_ms": 1000,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 22125,
+   "duration_ms": 875,
+   "pitch": 58,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": -1,
+    "octave": 3,
+    "name": "B-3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 22250,
+   "duration_ms": 125,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 22375,
+   "duration_ms": 125,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 22500,
+   "duration_ms": 125,
+   "pitch": 73,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 1,
+    "octave": 5,
+    "name": "C#5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 22625,
+   "duration_ms": 125,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 22750,
+   "duration_ms": 125,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 22875,
+   "duration_ms": 125,
+   "pitch": 73,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 1,
+    "octave": 5,
+    "name": "C#5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 23000,
+   "duration_ms": 1000,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 23125,
+   "duration_ms": 875,
+   "pitch": 58,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": -1,
+    "octave": 3,
+    "name": "B-3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 23250,
+   "duration_ms": 125,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 23375,
+   "duration_ms": 125,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 23500,
+   "duration_ms": 125,
+   "pitch": 73,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 1,
+    "octave": 5,
+    "name": "C#5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 23625,
+   "duration_ms": 125,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 23750,
+   "duration_ms": 125,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 23875,
+   "duration_ms": 125,
+   "pitch": 73,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 1,
+    "octave": 5,
+    "name": "C#5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 24000,
+   "duration_ms": 1000,
+   "pitch": 53,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 3,
+    "name": "F3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 24125,
+   "duration_ms": 875,
+   "pitch": 57,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 3,
+    "name": "A3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 24250,
+   "duration_ms": 125,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 24375,
+   "duration_ms": 125,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 24500,
+   "duration_ms": 125,
+   "pitch": 74,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 5,
+    "name": "D5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 24625,
+   "duration_ms": 125,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 24750,
+   "duration_ms": 125,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 24875,
+   "duration_ms": 125,
+   "pitch": 74,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 5,
+    "name": "D5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 25000,
+   "duration_ms": 1000,
+   "pitch": 53,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 3,
+    "name": "F3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 25125,
+   "duration_ms": 875,
+   "pitch": 57,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 3,
+    "name": "A3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 25250,
+   "duration_ms": 125,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 25375,
+   "duration_ms": 125,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 25500,
+   "duration_ms": 125,
+   "pitch": 74,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 5,
+    "name": "D5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 25625,
+   "duration_ms": 125,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 25750,
+   "duration_ms": 125,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 25875,
+   "duration_ms": 125,
+   "pitch": 74,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 5,
+    "name": "D5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 26000,
+   "duration_ms": 1000,
+   "pitch": 53,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 3,
+    "name": "F3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 26125,
+   "duration_ms": 875,
+   "pitch": 56,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": -1,
+    "octave": 3,
+    "name": "A-3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 26250,
+   "duration_ms": 125,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 26375,
+   "duration_ms": 125,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 26500,
+   "duration_ms": 125,
+   "pitch": 71,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 4,
+    "name": "B4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 26625,
+   "duration_ms": 125,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 26750,
+   "duration_ms": 125,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 26875,
+   "duration_ms": 125,
+   "pitch": 71,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 4,
+    "name": "B4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 27000,
+   "duration_ms": 1000,
+   "pitch": 53,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 3,
+    "name": "F3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 27125,
+   "duration_ms": 875,
+   "pitch": 56,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": -1,
+    "octave": 3,
+    "name": "A-3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 27250,
+   "duration_ms": 125,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 27375,
+   "duration_ms": 125,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 27500,
+   "duration_ms": 125,
+   "pitch": 71,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 4,
+    "name": "B4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 27625,
+   "duration_ms": 125,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 27750,
+   "duration_ms": 125,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 27875,
+   "duration_ms": 125,
+   "pitch": 71,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 4,
+    "name": "B4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 28000,
+   "duration_ms": 1000,
+   "pitch": 52,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 3,
+    "name": "E3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 28125,
+   "duration_ms": 875,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 28250,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 28375,
+   "duration_ms": 125,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 28500,
+   "duration_ms": 125,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 28625,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 28750,
+   "duration_ms": 125,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 28875,
+   "duration_ms": 125,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 29000,
+   "duration_ms": 1000,
+   "pitch": 52,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 3,
+    "name": "E3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 29125,
+   "duration_ms": 875,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 29250,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 29375,
+   "duration_ms": 125,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 29500,
+   "duration_ms": 125,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 29625,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 29750,
+   "duration_ms": 125,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 29875,
+   "duration_ms": 125,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 30000,
+   "duration_ms": 1000,
+   "pitch": 52,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 3,
+    "name": "E3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 30125,
+   "duration_ms": 875,
+   "pitch": 53,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 3,
+    "name": "F3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 30250,
+   "duration_ms": 125,
+   "pitch": 57,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 3,
+    "name": "A3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 30375,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 30500,
+   "duration_ms": 125,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 30625,
+   "duration_ms": 125,
+   "pitch": 57,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 3,
+    "name": "A3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 30750,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 30875,
+   "duration_ms": 125,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 31000,
+   "duration_ms": 1000,
+   "pitch": 52,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 3,
+    "name": "E3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 31125,
+   "duration_ms": 875,
+   "pitch": 53,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 3,
+    "name": "F3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 31250,
+   "duration_ms": 125,
+   "pitch": 57,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 3,
+    "name": "A3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 31375,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 31500,
+   "duration_ms": 125,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 31625,
+   "duration_ms": 125,
+   "pitch": 57,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 3,
+    "name": "A3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 31750,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 31875,
+   "duration_ms": 125,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 32000,
+   "duration_ms": 1000,
+   "pitch": 50,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 3,
+    "name": "D3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 32125,
+   "duration_ms": 875,
+   "pitch": 53,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 3,
+    "name": "F3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 32250,
+   "duration_ms": 125,
+   "pitch": 57,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 3,
+    "name": "A3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 32375,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 32500,
+   "duration_ms": 125,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 32625,
+   "duration_ms": 125,
+   "pitch": 57,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 3,
+    "name": "A3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 32750,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 32875,
+   "duration_ms": 125,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 33000,
+   "duration_ms": 1000,
+   "pitch": 50,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 3,
+    "name": "D3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 33125,
+   "duration_ms": 875,
+   "pitch": 53,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 3,
+    "name": "F3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 33250,
+   "duration_ms": 125,
+   "pitch": 57,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 3,
+    "name": "A3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 33375,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 33500,
+   "duration_ms": 125,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 33625,
+   "duration_ms": 125,
+   "pitch": 57,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 3,
+    "name": "A3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 33750,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 33875,
+   "duration_ms": 125,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 34000,
+   "duration_ms": 1000,
+   "pitch": 43,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 2,
+    "name": "G2"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 34125,
+   "duration_ms": 875,
+   "pitch": 50,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 3,
+    "name": "D3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 34250,
+   "duration_ms": 125,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 34375,
+   "duration_ms": 125,
+   "pitch": 59,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 3,
+    "name": "B3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 34500,
+   "duration_ms": 125,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 34625,
+   "duration_ms": 125,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 34750,
+   "duration_ms": 125,
+   "pitch": 59,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 3,
+    "name": "B3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 34875,
+   "duration_ms": 125,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 35000,
+   "duration_ms": 1000,
+   "pitch": 43,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 2,
+    "name": "G2"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 35125,
+   "duration_ms": 875,
+   "pitch": 50,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 3,
+    "name": "D3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 35250,
+   "duration_ms": 125,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 35375,
+   "duration_ms": 125,
+   "pitch": 59,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 3,
+    "name": "B3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 35500,
+   "duration_ms": 125,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 35625,
+   "duration_ms": 125,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 35750,
+   "duration_ms": 125,
+   "pitch": 59,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 3,
+    "name": "B3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 35875,
+   "duration_ms": 125,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 36000,
+   "duration_ms": 1000,
+   "pitch": 48,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 3,
+    "name": "C3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 36125,
+   "duration_ms": 875,
+   "pitch": 52,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 3,
+    "name": "E3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 36250,
+   "duration_ms": 125,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 36375,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 36500,
+   "duration_ms": 125,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 36625,
+   "duration_ms": 125,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 36750,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 36875,
+   "duration_ms": 125,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 37000,
+   "duration_ms": 1000,
+   "pitch": 48,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 3,
+    "name": "C3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 37125,
+   "duration_ms": 875,
+   "pitch": 52,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 3,
+    "name": "E3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 37250,
+   "duration_ms": 125,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 37375,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 37500,
+   "duration_ms": 125,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 37625,
+   "duration_ms": 125,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 37750,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 37875,
+   "duration_ms": 125,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 38000,
+   "duration_ms": 1000,
+   "pitch": 48,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 3,
+    "name": "C3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 38125,
+   "duration_ms": 875,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 38250,
+   "duration_ms": 125,
+   "pitch": 58,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": -1,
+    "octave": 3,
+    "name": "B-3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 38375,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 38500,
+   "duration_ms": 125,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 38625,
+   "duration_ms": 125,
+   "pitch": 58,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": -1,
+    "octave": 3,
+    "name": "B-3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 38750,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 38875,
+   "duration_ms": 125,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 39000,
+   "duration_ms": 1000,
+   "pitch": 48,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 3,
+    "name": "C3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 39125,
+   "duration_ms": 875,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 39250,
+   "duration_ms": 125,
+   "pitch": 58,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": -1,
+    "octave": 3,
+    "name": "B-3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 39375,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 39500,
+   "duration_ms": 125,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 39625,
+   "duration_ms": 125,
+   "pitch": 58,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": -1,
+    "octave": 3,
+    "name": "B-3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 39750,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 39875,
+   "duration_ms": 125,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 40000,
+   "duration_ms": 1000,
+   "pitch": 41,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 2,
+    "name": "F2"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 40125,
+   "duration_ms": 875,
+   "pitch": 53,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 3,
+    "name": "F3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 40250,
+   "duration_ms": 125,
+   "pitch": 57,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 3,
+    "name": "A3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 40375,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 40500,
+   "duration_ms": 125,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 40625,
+   "duration_ms": 125,
+   "pitch": 57,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 3,
+    "name": "A3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 40750,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 40875,
+   "duration_ms": 125,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 41000,
+   "duration_ms": 1000,
+   "pitch": 41,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 2,
+    "name": "F2"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 41125,
+   "duration_ms": 875,
+   "pitch": 53,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 3,
+    "name": "F3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 41250,
+   "duration_ms": 125,
+   "pitch": 57,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 3,
+    "name": "A3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 41375,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 41500,
+   "duration_ms": 125,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 41625,
+   "duration_ms": 125,
+   "pitch": 57,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 3,
+    "name": "A3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 41750,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 41875,
+   "duration_ms": 125,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 42000,
+   "duration_ms": 1000,
+   "pitch": 42,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 1,
+    "octave": 2,
+    "name": "F#2"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 42125,
+   "duration_ms": 875,
+   "pitch": 48,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 3,
+    "name": "C3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 42250,
+   "duration_ms": 125,
+   "pitch": 57,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 3,
+    "name": "A3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 42375,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 42500,
+   "duration_ms": 125,
+   "pitch": 63,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": -1,
+    "octave": 4,
+    "name": "E-4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 42625,
+   "duration_ms": 125,
+   "pitch": 57,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 3,
+    "name": "A3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 42750,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 42875,
+   "duration_ms": 125,
+   "pitch": 63,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": -1,
+    "octave": 4,
+    "name": "E-4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 43000,
+   "duration_ms": 1000,
+   "pitch": 42,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 1,
+    "octave": 2,
+    "name": "F#2"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 43125,
+   "duration_ms": 875,
+   "pitch": 48,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 3,
+    "name": "C3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 43250,
+   "duration_ms": 125,
+   "pitch": 57,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 3,
+    "name": "A3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 43375,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 43500,
+   "duration_ms": 125,
+   "pitch": 63,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": -1,
+    "octave": 4,
+    "name": "E-4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 43625,
+   "duration_ms": 125,
+   "pitch": 57,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 3,
+    "name": "A3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 43750,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 43875,
+   "duration_ms": 125,
+   "pitch": 63,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": -1,
+    "octave": 4,
+    "name": "E-4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 44000,
+   "duration_ms": 1000,
+   "pitch": 44,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": -1,
+    "octave": 2,
+    "name": "A-2"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 44125,
+   "duration_ms": 875,
+   "pitch": 53,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 3,
+    "name": "F3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 44250,
+   "duration_ms": 125,
+   "pitch": 59,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 3,
+    "name": "B3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 44375,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 44500,
+   "duration_ms": 125,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 44625,
+   "duration_ms": 125,
+   "pitch": 59,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 3,
+    "name": "B3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 44750,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 44875,
+   "duration_ms": 125,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 45000,
+   "duration_ms": 1000,
+   "pitch": 44,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": -1,
+    "octave": 2,
+    "name": "A-2"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 45125,
+   "duration_ms": 875,
+   "pitch": 53,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 3,
+    "name": "F3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 45250,
+   "duration_ms": 125,
+   "pitch": 59,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 3,
+    "name": "B3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 45375,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 45500,
+   "duration_ms": 125,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 45625,
+   "duration_ms": 125,
+   "pitch": 59,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 3,
+    "name": "B3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 45750,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 45875,
+   "duration_ms": 125,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 46000,
+   "duration_ms": 1000,
+   "pitch": 43,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 2,
+    "name": "G2"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 46125,
+   "duration_ms": 875,
+   "pitch": 53,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 3,
+    "name": "F3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 46250,
+   "duration_ms": 125,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 46375,
+   "duration_ms": 125,
+   "pitch": 59,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 3,
+    "name": "B3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 46500,
+   "duration_ms": 125,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 46625,
+   "duration_ms": 125,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 46750,
+   "duration_ms": 125,
+   "pitch": 59,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 3,
+    "name": "B3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 46875,
+   "duration_ms": 125,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 47000,
+   "duration_ms": 1000,
+   "pitch": 43,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 2,
+    "name": "G2"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 47125,
+   "duration_ms": 875,
+   "pitch": 53,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 3,
+    "name": "F3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 47250,
+   "duration_ms": 125,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 47375,
+   "duration_ms": 125,
+   "pitch": 59,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 3,
+    "name": "B3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 47500,
+   "duration_ms": 125,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 47625,
+   "duration_ms": 125,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 47750,
+   "duration_ms": 125,
+   "pitch": 59,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 3,
+    "name": "B3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 47875,
+   "duration_ms": 125,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 48000,
+   "duration_ms": 1000,
+   "pitch": 43,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 2,
+    "name": "G2"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 48125,
+   "duration_ms": 875,
+   "pitch": 52,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 3,
+    "name": "E3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 48250,
+   "duration_ms": 125,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 48375,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 48500,
+   "duration_ms": 125,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 48625,
+   "duration_ms": 125,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 48750,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 48875,
+   "duration_ms": 125,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 49000,
+   "duration_ms": 1000,
+   "pitch": 43,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 2,
+    "name": "G2"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 49125,
+   "duration_ms": 875,
+   "pitch": 52,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 3,
+    "name": "E3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 49250,
+   "duration_ms": 125,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 49375,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 49500,
+   "duration_ms": 125,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 49625,
+   "duration_ms": 125,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 49750,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 49875,
+   "duration_ms": 125,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 50000,
+   "duration_ms": 1000,
+   "pitch": 43,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 2,
+    "name": "G2"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 50125,
+   "duration_ms": 875,
+   "pitch": 50,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 3,
+    "name": "D3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 50250,
+   "duration_ms": 125,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 50375,
+   "duration_ms": 125,
+   "pitch": 59,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 3,
+    "name": "B3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 50500,
+   "duration_ms": 125,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 50625,
+   "duration_ms": 125,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 50750,
+   "duration_ms": 125,
+   "pitch": 59,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 3,
+    "name": "B3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 50875,
+   "duration_ms": 125,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 51000,
+   "duration_ms": 1000,
+   "pitch": 43,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 2,
+    "name": "G2"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 51125,
+   "duration_ms": 875,
+   "pitch": 50,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 3,
+    "name": "D3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 51250,
+   "duration_ms": 125,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 51375,
+   "duration_ms": 125,
+   "pitch": 59,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 3,
+    "name": "B3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 51500,
+   "duration_ms": 125,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 51625,
+   "duration_ms": 125,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 51750,
+   "duration_ms": 125,
+   "pitch": 59,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 3,
+    "name": "B3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 51875,
+   "duration_ms": 125,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 52000,
+   "duration_ms": 1000,
+   "pitch": 43,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 2,
+    "name": "G2"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 52125,
+   "duration_ms": 875,
+   "pitch": 51,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": -1,
+    "octave": 3,
+    "name": "E-3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 52250,
+   "duration_ms": 125,
+   "pitch": 57,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 3,
+    "name": "A3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 52375,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 52500,
+   "duration_ms": 125,
+   "pitch": 66,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 1,
+    "octave": 4,
+    "name": "F#4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 52625,
+   "duration_ms": 125,
+   "pitch": 57,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 3,
+    "name": "A3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 52750,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 52875,
+   "duration_ms": 125,
+   "pitch": 66,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 1,
+    "octave": 4,
+    "name": "F#4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 53000,
+   "duration_ms": 1000,
+   "pitch": 43,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 2,
+    "name": "G2"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 53125,
+   "duration_ms": 875,
+   "pitch": 51,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": -1,
+    "octave": 3,
+    "name": "E-3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 53250,
+   "duration_ms": 125,
+   "pitch": 57,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 3,
+    "name": "A3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 53375,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 53500,
+   "duration_ms": 125,
+   "pitch": 66,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 1,
+    "octave": 4,
+    "name": "F#4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 53625,
+   "duration_ms": 125,
+   "pitch": 57,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 3,
+    "name": "A3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 53750,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 53875,
+   "duration_ms": 125,
+   "pitch": 66,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 1,
+    "octave": 4,
+    "name": "F#4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 54000,
+   "duration_ms": 1000,
+   "pitch": 43,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 2,
+    "name": "G2"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 54125,
+   "duration_ms": 875,
+   "pitch": 52,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 3,
+    "name": "E3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 54250,
+   "duration_ms": 125,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 54375,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 54500,
+   "duration_ms": 125,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 54625,
+   "duration_ms": 125,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 54750,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 54875,
+   "duration_ms": 125,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 55000,
+   "duration_ms": 1000,
+   "pitch": 43,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 2,
+    "name": "G2"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 55125,
+   "duration_ms": 875,
+   "pitch": 52,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 3,
+    "name": "E3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 55250,
+   "duration_ms": 125,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 55375,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 55500,
+   "duration_ms": 125,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 55625,
+   "duration_ms": 125,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 55750,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 55875,
+   "duration_ms": 125,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 56000,
+   "duration_ms": 1000,
+   "pitch": 43,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 2,
+    "name": "G2"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 56125,
+   "duration_ms": 875,
+   "pitch": 50,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 3,
+    "name": "D3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 56250,
+   "duration_ms": 125,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 56375,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 56500,
+   "duration_ms": 125,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 56625,
+   "duration_ms": 125,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 56750,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 56875,
+   "duration_ms": 125,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 57000,
+   "duration_ms": 1000,
+   "pitch": 43,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 2,
+    "name": "G2"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 57125,
+   "duration_ms": 875,
+   "pitch": 50,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 3,
+    "name": "D3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 57250,
+   "duration_ms": 125,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 57375,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 57500,
+   "duration_ms": 125,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 57625,
+   "duration_ms": 125,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 57750,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 57875,
+   "duration_ms": 125,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 58000,
+   "duration_ms": 1000,
+   "pitch": 43,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 2,
+    "name": "G2"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 58125,
+   "duration_ms": 875,
+   "pitch": 50,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 3,
+    "name": "D3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 58250,
+   "duration_ms": 125,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 58375,
+   "duration_ms": 125,
+   "pitch": 59,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 3,
+    "name": "B3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 58500,
+   "duration_ms": 125,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 58625,
+   "duration_ms": 125,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 58750,
+   "duration_ms": 125,
+   "pitch": 59,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 3,
+    "name": "B3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 58875,
+   "duration_ms": 125,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 59000,
+   "duration_ms": 1000,
+   "pitch": 43,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 2,
+    "name": "G2"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 59125,
+   "duration_ms": 875,
+   "pitch": 50,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 3,
+    "name": "D3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 59250,
+   "duration_ms": 125,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 59375,
+   "duration_ms": 125,
+   "pitch": 59,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 3,
+    "name": "B3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 59500,
+   "duration_ms": 125,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 59625,
+   "duration_ms": 125,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 59750,
+   "duration_ms": 125,
+   "pitch": 59,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 3,
+    "name": "B3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 59875,
+   "duration_ms": 125,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 60000,
+   "duration_ms": 1000,
+   "pitch": 36,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 2,
+    "name": "C2"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 60125,
+   "duration_ms": 875,
+   "pitch": 48,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 3,
+    "name": "C3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 60250,
+   "duration_ms": 125,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 60375,
+   "duration_ms": 125,
+   "pitch": 58,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": -1,
+    "octave": 3,
+    "name": "B-3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 60500,
+   "duration_ms": 125,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 60625,
+   "duration_ms": 125,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 60750,
+   "duration_ms": 125,
+   "pitch": 58,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": -1,
+    "octave": 3,
+    "name": "B-3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 60875,
+   "duration_ms": 125,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 61000,
+   "duration_ms": 1000,
+   "pitch": 36,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 2,
+    "name": "C2"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 61125,
+   "duration_ms": 875,
+   "pitch": 48,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 3,
+    "name": "C3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 61250,
+   "duration_ms": 125,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 61375,
+   "duration_ms": 125,
+   "pitch": 58,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": -1,
+    "octave": 3,
+    "name": "B-3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 61500,
+   "duration_ms": 125,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 61625,
+   "duration_ms": 125,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 61750,
+   "duration_ms": 125,
+   "pitch": 58,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": -1,
+    "octave": 3,
+    "name": "B-3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 61875,
+   "duration_ms": 125,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 62000,
+   "duration_ms": 1000,
+   "pitch": 36,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 2,
+    "name": "C2"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 62125,
+   "duration_ms": 1875,
+   "pitch": 48,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 3,
+    "name": "C3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 62250,
+   "duration_ms": 125,
+   "pitch": 53,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 3,
+    "name": "F3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 62375,
+   "duration_ms": 125,
+   "pitch": 57,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 3,
+    "name": "A3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 62500,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 62625,
+   "duration_ms": 125,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 62750,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 62875,
+   "duration_ms": 125,
+   "pitch": 57,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 3,
+    "name": "A3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 63000,
+   "duration_ms": 125,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 63000,
+   "duration_ms": 1000,
+   "pitch": 48,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 3,
+    "name": "C3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 63125,
+   "duration_ms": 125,
+   "pitch": 57,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 3,
+    "name": "A3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 63250,
+   "duration_ms": 125,
+   "pitch": 53,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 3,
+    "name": "F3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 63375,
+   "duration_ms": 125,
+   "pitch": 57,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 3,
+    "name": "A3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 63500,
+   "duration_ms": 125,
+   "pitch": 53,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 3,
+    "name": "F3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 63625,
+   "duration_ms": 125,
+   "pitch": 50,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 3,
+    "name": "D3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 63750,
+   "duration_ms": 125,
+   "pitch": 53,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 3,
+    "name": "F3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 63875,
+   "duration_ms": 125,
+   "pitch": 50,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 3,
+    "name": "D3"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 64000,
+   "duration_ms": 1000,
+   "pitch": 36,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 2,
+    "name": "C2"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 64125,
+   "duration_ms": 1875,
+   "pitch": 47,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 2,
+    "name": "B2"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 64250,
+   "duration_ms": 125,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 64375,
+   "duration_ms": 125,
+   "pitch": 71,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 4,
+    "name": "B4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 64500,
+   "duration_ms": 125,
+   "pitch": 74,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 5,
+    "name": "D5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 64625,
+   "duration_ms": 125,
+   "pitch": 77,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 5,
+    "name": "F5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 64750,
+   "duration_ms": 125,
+   "pitch": 74,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 5,
+    "name": "D5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 64875,
+   "duration_ms": 125,
+   "pitch": 71,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 4,
+    "name": "B4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 65000,
+   "duration_ms": 125,
+   "pitch": 74,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 5,
+    "name": "D5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 65000,
+   "duration_ms": 1000,
+   "pitch": 47,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 2,
+    "name": "B2"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 65125,
+   "duration_ms": 125,
+   "pitch": 71,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 4,
+    "name": "B4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 65250,
+   "duration_ms": 125,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 65375,
+   "duration_ms": 125,
+   "pitch": 71,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 4,
+    "name": "B4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 65500,
+   "duration_ms": 125,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 65625,
+   "duration_ms": 125,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 65750,
+   "duration_ms": 125,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 65875,
+   "duration_ms": 125,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 66000,
+   "duration_ms": 2000,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 66000,
+   "duration_ms": 2000,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 66000,
+   "duration_ms": 2000,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 66000,
+   "duration_ms": 2000,
+   "pitch": 48,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 3,
+    "name": "C3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  },
+  {
+   "onset_ms": 66000,
+   "duration_ms": 2000,
+   "pitch": 36,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 2,
+    "name": "C2"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Piano"
+  }
+ ],
+ "stats": {
+  "n_notes": 535,
+  "n_downbeats": 34,
+  "graces_dropped": 0,
+  "max_quantize_err_ticks": 0.0,
+  "monophonic": false,
+  "n_parts": 2
+ }
+}

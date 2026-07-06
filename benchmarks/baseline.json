@@ -1,9 +1,10 @@
 {
- "label": "v3.1 greedy single-pass",
+ "label": "v3.1 greedy + thermo V4=4 V1=3 (corpus grid search 2026-07-06)",
  "pipeline": {
   "phase2_model": "greedy",
   "relaxation": false,
-  "corpus_tol_ms": 50.0
+  "corpus_tol_ms": 50.0,
+  "corpus_split": "val"
  },
  "config": {
   "angle_map": "dissonance",
@@ -19,14 +20,14 @@
   "bass_multiplier": 2.0
  },
  "metrics": {
-  "downbeat_errors_thermo": 729,
-  "downbeat_errors_spike": 1113,
+  "downbeat_errors_thermo": 1147,
+  "downbeat_errors_spike": 1694,
   "heldout_phase1_errors": 27,
-  "voices_mean_acc": 0.9226,
+  "voices_mean_acc": 0.9057,
   "heldout_phase1_f1": 88.0,
-  "thermo_pieces_scored": 18,
-  "spike_pieces_scored": 19,
-  "voices_pieces_scored": 16
+  "thermo_pieces_scored": 37,
+  "spike_pieces_scored": 43,
+  "voices_pieces_scored": 24
  },
  "heldout_detail": {
   "tp": 99,
@@ -49,71 +50,16 @@
    },
    "voices": 0.9877
   },
-  "bach_bwv269": {
-   "spike": {
-    "errors": 55,
-    "f1": 0.0984
-   },
-   "thermo": {
-    "errors": 55,
-    "f1": 0.0984
-   },
-   "voices": 0.9934
-  },
-  "bach_bwv846": {
-   "spike": {
-    "errors": 67,
-    "f1": 0.0563
-   },
-   "thermo": {
-    "errors": 69,
-    "f1": 0.0
-   },
-   "voices": 0.8598
-  },
-  "joplin_maple_leaf_rag": {
-   "spike": {
-    "errors": 260,
-    "f1": 0.0
-   },
-   "thermo": {
-    "errors": 158,
-    "f1": 0.092
-   },
-   "voices": 0.5771
-  },
-  "chorale_000": {
-   "spike": {
-    "errors": 55,
-    "f1": 0.0984
-   },
-   "thermo": {
-    "errors": 55,
-    "f1": 0.0984
-   },
-   "voices": 0.9934
-  },
   "chorale_001": {
    "spike": {
     "errors": 50,
     "f1": 0.1071
    },
    "thermo": {
-    "errors": 33,
-    "f1": 0.1538
+    "errors": 23,
+    "f1": 0.1481
    },
    "voices": 0.9899
-  },
-  "chorale_002": {
-   "spike": {
-    "errors": 42,
-    "f1": 0.087
-   },
-   "thermo": {
-    "errors": 15,
-    "f1": 0.2857
-   },
-   "voices": 0.9779
   },
   "chorale_003": {
    "spike": {
@@ -126,38 +72,16 @@
    },
    "voices": 0.9662
   },
-  "chorale_004": {
-   "spike": {
-    "errors": 62,
-    "f1": 0.0882
-   },
-   "thermo": {
-    "errors": 34,
-    "f1": 0.1905
-   },
-   "voices": 0.9701
-  },
   "chorale_005": {
    "spike": {
     "errors": 26,
     "f1": 0.0
    },
    "thermo": {
-    "errors": 26,
-    "f1": 0.381
+    "errors": 12,
+    "f1": 0.1429
    },
    "voices": 1.0
-  },
-  "chorale_006": {
-   "spike": {
-    "errors": 87,
-    "f1": 0.1031
-   },
-   "thermo": {
-    "errors": 68,
-    "f1": 0.0811
-   },
-   "voices": 0.9904
   },
   "chorale_007": {
    "spike": {
@@ -170,17 +94,6 @@
    },
    "voices": 0.9804
   },
-  "chorale_008": {
-   "spike": {
-    "errors": 47,
-    "f1": 0.1132
-   },
-   "thermo": {
-    "errors": 25,
-    "f1": 0.1379
-   },
-   "voices": 0.9904
-  },
   "chorale_009": {
    "spike": {
     "errors": 20,
@@ -192,38 +105,145 @@
    },
    "voices": 0.9843
   },
-  "chorale_010": {
-   "spike": {
-    "errors": 83,
-    "f1": 0.2095
-   },
-   "thermo": {
-    "errors": 49,
-    "f1": 0.3099
-   },
-   "voices": 0.501
-  },
   "chorale_011": {
    "spike": {
     "errors": 26,
     "f1": 0.0
    },
    "thermo": {
-    "errors": 17,
-    "f1": 0.1905
+    "errors": 22,
+    "f1": 0.0
    },
    "voices": 1.0
   },
-  "essenFolksong_altdeu10_op000": {
+  "chorale_013": {
    "spike": {
-    "errors": 37,
-    "f1": 0.0
+    "errors": 56,
+    "f1": 0.0968
+   },
+   "thermo": null,
+   "voices": 0.9843
+  },
+  "chorale_015": {
+   "spike": {
+    "errors": 30,
+    "f1": 0.1176
+   },
+   "thermo": {
+    "errors": 28,
+    "f1": 0.1765
+   },
+   "voices": 0.9843
+  },
+  "chorale_017": {
+   "spike": {
+    "errors": 14,
+    "f1": 0.3
+   },
+   "thermo": {
+    "errors": 7,
+    "f1": 0.6667
+   },
+   "voices": 0.9447
+  },
+  "chorale_019": {
+   "spike": {
+    "errors": 47,
+    "f1": 0.1132
+   },
+   "thermo": {
+    "errors": 30,
+    "f1": 0.1667
+   },
+   "voices": 0.9297
+  },
+  "chorale_021": {
+   "spike": {
+    "errors": 22,
+    "f1": 0.6452
+   },
+   "thermo": {
+    "errors": 22,
+    "f1": 0.2667
+   },
+   "voices": 0.9729
+  },
+  "chorale_023": {
+   "spike": {
+    "errors": 47,
+    "f1": 0.1132
    },
    "thermo": {
     "errors": 19,
-    "f1": 0.4242
+    "f1": 0.24
    },
-   "voices": null
+   "voices": 0.9748
+  },
+  "chorale_025": {
+   "spike": {
+    "errors": 48,
+    "f1": 0.0769
+   },
+   "thermo": {
+    "errors": 26,
+    "f1": 0.1875
+   },
+   "voices": 0.993
+  },
+  "chorale_027": {
+   "spike": {
+    "errors": 8,
+    "f1": 0.4286
+   },
+   "thermo": {
+    "errors": 8,
+    "f1": 0.3333
+   },
+   "voices": 0.9799
+  },
+  "chorale_029": {
+   "spike": {
+    "errors": 13,
+    "f1": 0.6486
+   },
+   "thermo": {
+    "errors": 17,
+    "f1": 0.0
+   },
+   "voices": 0.9854
+  },
+  "chorale_031": {
+   "spike": {
+    "errors": 23,
+    "f1": 0.2069
+   },
+   "thermo": {
+    "errors": 23,
+    "f1": 0.2069
+   },
+   "voices": 1.0
+  },
+  "chorale_033": {
+   "spike": {
+    "errors": 50,
+    "f1": 0.1071
+   },
+   "thermo": {
+    "errors": 50,
+    "f1": 0.1071
+   },
+   "voices": 0.9781
+  },
+  "chorale_035": {
+   "spike": {
+    "errors": 44,
+    "f1": 0.0
+   },
+   "thermo": {
+    "errors": 18,
+    "f1": 0.1
+   },
+   "voices": 0.9829
   },
   "essenFolksong_altdeu10_op003": {
    "spike": {
@@ -236,13 +256,243 @@
    },
    "voices": null
   },
-  "essenFolksong_altdeu10_op004": {
+  "essenFolksong_altdeu10_op005": {
    "spike": {
-    "errors": 36,
+    "errors": 30,
+    "f1": 0.4828
+   },
+   "thermo": {
+    "errors": 16,
+    "f1": 0.1111
+   },
+   "voices": null
+  },
+  "essenFolksong_altdeu10_op007": {
+   "spike": {
+    "errors": 41,
+    "f1": 0.0
+   },
+   "thermo": {
+    "errors": 8,
     "f1": 0.3333
+   },
+   "voices": null
+  },
+  "essenFolksong_altdeu10_op009": {
+   "spike": {
+    "errors": 32,
+    "f1": 0.0
+   },
+   "thermo": {
+    "errors": 9,
+    "f1": 0.3077
+   },
+   "voices": null
+  },
+  "essenFolksong_altdeu10_op011": {
+   "spike": {
+    "errors": 32,
+    "f1": 0.0
+   },
+   "thermo": {
+    "errors": 1,
+    "f1": 0.9677
+   },
+   "voices": null
+  },
+  "essenFolksong_altdeu10_op013": {
+   "spike": {
+    "errors": 43,
+    "f1": 0.0
    },
    "thermo": null,
    "voices": null
+  },
+  "essenFolksong_altdeu10_op015": {
+   "spike": {
+    "errors": 40,
+    "f1": 0.2593
+   },
+   "thermo": {
+    "errors": 19,
+    "f1": 0.6122
+   },
+   "voices": null
+  },
+  "essenFolksong_altdeu10_op017": {
+   "spike": {
+    "errors": 22,
+    "f1": 0.3889
+   },
+   "thermo": {
+    "errors": 20,
+    "f1": 0.4118
+   },
+   "voices": null
+  },
+  "essenFolksong_altdeu10_op019": {
+   "spike": {
+    "errors": 33,
+    "f1": 0.0
+   },
+   "thermo": {
+    "errors": 14,
+    "f1": 0.0
+   },
+   "voices": null
+  },
+  "essenFolksong_altdeu10_op021": {
+   "spike": {
+    "errors": 41,
+    "f1": 0.0
+   },
+   "thermo": {
+    "errors": 16,
+    "f1": 0.0
+   },
+   "voices": null
+  },
+  "essenFolksong_altdeu10_op023": {
+   "spike": {
+    "errors": 32,
+    "f1": 0.0
+   },
+   "thermo": null,
+   "voices": null
+  },
+  "essenFolksong_altdeu10_op025": {
+   "spike": {
+    "errors": 24,
+    "f1": 0.0
+   },
+   "thermo": null,
+   "voices": null
+  },
+  "essenFolksong_altdeu10_op027": {
+   "spike": {
+    "errors": 23,
+    "f1": 0.0
+   },
+   "thermo": {
+    "errors": 15,
+    "f1": 0.3478
+   },
+   "voices": null
+  },
+  "essenFolksong_altdeu10_op029": {
+   "spike": {
+    "errors": 2,
+    "f1": 0.9444
+   },
+   "thermo": null,
+   "voices": null
+  },
+  "essenFolksong_altdeu10_op031": {
+   "spike": {
+    "errors": 26,
+    "f1": 0.0
+   },
+   "thermo": {
+    "errors": 10,
+    "f1": 0.2857
+   },
+   "voices": null
+  },
+  "essenFolksong_altdeu10_op033": {
+   "spike": {
+    "errors": 12,
+    "f1": 0.0
+   },
+   "thermo": null,
+   "voices": null
+  },
+  "essenFolksong_altdeu10_op035": {
+   "spike": {
+    "errors": 20,
+    "f1": 0.0
+   },
+   "thermo": {
+    "errors": 16,
+    "f1": 0.0
+   },
+   "voices": null
+  },
+  "essenFolksong_altdeu10_op037": {
+   "spike": {
+    "errors": 41,
+    "f1": 0.0
+   },
+   "thermo": {
+    "errors": 10,
+    "f1": 0.4444
+   },
+   "voices": null
+  },
+  "essenFolksong_altdeu10_op039": {
+   "spike": {
+    "errors": 34,
+    "f1": 0.0
+   },
+   "thermo": {
+    "errors": 16,
+    "f1": 0.3333
+   },
+   "voices": null
+  },
+  "schumann_clara_polonaise_op1n1": {
+   "spike": {
+    "errors": 169,
+    "f1": 0.4985
+   },
+   "thermo": {
+    "errors": 103,
+    "f1": 0.5929
+   },
+   "voices": 0.5373
+  },
+  "schumann_clara_polonaise_op1n3": {
+   "spike": {
+    "errors": 1,
+    "f1": 0.9922
+   },
+   "thermo": {
+    "errors": 49,
+    "f1": 0.4948
+   },
+   "voices": 0.6222
+  },
+  "cpebach_h186": {
+   "spike": {
+    "errors": 97,
+    "f1": 0.3975
+   },
+   "thermo": {
+    "errors": 60,
+    "f1": 0.2105
+   },
+   "voices": 0.5089
+  },
+  "mozart_k155_movement1": {
+   "spike": {
+    "errors": 210,
+    "f1": 0.125
+   },
+   "thermo": {
+    "errors": 150,
+    "f1": 0.0625
+   },
+   "voices": 0.7469
+  },
+  "beethoven_opus18no1_movement2": {
+   "spike": {
+    "errors": 5,
+    "f1": 0.9774
+   },
+   "thermo": {
+    "errors": 204,
+    "f1": 0.2609
+   },
+   "voices": 0.702
   }
  }
 }

@@ -1,5 +1,31 @@
 # Session Log
 
+## 2026-07-06 — Corpus expanded to 89 pieces; first gated grid search adopted
+
+- Built `corpus files/corpus_full` with the factory (music21+mido in
+  gitignored `corpus files/venv/`): demo 4 + 36 chorales + 40 Essen folk +
+  piano tier (Clara Schumann polonaises ×4, Chopin mazurka 3/4, Mozart
+  K545 exposition, CPE Bach h186) + 2 quartet movements (incl. 9/8
+  Beethoven). 89 pieces, 0 skips, 87 metered.
+- `make_corpus_split.py` → stratified deterministic 44 train / 43 val
+  split, committed as benchmarks/corpus_split.json. run_benchmark.py now
+  gates on the VAL split (+ held-out Pathétique); grid searches use train.
+- Val-split baseline (old thermo defaults): thermo=1188 spike=1694
+  heldout=27 voices=90.57% — thermo's win over spike generalizes beyond
+  the chorale-heavy demo set.
+- **First gated grid search** (`grid_search_thermo.py`, 27 configs,
+  Phase 1+2 frozen): winner bass weight 3.0→4.0, melody 2.0→3.0
+  (MIN_FREEZE_MS stays 50). Train 1323→1289, val 1278→1237, benchmark
+  gate PASS (spike/voices/heldout exactly unchanged). Adopted as
+  phase3_thermo_meter.py defaults; new baseline: **thermo=1147**.
+  First parameter change in the project set by corpus evidence instead of
+  intuition. Note the movers: the gain concentrates in chorales/folk;
+  mozart_k155 and polonaise_op1n1 got slightly worse — texture-specific
+  weighting is a future question.
+- Six val pieces still produce no thermo meter (sparse freezes on short
+  monophonic folk songs) — the tactus degeneracy remains the top thermo
+  bug.
+
 ## 2026-07-05 (night) — Regression gate: run_benchmark.py + committed baseline
 
 Built the cross-phase regression gate (see docs/benchmarking.md for the

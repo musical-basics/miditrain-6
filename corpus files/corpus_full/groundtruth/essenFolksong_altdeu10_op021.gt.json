@@ -1,0 +1,667 @@
+{
+ "id": "essenFolksong_altdeu10_op021",
+ "title": "Der Bremberger",
+ "convention": {
+  "tpq": 480,
+  "ms_per_quarter": 500.0
+ },
+ "anacrusis_ms": 250,
+ "downbeats_ms": [
+  250,
+  1750,
+  3250,
+  4750,
+  6250,
+  7750,
+  9250,
+  10750,
+  12250,
+  13750
+ ],
+ "meter_map": [
+  {
+   "start_ms": 0,
+   "time_signature": "6/8",
+   "measure_ms": 1500,
+   "beat_ms": 750,
+   "beats_per_measure": 2
+  }
+ ],
+ "key_map": [
+  {
+   "start_ms": 0,
+   "sharps": 1
+  }
+ ],
+ "analyzed_key": {
+  "tonic": "G",
+  "mode": "minor",
+  "confidence": 0.9528
+ },
+ "notes": [
+  {
+   "onset_ms": 0,
+   "duration_ms": 250,
+   "pitch": 74,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 5,
+    "name": "D5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 250,
+   "duration_ms": 500,
+   "pitch": 70,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": -1,
+    "octave": 4,
+    "name": "B-4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 750,
+   "duration_ms": 250,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 1000,
+   "duration_ms": 500,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 1500,
+   "duration_ms": 250,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 1750,
+   "duration_ms": 500,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 2250,
+   "duration_ms": 250,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 2500,
+   "duration_ms": 500,
+   "pitch": 70,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": -1,
+    "octave": 4,
+    "name": "B-4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 3000,
+   "duration_ms": 250,
+   "pitch": 74,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 5,
+    "name": "D5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 3250,
+   "duration_ms": 500,
+   "pitch": 70,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": -1,
+    "octave": 4,
+    "name": "B-4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 3750,
+   "duration_ms": 250,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 4000,
+   "duration_ms": 500,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 4500,
+   "duration_ms": 250,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 4750,
+   "duration_ms": 500,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 5250,
+   "duration_ms": 250,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 5500,
+   "duration_ms": 500,
+   "pitch": 70,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": -1,
+    "octave": 4,
+    "name": "B-4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 6000,
+   "duration_ms": 125,
+   "pitch": 71,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 4,
+    "name": "B4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 6125,
+   "duration_ms": 125,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 6250,
+   "duration_ms": 500,
+   "pitch": 74,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 5,
+    "name": "D5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 6750,
+   "duration_ms": 250,
+   "pitch": 74,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 5,
+    "name": "D5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 7000,
+   "duration_ms": 250,
+   "pitch": 74,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 5,
+    "name": "D5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 7250,
+   "duration_ms": 250,
+   "pitch": 75,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": -1,
+    "octave": 5,
+    "name": "E-5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 7500,
+   "duration_ms": 250,
+   "pitch": 74,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 5,
+    "name": "D5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 7750,
+   "duration_ms": 750,
+   "pitch": 74,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 5,
+    "name": "D5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 8500,
+   "duration_ms": 500,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 9000,
+   "duration_ms": 125,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 9125,
+   "duration_ms": 125,
+   "pitch": 70,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": -1,
+    "octave": 4,
+    "name": "B-4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 9250,
+   "duration_ms": 500,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 9750,
+   "duration_ms": 250,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 10000,
+   "duration_ms": 250,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 10250,
+   "duration_ms": 250,
+   "pitch": 74,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 5,
+    "name": "D5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 10500,
+   "duration_ms": 250,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 10750,
+   "duration_ms": 750,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 11500,
+   "duration_ms": 500,
+   "pitch": 70,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": -1,
+    "octave": 4,
+    "name": "B-4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 12000,
+   "duration_ms": 125,
+   "pitch": 71,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 4,
+    "name": "B4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 12125,
+   "duration_ms": 125,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 12250,
+   "duration_ms": 500,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 12750,
+   "duration_ms": 125,
+   "pitch": 74,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 5,
+    "name": "D5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 12875,
+   "duration_ms": 125,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 13000,
+   "duration_ms": 375,
+   "pitch": 70,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": -1,
+    "octave": 4,
+    "name": "B-4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 13375,
+   "duration_ms": 125,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 13500,
+   "duration_ms": 125,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 13625,
+   "duration_ms": 125,
+   "pitch": 71,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 4,
+    "name": "B4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 13750,
+   "duration_ms": 750,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  }
+ ],
+ "stats": {
+  "n_notes": 44,
+  "n_downbeats": 10,
+  "graces_dropped": 0,
+  "max_quantize_err_ticks": 0.0,
+  "monophonic": true,
+  "n_parts": 1
+ }
+}

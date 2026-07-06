@@ -1,0 +1,90 @@
+id,title,meters,anacrusis_ms,n_notes,n_downbeats,monophonic,n_parts,analyzed_key
+bach_bwv66.6,,4/4,500,163,9,False,4,F# minor
+bach_bwv269,,3/4,500,302,31,False,4,G major
+bach_bwv846,,4/4,0,535,34,False,2,C major
+joplin_maple_leaf_rag,,2/4,250,2308,129,False,2,A- major
+chorale_000,Aus meines Herzens Grunde,3/4,500,302,31,False,4,G major
+chorale_001,"Ich dank’ dir, lieber Herre",4/4,500,296,20,False,4,A major
+chorale_002,"Ach Gott, vom Himmel sieh’ darein",4/4,500,271,16,False,4,A minor
+chorale_003,Es ist das Heil uns kommen her,4/4,500,266,17,False,4,E major
+chorale_004,An Wasserflüssen Babylon,4/4,500,402,24,False,4,G major
+chorale_005,"Christus, der ist mein Leben",4/4,500,125,8,False,4,F major
+chorale_006,"Nun lob’, mein’ Seel’, den Herren",3/4,500,418,50,False,4,A major
+chorale_007,"Freuet euch, ihr Christen alle",4/4,0,358,20,False,4,F minor
+chorale_008,"Ermuntre dich, mein schwacher Geist",4/4,500,312,19,False,4,G major
+chorale_009,Aus tiefer Not schrei’ ich zu dir,4/4,0,254,18,False,4,A minor
+chorale_010,"Jesu, nun sei gepreiset",4/4|3/4|4/4,500,988,49,False,9,C major
+chorale_011,Puer natus in Bethlehem,3/4,500,144,16,False,4,A minor
+chorale_012,"Allein zu dir, Herr Jesu Christ",4/4,500,415,26,False,4,A minor
+chorale_013,"O Herre Gott, dein göttlich Wort",4/4,500,318,22,False,4,D major
+chorale_014,Christ lag in Todesbanden,4/4,500,237,13,False,4,D minor
+chorale_015,Es woll’ uns Gott genädig sein,4/4,500,383,25,False,4,B minor
+chorale_016,Erschienen ist der herrliche Tag,3/4,0,175,19,False,4,F# minor
+chorale_017,Gottes Sohn ist kommen,4/4,0,199,13,False,4,G major
+chorale_018,Ich hab’ mein’ Sach’ Gott heimgestellt,4/4,500,178,10,False,4,G minor
+chorale_019,Ein’ feste Burg ist unser Gott,4/4,500,313,19,False,4,B minor
+chorale_020,Herzlich tut mich verlangen,4/4,500,241,19,False,4,A minor
+chorale_021,"Schmücke dich, o liebe Seele",4/4,0,332,20,False,4,F major
+chorale_022,Zeuch ein zu deinen Toren,4/4,500,258,19,False,4,A minor
+chorale_023,Valet will ich dir geben,4/4,500,278,19,False,4,D major
+chorale_024,Wo soll ich fliehen hin,4/4,500,201,14,False,4,F# minor
+chorale_025,"O Ewigkeit, du Donnerwort",4/4,500,285,18,False,4,F major
+chorale_026,Es spricht der Unweisen Mund,4/4,500,248,16,False,4,B- major
+chorale_027,"Nun komm, der Heiden Heiland",4/4,0,149,8,False,4,B minor
+chorale_028,"Freu’ dich sehr, o meine Seele",4/4,0,278,17,False,4,G major
+chorale_029,"Jesus Christus, unser Heiland",4/4,0,206,12,False,4,E minor
+chorale_030,"Ach lieben Christen, seid getrost",4/4,500,282,16,False,4,A minor
+chorale_031,Nun danket alle Gott,4/4,500,249,19,False,4,A major
+chorale_032,"Herr, ich habe mißgehandelt",4/4,0,266,13,False,4,A minor
+chorale_033,"Erbarm’ dich mein, o Herre Gott",4/4,500,365,20,False,4,A minor
+chorale_034,Gott des Himmels und der Erden,4/4,0,240,12,False,4,A major
+chorale_035,Nun bitten wir den heiligen Geist,4/4,500,234,14,False,4,A major
+essenFolksong_altdeu10_op000,Das Hildebrandslied,4/2,1000,60,21,True,1,G major
+essenFolksong_altdeu10_op001,Herzog Ernst,?,0,104,27,True,1,A minor
+essenFolksong_altdeu10_op002,Herzog Ernst,?,0,23,8,True,1,D minor
+essenFolksong_altdeu10_op003,Herzog Ernst,4/1,2000,80,22,True,1,A minor
+essenFolksong_altdeu10_op004,Der Graf von Rom oder der Graf im Pfluge,4/2|4/4|4/2|4/4|4/2|4/4|4/2|4/4|4/2|4/4|4/2|4/4|4/2|4/4|4/2|4/4|4/2|2/4,1000,59,25,True,1,G major
+essenFolksong_altdeu10_op005,Roland und Godelinde,3/4,500,56,14,True,1,A minor
+essenFolksong_altdeu10_op006,Ritter Ulrich,6/4,500,40,9,True,1,A minor
+essenFolksong_altdeu10_op007,Der Brautmoerder,4/4,750,34,8,True,1,E minor
+essenFolksong_altdeu10_op008,Halewyn,3/4,0,28,12,True,1,F major
+essenFolksong_altdeu10_op009,Halewyn,6/8,750,24,8,True,1,G minor
+essenFolksong_altdeu10_op010,Es taget in dem Osten,4/2|4/4|4/2|4/4|4/2|12/4|4/2|4/4|4/2|2/4,1000,38,15,True,1,G minor
+essenFolksong_altdeu10_op011,Es taget minnecliche,3/2,1000,34,15,True,1,G major
+essenFolksong_altdeu10_op012,Todtenamt,4/2,1000,34,8,True,1,D minor
+essenFolksong_altdeu10_op013,Ritter und Herzogstochter,3/1,1000,50,14,True,1,A minor
+essenFolksong_altdeu10_op014,Tageweis von der Koenigstochter und dem jungen Grafen,3/1|4/4|3/1,2000,53,15,True,1,F major
+essenFolksong_altdeu10_op015,Tageweis von der Koenigstochter und dem jungen Grafen,4/2|4/4|4/2|4/4|4/2|4/4|4/2|4/4|4/2|4/4|4/2|4/4|4/2|4/4|4/2,2000,57,24,True,1,F major
+essenFolksong_altdeu10_op016,Tageweis von der Koenigstochter und dem jungen Grafen,4/2|4/4|4/2|4/4|4/2|4/4|4/2|4/4|4/2|4/4|4/2|4/4|4/2|4/4|4/2|4/4|4/2|4/4|4/2|4/4|4/2|4/4|4/2|4/4|4/2|2/4,1000,55,28,True,1,F major
+essenFolksong_altdeu10_op017,Tageweis von der Koenigstochter und dem jungen Grafen,4/2|4/4|4/2|4/4|4/2|4/4|4/2|4/4|4/2,2000,53,21,True,1,F major
+essenFolksong_altdeu10_op018,Tanhaeuser,4/1,6000,31,10,True,1,F major
+essenFolksong_altdeu10_op019,Tanhuser,3/4,250,31,8,True,1,C major
+essenFolksong_altdeu10_op020,Der Bremberger,4/2,3000,36,16,True,1,B- major
+essenFolksong_altdeu10_op021,Der Bremberger,6/8,250,44,10,True,1,G minor
+essenFolksong_altdeu10_op022,Zwei Wasser. (Schwimmersage),3/1,2000,30,15,True,1,G minor
+essenFolksong_altdeu10_op023,Zwei Wasser. (Schwimmersage),3/1,2000,36,15,True,1,G minor
+essenFolksong_altdeu10_op024,Zwei Wasser. (Schwimmersage),3/1,2000,32,15,True,1,F major
+essenFolksong_altdeu10_op025,Schwimmersage,3/2,1000,30,15,True,1,G minor
+essenFolksong_altdeu10_op026,Zwei Koenigskinder,3/4,500,35,16,True,1,G minor
+essenFolksong_altdeu10_op027,Zwei Koenigskinder,3/4,500,32,16,True,1,G minor
+essenFolksong_altdeu10_op028,Das Schloss in Oesterreich,6/2|8/4|6/2,3000,42,10,True,1,F major
+essenFolksong_altdeu10_op029,Das Schloss in Oesterreich,3/2,0,37,17,True,1,F major
+essenFolksong_altdeu10_op030,Das Schloss im Oberland (Falkenstein),4/2|3/2|4/2,1000,41,11,True,1,F major
+essenFolksong_altdeu10_op031,Herr von Falkenstein,4/4,500,35,8,True,1,G minor
+essenFolksong_altdeu10_op032,Der gefangene Hans,3/2,1000,42,18,True,1,D minor
+essenFolksong_altdeu10_op033,Peter Unverdorben,4/2,1000,36,7,True,1,C major
+essenFolksong_altdeu10_op034,Die Frau zur Weissenburg,3/2,1000,35,16,True,1,G minor
+essenFolksong_altdeu10_op035,Die Frau von Luxemburg,4/4,1500,34,11,True,1,G minor
+essenFolksong_altdeu10_op036,Die drei Grafen,4/2,1000,29,8,True,1,A minor
+essenFolksong_altdeu10_op037,Vom jungen Grafen,6/4,500,43,10,True,1,D minor
+essenFolksong_altdeu10_op038,Treue Liebe,3/2,0,35,16,True,1,F major
+essenFolksong_altdeu10_op039,Unter der Linde,3/2,1000,38,16,True,1,A minor
+mozart_k545_movement1_exposition,,4/4,0,191,12,False,2,C major
+chopin_mazurka06-2,"Mazurka in C-sharp Minor, Op. 6, No. 2",3/4,0,787,75,False,2,C# minor
+schumann_clara_polonaise_op1n1,,3/4,0,1810,84,False,2,E- major
+schumann_clara_polonaise_op1n2,,3/4,0,2158,96,False,2,C major
+schumann_clara_polonaise_op1n3,,3/4,0,1249,64,False,2,D major
+schumann_clara_polonaise_op1n4,,3/4,0,1154,80,False,2,C major
+cpebach_h186,,4/4,0,804,32,False,2,F# minor
+mozart_k155_movement1,,4/4,0,2456,119,False,4,D major
+beethoven_opus18no1_movement2,"String Quartet No. 1 in F Major, Op. 18, No. 1",9/8,0,2903,110,False,4,D minor

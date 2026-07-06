@@ -1,0 +1,1014 @@
+{
+ "id": "essenFolksong_altdeu10_op016",
+ "title": "Tageweis von der Koenigstochter und dem jungen Grafen",
+ "convention": {
+  "tpq": 480,
+  "ms_per_quarter": 500.0
+ },
+ "anacrusis_ms": 1000,
+ "downbeats_ms": [
+  1000,
+  5000,
+  7000,
+  11000,
+  13000,
+  17000,
+  19000,
+  23000,
+  25000,
+  29000,
+  31000,
+  35000,
+  37000,
+  41000,
+  43000,
+  47000,
+  49000,
+  53000,
+  55000,
+  59000,
+  61000,
+  65000,
+  69000,
+  73000,
+  75000,
+  79000,
+  81000,
+  85000
+ ],
+ "meter_map": [
+  {
+   "start_ms": 0,
+   "time_signature": "4/2",
+   "measure_ms": 4000,
+   "beat_ms": 1000,
+   "beats_per_measure": 4
+  },
+  {
+   "start_ms": 5000,
+   "time_signature": "4/4",
+   "measure_ms": 2000,
+   "beat_ms": 500,
+   "beats_per_measure": 4
+  },
+  {
+   "start_ms": 7000,
+   "time_signature": "4/2",
+   "measure_ms": 4000,
+   "beat_ms": 1000,
+   "beats_per_measure": 4
+  },
+  {
+   "start_ms": 11000,
+   "time_signature": "4/4",
+   "measure_ms": 2000,
+   "beat_ms": 500,
+   "beats_per_measure": 4
+  },
+  {
+   "start_ms": 13000,
+   "time_signature": "4/2",
+   "measure_ms": 4000,
+   "beat_ms": 1000,
+   "beats_per_measure": 4
+  },
+  {
+   "start_ms": 17000,
+   "time_signature": "4/4",
+   "measure_ms": 2000,
+   "beat_ms": 500,
+   "beats_per_measure": 4
+  },
+  {
+   "start_ms": 19000,
+   "time_signature": "4/2",
+   "measure_ms": 4000,
+   "beat_ms": 1000,
+   "beats_per_measure": 4
+  },
+  {
+   "start_ms": 23000,
+   "time_signature": "4/4",
+   "measure_ms": 2000,
+   "beat_ms": 500,
+   "beats_per_measure": 4
+  },
+  {
+   "start_ms": 25000,
+   "time_signature": "4/2",
+   "measure_ms": 4000,
+   "beat_ms": 1000,
+   "beats_per_measure": 4
+  },
+  {
+   "start_ms": 29000,
+   "time_signature": "4/4",
+   "measure_ms": 2000,
+   "beat_ms": 500,
+   "beats_per_measure": 4
+  },
+  {
+   "start_ms": 31000,
+   "time_signature": "4/2",
+   "measure_ms": 4000,
+   "beat_ms": 1000,
+   "beats_per_measure": 4
+  },
+  {
+   "start_ms": 35000,
+   "time_signature": "4/4",
+   "measure_ms": 2000,
+   "beat_ms": 500,
+   "beats_per_measure": 4
+  },
+  {
+   "start_ms": 37000,
+   "time_signature": "4/2",
+   "measure_ms": 4000,
+   "beat_ms": 1000,
+   "beats_per_measure": 4
+  },
+  {
+   "start_ms": 41000,
+   "time_signature": "4/4",
+   "measure_ms": 2000,
+   "beat_ms": 500,
+   "beats_per_measure": 4
+  },
+  {
+   "start_ms": 43000,
+   "time_signature": "4/2",
+   "measure_ms": 4000,
+   "beat_ms": 1000,
+   "beats_per_measure": 4
+  },
+  {
+   "start_ms": 47000,
+   "time_signature": "4/4",
+   "measure_ms": 2000,
+   "beat_ms": 500,
+   "beats_per_measure": 4
+  },
+  {
+   "start_ms": 49000,
+   "time_signature": "4/2",
+   "measure_ms": 4000,
+   "beat_ms": 1000,
+   "beats_per_measure": 4
+  },
+  {
+   "start_ms": 53000,
+   "time_signature": "4/4",
+   "measure_ms": 2000,
+   "beat_ms": 500,
+   "beats_per_measure": 4
+  },
+  {
+   "start_ms": 55000,
+   "time_signature": "4/2",
+   "measure_ms": 4000,
+   "beat_ms": 1000,
+   "beats_per_measure": 4
+  },
+  {
+   "start_ms": 59000,
+   "time_signature": "4/4",
+   "measure_ms": 2000,
+   "beat_ms": 500,
+   "beats_per_measure": 4
+  },
+  {
+   "start_ms": 61000,
+   "time_signature": "4/2",
+   "measure_ms": 4000,
+   "beat_ms": 1000,
+   "beats_per_measure": 4
+  },
+  {
+   "start_ms": 73000,
+   "time_signature": "4/4",
+   "measure_ms": 2000,
+   "beat_ms": 500,
+   "beats_per_measure": 4
+  },
+  {
+   "start_ms": 75000,
+   "time_signature": "4/2",
+   "measure_ms": 4000,
+   "beat_ms": 1000,
+   "beats_per_measure": 4
+  },
+  {
+   "start_ms": 79000,
+   "time_signature": "4/4",
+   "measure_ms": 2000,
+   "beat_ms": 500,
+   "beats_per_measure": 4
+  },
+  {
+   "start_ms": 81000,
+   "time_signature": "4/2",
+   "measure_ms": 4000,
+   "beat_ms": 1000,
+   "beats_per_measure": 4
+  },
+  {
+   "start_ms": 85000,
+   "time_signature": "2/4",
+   "measure_ms": 1000,
+   "beat_ms": 500,
+   "beats_per_measure": 2
+  }
+ ],
+ "key_map": [
+  {
+   "start_ms": 0,
+   "sharps": -1
+  }
+ ],
+ "analyzed_key": {
+  "tonic": "F",
+  "mode": "major",
+  "confidence": 0.8839
+ },
+ "notes": [
+  {
+   "onset_ms": 0,
+   "duration_ms": 1000,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 1000,
+   "duration_ms": 2000,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 3000,
+   "duration_ms": 1000,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 4000,
+   "duration_ms": 2000,
+   "pitch": 70,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": -1,
+    "octave": 4,
+    "name": "B-4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 6000,
+   "duration_ms": 1000,
+   "pitch": 70,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": -1,
+    "octave": 4,
+    "name": "B-4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 7000,
+   "duration_ms": 2000,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 9000,
+   "duration_ms": 2000,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 12000,
+   "duration_ms": 1000,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 13000,
+   "duration_ms": 2000,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 15000,
+   "duration_ms": 1000,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 16000,
+   "duration_ms": 2000,
+   "pitch": 70,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": -1,
+    "octave": 4,
+    "name": "B-4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 18000,
+   "duration_ms": 1000,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 19000,
+   "duration_ms": 2000,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 21000,
+   "duration_ms": 1000,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 22000,
+   "duration_ms": 2000,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 24000,
+   "duration_ms": 1000,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 25000,
+   "duration_ms": 2000,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 27000,
+   "duration_ms": 1000,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 28000,
+   "duration_ms": 2000,
+   "pitch": 70,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": -1,
+    "octave": 4,
+    "name": "B-4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 30000,
+   "duration_ms": 1000,
+   "pitch": 70,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": -1,
+    "octave": 4,
+    "name": "B-4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 31000,
+   "duration_ms": 2000,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 33000,
+   "duration_ms": 2000,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 36000,
+   "duration_ms": 1000,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 37000,
+   "duration_ms": 2000,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 39000,
+   "duration_ms": 1000,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 40000,
+   "duration_ms": 2000,
+   "pitch": 70,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": -1,
+    "octave": 4,
+    "name": "B-4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 42000,
+   "duration_ms": 1000,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 43000,
+   "duration_ms": 2000,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 45000,
+   "duration_ms": 1000,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 46000,
+   "duration_ms": 2000,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 48000,
+   "duration_ms": 1000,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 49000,
+   "duration_ms": 2000,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 51000,
+   "duration_ms": 1000,
+   "pitch": 70,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": -1,
+    "octave": 4,
+    "name": "B-4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 52000,
+   "duration_ms": 2000,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 54000,
+   "duration_ms": 1000,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 55000,
+   "duration_ms": 2000,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 57000,
+   "duration_ms": 1000,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 58000,
+   "duration_ms": 2000,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 60000,
+   "duration_ms": 1000,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 61000,
+   "duration_ms": 1000,
+   "pitch": 74,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 5,
+    "name": "D5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 62000,
+   "duration_ms": 1000,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 63000,
+   "duration_ms": 1000,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 64000,
+   "duration_ms": 1000,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 65000,
+   "duration_ms": 2000,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 67000,
+   "duration_ms": 1000,
+   "pitch": 70,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": -1,
+    "octave": 4,
+    "name": "B-4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 68000,
+   "duration_ms": 500,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 68500,
+   "duration_ms": 500,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 69000,
+   "duration_ms": 2000,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 73000,
+   "duration_ms": 2000,
+   "pitch": 70,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": -1,
+    "octave": 4,
+    "name": "B-4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 75000,
+   "duration_ms": 2000,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 77000,
+   "duration_ms": 1000,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 78000,
+   "duration_ms": 2000,
+   "pitch": 70,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": -1,
+    "octave": 4,
+    "name": "B-4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 80000,
+   "duration_ms": 1000,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 81000,
+   "duration_ms": 2000,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  },
+  {
+   "onset_ms": 83000,
+   "duration_ms": 2000,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Part1"
+  }
+ ],
+ "stats": {
+  "n_notes": 55,
+  "n_downbeats": 28,
+  "graces_dropped": 0,
+  "max_quantize_err_ticks": 0.0,
+  "monophonic": true,
+  "n_parts": 1
+ }
+}

@@ -43,10 +43,13 @@ ACTIVITY_WINDOW_MS = 200        # Window for note-density measurement
 MIN_FREEZE_MS = 50              # Minimum freeze duration to count as structural
 MUSICAL_NORM_DIVISORS = [2, 3, 4, 6, 8, 12]
 
-# Voice structural weights (how much each voice contributes to η)
+# Voice structural weights (how much each voice contributes to η).
+# Bass/soprano values set by corpus grid search 2026-07-06 (was 3.0/2.0
+# hand-tuned): train errors 1323→1289, val 1278→1237, see
+# docs/benchmarking.md and grid_search_thermo.py.
 VOICE_WEIGHTS = {
-    "Voice 4": 3.0,     # Bass — strongest structural anchor
-    "Voice 1": 2.0,     # Soprano / Melody — secondary anchor
+    "Voice 4": 4.0,     # Bass — strongest structural anchor
+    "Voice 1": 3.0,     # Soprano / Melody — secondary anchor
     "Voice 2": 1.0,     # Alto
     "Voice 3": 1.0,     # Tenor
     "Overflow (Chord)": 0.5,

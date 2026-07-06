@@ -3,13 +3,22 @@
 How to change weights/parameters in any phase without silently regressing
 another phase. The core rule: **tune locally, accept globally.**
 
-## The three data tiers
+## The data tiers
 
 | Tier | Data | Role |
 |---|---|---|
-| Smoke / tuning | `corpus files/corpus_demo` (21 pieces; expandable via `make_ground_truth.py`, needs `pip install music21 mido`) | Grid searches and quick checks. Flat velocity 80 — never tune velocity weights here. |
+| Smoke | `corpus files/corpus_demo` (21 pieces) | Quick checks. |
+| Tuning (train) | `corpus files/corpus_full` — 87 metered pieces (36 chorales, 38 Essen folk, 13 mixed incl. a piano tier: Clara Schumann polonaises, Chopin mazurka, Mozart K545, CPE Bach, 2 quartet movements) split 44 train / 43 val in `benchmarks/corpus_split.json` (stratified by texture, committed, stable) | Grid searches run on **train only**. Flat velocity 80 — never tune velocity weights here. |
+| Gate (val) | The 43-piece validation half | `run_benchmark.py` scores this split — the gate never sees training data. |
 | Held out | Pathétique 64s chunk + hand markers | Integration test. **Never tune on it again.** Only place Phase 1 has ground truth, and the only real-velocity data. |
 | Eyeball | Revolutionary chunk, Phase 4B notation view | No ground truth; sanity display. |
+
+Corpus building needs music21+mido, installed in `corpus files/venv/`
+(gitignored; recreate with `python3 -m venv "corpus files/venv" &&
+"corpus files/venv/bin/pip" install music21 mido`). Example:
+`"corpus files/venv/bin/python3" "corpus files/make_ground_truth.py" build
+--preset chorales --limit 36 --out "corpus files/corpus_full"`. After
+adding pieces, re-run `make_corpus_split.py` and review the split diff.
 
 ## The gate
 
@@ -55,17 +64,30 @@ hide a per-piece collapse.
    any later change is judged against it, so nothing gets overridden
    invisibly.
 
-## Current baseline (v3.1 greedy single-pass, 2026-07-05)
+## Grid searches so far
 
-thermo=729, spike=1113, heldout_P1_errors=27 (F1 88.0 — exactly
-reproduces the historical V3.1 optimizer result), voices=92.26%.
+**Thermo structural params, 2026-07-06** (`grid_search_thermo.py`: 27
+configs over MIN_FREEZE_MS × bass weight × melody weight, Phase 1+2 frozen
+at V3.1, train split): winner `V4_WEIGHT 3.0→4.0, V1_WEIGHT 2.0→3.0`
+(MIN_FREEZE_MS stays 50). Train errors 1323→1289, val 1278→1237,
+gate verdict PASS (spike, voices, held-out all exactly unchanged).
+Adopted as defaults in phase3_thermo_meter.py.
+
+## Baseline history
+
+- 2026-07-05 (demo corpus): thermo=729, spike=1113, heldout=27 (F1 88.0),
+  voices=92.26%.
+- 2026-07-06 (val split, pre-adoption): thermo=1188, spike=1694,
+  heldout=27, voices=90.57%.
+- 2026-07-06 (val split, thermo V4=4/V1=3 adopted — CURRENT):
+  thermo=1147, spike=1694, heldout=27 (F1 88.0), voices=90.57%.
 
 ## Known gaps
 
-- Corpus is texture-skewed (12 chorales, 5 folk, ~4 piano-ish). Before
-  serious grid search: expand with a piano tier and split train/validation
-  inside the corpus so the search can't memorize 19 pieces.
 - Phase 4 metrics are reserved: GT already has key + per-note spelling;
   scorer activates when phase4_notation emits `key`/`spelling` fields.
 - Voice fragmentation is captured by the scorer but not yet in the
   scorecard summary.
+- 6 val pieces produce no thermo meter (insufficient freezes — sparse
+  monophonic folk songs); they count as failures, not errors. The tactus
+  degeneracy fix should target these.

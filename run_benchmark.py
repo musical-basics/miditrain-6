@@ -34,6 +34,7 @@ from export_etme_data import export_analysis
 from run_corpus_eval import evaluate, load_v31_config, OUT_DIR
 
 BASELINE_PATH = os.path.join("benchmarks", "baseline.json")
+SPLIT_FILE = os.path.join("benchmarks", "corpus_split.json")
 HELDOUT_MIDI = os.path.join("midis", "pathetique_64s_chunk.mid")
 HELDOUT_MARKERS = os.path.join("markers", "pathetique_64s_chunk_markers.json")
 HELDOUT_TOL_MS = 100  # historical marker convention
@@ -90,12 +91,25 @@ def score_heldout_phase1(phase2_model, relaxation, config):
 
 def build_scorecard(phase2_model, relaxation, tol, label=""):
     config = load_v31_config()
-    print(f"Benchmark run: P2={phase2_model} relaxation={relaxation} "
-          f"corpus tol=±{tol:g}ms | held-out tol=±{HELDOUT_TOL_MS}ms")
 
-    corpus = evaluate(tol=tol, phase2_model=phase2_model,
-                      relaxation=relaxation, quiet=True,
-                      csv_path=os.path.join(OUT_DIR, "benchmark_runs.csv"))
+    # Gate on the VALIDATION split of the full corpus when a split exists
+    # (grid searches tune on train); fall back to the demo corpus otherwise.
+    corpus_dir, pieces, split_name = None, None, "demo(all)"
+    if os.path.exists(SPLIT_FILE):
+        with open(SPLIT_FILE) as f:
+            split = json.load(f)
+        corpus_dir, pieces, split_name = split["corpus"], split["val"], "val"
+
+    print(f"Benchmark run: P2={phase2_model} relaxation={relaxation} "
+          f"corpus tol=±{tol:g}ms | held-out tol=±{HELDOUT_TOL_MS}ms | "
+          f"corpus split={split_name}")
+
+    eval_kwargs = dict(tol=tol, phase2_model=phase2_model,
+                       relaxation=relaxation, quiet=True,
+                       csv_path=os.path.join(OUT_DIR, "benchmark_runs.csv"))
+    if corpus_dir:
+        eval_kwargs.update(corpus=corpus_dir, pieces=pieces)
+    corpus = evaluate(**eval_kwargs)
 
     print("\nScoring held-out Pathétique (Phase 1 vs hand markers)...")
     heldout = score_heldout_phase1(phase2_model, relaxation, config)
@@ -120,7 +134,7 @@ def build_scorecard(phase2_model, relaxation, tol, label=""):
     return {
         "label": label,
         "pipeline": {"phase2_model": phase2_model, "relaxation": relaxation,
-                     "corpus_tol_ms": tol},
+                     "corpus_tol_ms": tol, "corpus_split": split_name},
         "config": config,
         "metrics": metrics,
         "heldout_detail": heldout,
