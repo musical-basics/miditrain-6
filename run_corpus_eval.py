@@ -21,6 +21,9 @@ Usage:
 Outputs land in corpus_runs/ (gitignored): per-piece pipeline JSONs plus
 runs.csv with one row per (tag, piece). Summary table on stdout minimizes
 errors = FP + FN, same convention as optimize_params.
+
+For regression-gated benchmarking against a committed baseline, use
+run_benchmark.py (which calls evaluate() from this module).
 """
 import argparse
 import csv
@@ -70,13 +73,15 @@ def read_manifest(corpus_dir, skip_free_meter=True):
     return rows
 
 
-def run_scorer(truth_path, pred_path, tol, tag, csv_path):
+def run_scorer(truth_path, pred_path, tol, tag, csv_path, quiet=False):
     """Invoke score_against_truth.py; return its RESULT line dict (or None)."""
-    proc = subprocess.run(
-        [sys.executable, SCORER, "--truth", truth_path, "--pred", pred_path,
-         "--tol", str(tol), "--tag", tag, "--csv", csv_path],
-        capture_output=True, text=True)
-    print(proc.stdout, end="")
+    cmd = [sys.executable, SCORER, "--truth", truth_path, "--pred", pred_path,
+           "--tol", str(tol), "--tag", tag]
+    if csv_path:
+        cmd += ["--csv", csv_path]
+    proc = subprocess.run(cmd, capture_output=True, text=True)
+    if not quiet:
+        print(proc.stdout, end="")
     if proc.returncode != 0:
         print(f"  scorer failed for {pred_path}: {proc.stderr.strip()[:200]}")
         return None
@@ -88,6 +93,115 @@ def run_scorer(truth_path, pred_path, tol, tag, csv_path):
         k, _, v = kv.partition("=")
         out[k] = v
     return out
+
+
+def evaluate(corpus=CORPUS_DIR, out=OUT_DIR, tol=50.0, pieces=None,
+             phase2_model="greedy", relaxation=False, tag_suffix="",
+             include_free_meter=False, csv_path=None, config=None,
+             quiet=False):
+    """
+    Run the full pipeline + scoring over the corpus.
+
+    Returns {"totals": {tag: {errors, pieces, failed}},
+             "voice_acc": {tag: [acc, ...]},
+             "per_piece": {pid: {"spike": {errors, f1}|None,
+                                 "thermo": {errors, f1}|None,
+                                 "voices": acc|None}}}
+    """
+    os.makedirs(out, exist_ok=True)
+    if config is None:
+        config = load_v31_config()
+    rows = read_manifest(corpus, skip_free_meter=not include_free_meter)
+    if pieces:
+        wanted = set(pieces.split(",") if isinstance(pieces, str) else pieces)
+        rows = [r for r in rows if r["id"] in wanted]
+    if not rows:
+        raise SystemExit("No pieces selected.")
+
+    totals = {}     # tag → {"errors": int, "pieces": int, "failed": int}
+    voice_acc = {}  # tag → [accuracies]
+    per_piece = {}
+
+    for row in rows:
+        pid = row["id"]
+        midi = os.path.join(corpus, "midis", f"{pid}.mid")
+        truth = os.path.join(corpus, "groundtruth", f"{pid}.gt.json")
+        etme_path = os.path.join(
+            out, f"etme_{pid}_{config['angle_map']}_{config['break_method']}_{config['jaccard_threshold']}.json")
+        per_piece[pid] = {"spike": None, "thermo": None, "voices": None}
+
+        print(f"\n########## {pid} ##########")
+        try:
+            if quiet:
+                import contextlib, io
+                with contextlib.redirect_stdout(io.StringIO()):
+                    export_analysis(midi, output_json=etme_path,
+                                    phase2_model=phase2_model,
+                                    relaxation=relaxation, **config)
+            else:
+                export_analysis(midi, output_json=etme_path,
+                                phase2_model=phase2_model,
+                                relaxation=relaxation, **config)
+        except Exception as e:
+            print(f"  PIPELINE FAILED (export): {e}")
+            for tag in ("spike", "thermo"):
+                t = totals.setdefault(tag + tag_suffix, {"errors": 0, "pieces": 0, "failed": 0})
+                t["failed"] += 1
+            continue
+
+        # ── Phase 3: both meter engines ──────────────────────────────
+        preds = {}
+        import contextlib, io
+        silencer = contextlib.redirect_stdout(io.StringIO()) if quiet else contextlib.nullcontext()
+        try:
+            with silencer:
+                MacroMeterEstimator(etme_path).estimate(write_json=True)
+            preds["spike"] = os.path.join(out, f"phase3_grid_{pid}.json")
+        except Exception as e:
+            print(f"  SPIKE METER FAILED: {e}")
+        silencer = contextlib.redirect_stdout(io.StringIO()) if quiet else contextlib.nullcontext()
+        try:
+            with silencer:
+                thermo = ThermodynamicMeterEstimator(etme_path).estimate(write_json=False)
+            if thermo and thermo.get("meter"):
+                # Scorer sniffs top-level barlines — flatten the meter block
+                pred_path = os.path.join(out, f"thermo_pred_{pid}.json")
+                with open(pred_path, "w") as f:
+                    json.dump(thermo["meter"], f)
+                preds["thermo"] = pred_path
+            else:
+                print("  THERMO METER: no meter block (no freeze events?)")
+        except Exception as e:
+            print(f"  THERMO METER FAILED: {e}")
+
+        for engine in ("spike", "thermo"):
+            tag = engine + tag_suffix
+            t = totals.setdefault(tag, {"errors": 0, "pieces": 0, "failed": 0})
+            if engine not in preds:
+                t["failed"] += 1
+                continue
+            res = run_scorer(truth, preds[engine], tol, tag, csv_path, quiet=quiet)
+            if res and "errors" in res:
+                t["errors"] += int(res["errors"])
+                t["pieces"] += 1
+                per_piece[pid][engine] = {"errors": int(res["errors"]),
+                                          "f1": float(res["f1"])}
+            else:
+                t["failed"] += 1
+
+        # ── Phase 2 voices (polyphonic pieces have SATB ground truth) ──
+        if int(row.get("n_parts", 1)) > 1:
+            vtag = f"voices_{phase2_model}{tag_suffix}"
+            res = run_scorer(truth, etme_path, tol, vtag, csv_path, quiet=quiet)
+            if res and "voices" in res:
+                try:
+                    acc = float(res["voices"])
+                    voice_acc.setdefault(vtag, []).append(acc)
+                    per_piece[pid]["voices"] = acc
+                except ValueError:
+                    pass
+
+    return {"totals": totals, "voice_acc": voice_acc, "per_piece": per_piece}
 
 
 def main():
@@ -102,93 +216,24 @@ def main():
     ap.add_argument("--include-free-meter", action="store_true")
     args = ap.parse_args()
 
-    os.makedirs(args.out, exist_ok=True)
-    csv_path = os.path.join(args.out, "runs.csv")
-    config = load_v31_config()
-    rows = read_manifest(args.corpus, skip_free_meter=not args.include_free_meter)
-    if args.pieces:
-        wanted = set(args.pieces.split(","))
-        rows = [r for r in rows if r["id"] in wanted]
-    if not rows:
-        print("No pieces selected."); sys.exit(1)
+    print(f"Corpus eval: P2={args.phase2_model} | relaxation={args.relaxation} | "
+          f"tol=±{args.tol:g}ms | V3.1 config")
 
-    print(f"Corpus eval: {len(rows)} pieces | P2={args.phase2_model} | "
-          f"relaxation={args.relaxation} | tol=±{args.tol:g}ms | V3.1 config")
-
-    totals = {}   # tag → {"errors": int, "pieces": int, "failed": int}
-    voice_acc = {}  # tag → [accuracies]
-
-    for row in rows:
-        pid = row["id"]
-        midi = os.path.join(args.corpus, "midis", f"{pid}.mid")
-        truth = os.path.join(args.corpus, "groundtruth", f"{pid}.gt.json")
-        etme_path = os.path.join(
-            args.out, f"etme_{pid}_{config['angle_map']}_{config['break_method']}_{config['jaccard_threshold']}.json")
-
-        print(f"\n########## {pid} ##########")
-        try:
-            export_analysis(midi, output_json=etme_path,
-                            phase2_model=args.phase2_model,
-                            relaxation=args.relaxation, **config)
-        except Exception as e:
-            print(f"  PIPELINE FAILED (export): {e}")
-            for tag in ("spike", "thermo"):
-                t = totals.setdefault(tag + args.tag_suffix, {"errors": 0, "pieces": 0, "failed": 0})
-                t["failed"] += 1
-            continue
-
-        # ── Phase 3: both meter engines ──────────────────────────────
-        preds = {}
-        try:
-            MacroMeterEstimator(etme_path).estimate(write_json=True)
-            preds["spike"] = os.path.join(args.out, f"phase3_grid_{pid}.json")
-        except Exception as e:
-            print(f"  SPIKE METER FAILED: {e}")
-        try:
-            thermo = ThermodynamicMeterEstimator(etme_path).estimate(write_json=False)
-            if thermo and thermo.get("meter"):
-                # Scorer sniffs top-level barlines — flatten the meter block
-                pred_path = os.path.join(args.out, f"thermo_pred_{pid}.json")
-                with open(pred_path, "w") as f:
-                    json.dump(thermo["meter"], f)
-                preds["thermo"] = pred_path
-            else:
-                print("  THERMO METER: no meter block (no freeze events?)")
-        except Exception as e:
-            print(f"  THERMO METER FAILED: {e}")
-
-        for engine in ("spike", "thermo"):
-            tag = engine + args.tag_suffix
-            t = totals.setdefault(tag, {"errors": 0, "pieces": 0, "failed": 0})
-            if engine not in preds:
-                t["failed"] += 1
-                continue
-            res = run_scorer(truth, preds[engine], args.tol, tag, csv_path)
-            if res and "errors" in res:
-                t["errors"] += int(res["errors"])
-                t["pieces"] += 1
-            else:
-                t["failed"] += 1
-
-        # ── Phase 2 voices (polyphonic pieces have SATB ground truth) ──
-        if int(row.get("n_parts", 1)) > 1:
-            vtag = f"voices_{args.phase2_model}{args.tag_suffix}"
-            res = run_scorer(truth, etme_path, args.tol, vtag, csv_path)
-            if res and "voices" in res:
-                try:
-                    voice_acc.setdefault(vtag, []).append(float(res["voices"]))
-                except ValueError:
-                    pass
+    results = evaluate(corpus=args.corpus, out=args.out, tol=args.tol,
+                       pieces=args.pieces, phase2_model=args.phase2_model,
+                       relaxation=args.relaxation, tag_suffix=args.tag_suffix,
+                       include_free_meter=args.include_free_meter,
+                       csv_path=os.path.join(args.out, "runs.csv"))
 
     print("\n" + "=" * 62)
     print(f"SUMMARY  (errors = FP + FN summed over pieces, tol ±{args.tol:g}ms)")
-    for tag, t in sorted(totals.items()):
+    for tag, t in sorted(results["totals"].items()):
         print(f"  {tag:<16} errors={t['errors']:<5} pieces={t['pieces']}"
               + (f"  FAILED={t['failed']}" if t["failed"] else ""))
-    for tag, accs in sorted(voice_acc.items()):
+    for tag, accs in sorted(results["voice_acc"].items()):
         mean = sum(accs) / len(accs)
         print(f"  {tag:<16} mean_note_accuracy={mean:.1%} over {len(accs)} pieces")
-    print(f"\nPer-piece rows appended to {csv_path}")
+    print(f"\nPer-piece rows appended to {os.path.join(args.out, 'runs.csv')}")
 
 
 if __name__ == "__main__":

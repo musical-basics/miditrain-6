@@ -1,5 +1,25 @@
 # Session Log
 
+## 2026-07-05 (night) — Regression gate: run_benchmark.py + committed baseline
+
+Built the cross-phase regression gate (see docs/benchmarking.md for the
+full workflow). `run_corpus_eval.py` refactored to expose `evaluate()`;
+new `run_benchmark.py` runs the full pipeline over the corpus AND the
+held-out Pathétique chunk, producing one scorecard: downbeat errors for
+both meter engines + held-out Phase 1 marker errors (severity 1), voice
+accuracy (severity 2). Compares against committed
+`benchmarks/baseline.json`; verdict PASS / TRADEOFF / REGRESSION
+(exit codes 0/2/1), with per-piece movers.
+
+Validation: held-out scoring reproduces the historical V3.1 optimizer
+result exactly (27 errors, F1 88.0); identical re-run → PASS identical
+(pipeline fully deterministic); beam-P2 candidate → TRADEOFF (meters
+−41/−75 errors, voices −5.2pp), correctly not auto-adopted. Baseline
+saved: thermo=729 spike=1113 heldout_P1=27 voices=92.26%.
+
+Open: expand corpus with piano tier + train/validation split before grid
+search; wire Phase 4 key/spelling into the scorecard.
+
 ## 2026-07-05 (evening) — Corpus harness wired in; first measured fights
 
 **What arrived** (built externally, dropped into `corpus files/`):
