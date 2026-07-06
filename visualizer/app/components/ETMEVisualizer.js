@@ -44,6 +44,8 @@ export default function ETMEVisualizer() {
   const [phase4bData, setPhase4bData] = useState(null);    // phase4_notation_*.json
   const [keyAlgorithm, setKeyAlgorithm] = useState('temperley');
   const [layoutMode, setLayoutMode] = useState('horizontal'); // notation layout
+  const [gridSource, setGridSource] = useState('spike');      // Phase 4 grid: 'spike' | 'thermo'
+  const [relaxation, setRelaxation] = useState(false);        // P1↔P2 relaxation pass
   const [hZoom, setHZoom] = useState(10);
   const [vZoom, setVZoom] = useState(10);
   const [tooltip, setTooltip] = useState(null);
@@ -193,17 +195,21 @@ export default function ETMEVisualizer() {
     let s1;
     if (midiFile.startsWith('__optimized__:')) {
       // Optimized output — run Phase 2 only on the existing JSON
+      if (relaxation) {
+        setEngineLogs(prev => [...prev, '\nNote: P1↔P2 relaxation is unavailable for optimized datasets (Phase 1 is fixed) — skipped.']);
+      }
       setEngineLogs(prev => [...prev, '\n[1/5] Running Phase 2 only on optimized output (run_phase2.py)...']);
       s1 = await runScript('run_phase2.py', [jsonTarget]);
     } else {
-      setEngineLogs(prev => [...prev, '\n[1/5] Running Phase 1 & 2 (export_etme_data.py)...']);
+      setEngineLogs(prev => [...prev, `\n[1/5] Running Phase 1 & 2 (export_etme_data.py)${relaxation ? ' with P1↔P2 relaxation (bass ×2)' : ''}...`]);
       s1 = await runScript('export_etme_data.py', [
         '--midi_key', midiFile,
         '--angle_map', angleMap,
         '--break_method', breakModel,
         '--jaccard', jaccardThreshold.toString(),
         '--min_break_mass', minBreakMass.toString(),
-        '--phase2_model', phase2Model
+        '--phase2_model', phase2Model,
+        ...(relaxation ? ['--relaxation', '--bass_multiplier', '2.0'] : [])
       ]);
     }
     if (!s1) {
@@ -212,14 +218,19 @@ export default function ETMEVisualizer() {
       return;
     }
 
-    // Phase 3: thermodynamic meter (visual overlay — non-fatal if it fails)
+    // Phase 3: thermodynamic meter (fatal only when it is the Phase 4 grid source)
     setEngineLogs(prev => [...prev, '\n[2/5] Running Phase 3 Thermo Meter (phase3_thermo_meter.py)...']);
     const s2 = await runScript('phase3_thermo_meter.py', [jsonTarget, '--json']);
     if (!s2) {
+      if (gridSource === 'thermo') {
+        setEngineLogs(prev => [...prev, '\nPipeline failed at Phase 3 thermo meter (selected as grid source). Check logs above.']);
+        setIsEngineDone(true);
+        return;
+      }
       setEngineLogs(prev => [...prev, '\nPhase 3 thermo meter failed (non-fatal). Continuing...']);
     }
 
-    // Phase 3: spike grid (feeds Phase 4 — fatal if it fails)
+    // Phase 3: spike grid (fatal — its view and the default grid depend on it)
     setEngineLogs(prev => [...prev, '\n[3/5] Running Phase 3 Spike Grid (phase3_spike_meter.py)...']);
     const s3 = await runScript('phase3_spike_meter.py', [jsonTarget, '--json']);
     if (!s3) {
@@ -228,7 +239,10 @@ export default function ETMEVisualizer() {
       return;
     }
 
-    const gridTarget = `visualizer/public/phase3_grid_${phase3BaseKey(etmeFileName)}.json`;
+    // Phase 4 consumes the selected meter's grid (A/B: spike vs thermo)
+    const gridTarget = gridSource === 'thermo'
+      ? `visualizer/public/phase3_thermo_${phase3BaseKey(etmeFileName)}.json`
+      : `visualizer/public/phase3_grid_${phase3BaseKey(etmeFileName)}.json`;
 
     setEngineLogs(prev => [...prev, '\n[4/5] Running Phase 4A Quantize (phase4_quantize.py)...']);
     const s4 = await runScript('phase4_quantize.py', [jsonTarget, gridTarget]);
@@ -250,7 +264,7 @@ export default function ETMEVisualizer() {
     setEngineLogs(prev => [...prev, '\nPipeline Complete! Dismiss to view results.']);
     setRefreshTrigger(prev => prev + 1);
     setIsEngineDone(true);
-  }, [midiFile, angleMap, breakModel, jaccardThreshold, minBreakMass, phase2Model, keyAlgorithm, getBaseKey]);
+  }, [midiFile, angleMap, breakModel, jaccardThreshold, minBreakMass, phase2Model, keyAlgorithm, gridSource, relaxation, getBaseKey]);
 
   // ===== BATCH RUN ENGINE =====
   const BATCH_CONFIGS = [
@@ -450,6 +464,10 @@ export default function ETMEVisualizer() {
   const noteHeight = vZoom;
   const msPxInput = 0.005 * hZoom;
 
+  // The barline grid Phase 4 views render against — mirrors the grid the
+  // quantizer consumed (spike grid file, or the thermo file's meter block).
+  const activeGrid = gridSource === 'thermo' ? (thermoData?.meter || null) : gridData;
+
   const render = useCallback(() => {
     if (!data || !canvasRef.current) return;
     const canvas = canvasRef.current;
@@ -550,7 +568,7 @@ export default function ETMEVisualizer() {
       const y = (PITCH_MAX - n.pitch) * noteHeight;
 
       if (currentView === 'phase4a') {
-        const snapped = getQuantizedGeometry(n, gridData, { effectiveScale });
+        const snapped = getQuantizedGeometry(n, activeGrid, { effectiveScale });
         if (snapped) { x = snapped.x; w = snapped.w; }
       }
 
@@ -610,8 +628,11 @@ export default function ETMEVisualizer() {
     if (currentView === 'phase3') {
       renderThermoOverlay(ctx, thermoData, { effectiveScale, rollH, canvasW });
     }
-    if (currentView === 'phase3_grid' || currentView === 'phase4a') {
+    if (currentView === 'phase3_grid') {
       renderBarlineGrid(ctx, gridData, { effectiveScale, rollH, canvasW, maxTime, showTopLabels: true });
+    }
+    if (currentView === 'phase4a') {
+      renderBarlineGrid(ctx, activeGrid, { effectiveScale, rollH, canvasW, maxTime, showTopLabels: true });
     }
 
     // ===== Draw comparison: model SPIKE boundaries as cyan lines =====
@@ -732,7 +753,7 @@ export default function ETMEVisualizer() {
       ctx.closePath(); ctx.fill();
     }
 
-  }, [data, currentView, msPxInput, noteHeight, markers, selectedMarkerIds, showComparison, dragSelect, thermoData, gridData, phase4aData]);
+  }, [data, currentView, msPxInput, noteHeight, markers, selectedMarkerIds, showComparison, dragSelect, thermoData, gridData, phase4aData, activeGrid]);
 
   // Keep renderRef always pointing to the latest render function
   useEffect(() => { renderRef.current = render; }, [render]);
@@ -1179,7 +1200,7 @@ export default function ETMEVisualizer() {
     if (currentView === 'phase2') return <Phase2Legend />;
     if (currentView === 'phase3') return <Phase3ThermoLegend thermoData={thermoData} />;
     if (currentView === 'phase3_grid') return <Phase3GridLegend gridData={gridData} />;
-    if (currentView === 'phase4a') return <Phase4QuantizeLegend gridData={gridData} />;
+    if (currentView === 'phase4a') return <Phase4QuantizeLegend gridData={activeGrid} />;
     if (currentView === 'phase4b') return <Phase4NotationLegend notationData={phase4bData} />;
     return (
       <Phase1Legend minBreakMass={minBreakMass} setMinBreakMass={setMinBreakMass} showComparison={showComparison} />
@@ -1333,6 +1354,20 @@ export default function ETMEVisualizer() {
         >
           <option value="greedy">P2: Greedy (Thermo)</option>
           <option value="beam">P2: Beam Search</option>
+        </select>
+        <select value={relaxation ? 'on' : 'off'} onChange={e => setRelaxation(e.target.value === 'on')}
+          title="P1↔P2 relaxation: re-run Phase 1 with Phase 2's Voice 4 as the true bass feed (bass ×2), then re-thread"
+          style={{ marginLeft: '4px', padding: '4px 8px', fontSize: '11px', background: '#1a1a2e', color: '#e0e0e0', border: relaxation ? '1px solid #00bcd4' : '1px solid #333', borderRadius: '4px', cursor: 'pointer' }}
+        >
+          <option value="off">P1↔P2: Single Pass</option>
+          <option value="on">P1↔P2: Relaxation (Bass ×2)</option>
+        </select>
+        <select value={gridSource} onChange={e => setGridSource(e.target.value)}
+          title="Which Phase 3 meter's barline grid feeds Phase 4 (quantize + notation)"
+          style={{ marginLeft: '4px', padding: '4px 8px', fontSize: '11px', background: '#1a1a2e', color: '#e0e0e0', border: '1px solid #ffd640', borderRadius: '4px', cursor: 'pointer' }}
+        >
+          <option value="spike">Grid: Spike (Legacy)</option>
+          <option value="thermo">Grid: Thermo (Phase 3)</option>
         </select>
         <select value={keyAlgorithm} onChange={e => setKeyAlgorithm(e.target.value)}
           title="Phase 4B key detection algorithm"

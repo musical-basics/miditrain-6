@@ -23,6 +23,7 @@ PC_TO_INTERVAL = {
     0: "1", 1: "b2", 2: "2", 3: "b3", 4: "3", 5: "4",
     6: "#4", 7: "5", 8: "b6", 9: "6", 10: "b7", 11: "7"
 }
+INTERVAL_TO_PC = {v: k for k, v in PC_TO_INTERVAL.items()}
 
 
 def calculate_weighted_chord_color(notes, interval_angles=None):
@@ -139,26 +140,46 @@ def extract_keyframes(midi_path, group_window_ms=50):
     return keyframes
 
 
-def export_analysis(midi_path, output_json="etme_analysis.json", angle_map='dissonance', break_method='centroid', jaccard_threshold=0.5, min_break_mass=0.75, break_angle=15.0, merge_angle=20.0, debounce_ms=100, trim_ms=None, phase2_model='greedy', **extra_params):
-    print(f"Loading MIDI: {midi_path}")
-    print(f"  Angle map: {angle_map}, Break method: {break_method}, Jaccard: {jaccard_threshold}, Min Break Mass: {min_break_mass}")
-    print(f"  Break angle: {break_angle}°, Merge angle: {merge_angle}°, Debounce: {debounce_ms}ms")
-    if extra_params:
-        print(f"  V3 params: {extra_params}")
-    particles = midi_to_particles(midi_path)
-    keyframes = extract_keyframes(midi_path)
-    print(f"  Loaded {len(particles)} particles, {len(keyframes)} keyframes")
+def annotate_keyframes_with_bass(keyframes, bass_notes, group_window_ms=50):
+    """
+    P1↔P2 relaxation feed: layer an is_bass annotation onto keyframe notes
+    from Phase 2's Voice 4 line, replacing the lowest-note-per-keyframe proxy
+    the detector otherwise uses for bass authority.
 
-    interval_angles = ANGLE_MAPS.get(angle_map, INTERVAL_ANGLES_DISSONANCE)
+    bass_notes maps pitch → list of Voice 4 onsets (ms). A keyframe note is
+    bass when its reconstructed pitch has a Voice 4 onset inside the
+    keyframe's grouping window.
+    """
+    annotated = []
+    for t, notes in keyframes:
+        new_notes = []
+        for n in notes:
+            interval, octave = n[0], n[1]
+            pitch = octave * 12 + INTERVAL_TO_PC[interval]
+            is_bass = any(t <= onset <= t + group_window_ms
+                          for onset in bass_notes.get(pitch, ()))
+            new_notes.append(tuple(n[:4]) + (is_bass,))
+        annotated.append((t, new_notes))
+    return annotated
 
-    print(f"Running Phase 1: Harmonic Regime Detector (Limbo V2.2)...")
-    detector = HarmonicRegimeDetector(
-        break_angle=break_angle, min_break_mass=min_break_mass, merge_angle=merge_angle,
-        angle_map=angle_map, break_method=break_method, jaccard_threshold=jaccard_threshold,
-        debounce_ms=debounce_ms, **extra_params
-    )
-    regime_frames = detector.process(keyframes)
 
+def build_frame_lookup(regime_frames):
+    """Flatten detector frames into the lookup structure Phase 2 consumes."""
+    frame_lookup = []
+    for frame in regime_frames:
+        frame_lookup.append({
+            "time": frame["Time (ms)"],
+            "hue": frame["Hue"],
+            "sat": frame["Sat (%)"],
+            "v_vec": frame["V_vec"],
+            "state": frame["State"],
+            "debug": frame.get("debug", {})
+        })
+    return frame_lookup
+
+
+def consolidate_regimes(regime_frames, particles):
+    """Merge per-frame detector output into contiguous regime blocks."""
     regimes = []
     current_regime = None
     for frame in regime_frames:
@@ -189,6 +210,61 @@ def export_analysis(midi_path, output_json="etme_analysis.json", angle_map='diss
     if current_regime:
         current_regime["end_time"] = particles[-1].onset + particles[-1].duration
         regimes.append(current_regime)
+    return regimes
+
+
+def export_analysis(midi_path, output_json="etme_analysis.json", angle_map='dissonance', break_method='centroid', jaccard_threshold=0.5, min_break_mass=0.75, break_angle=15.0, merge_angle=20.0, debounce_ms=100, trim_ms=None, phase2_model='greedy', relaxation=False, **extra_params):
+    print(f"Loading MIDI: {midi_path}")
+    print(f"  Angle map: {angle_map}, Break method: {break_method}, Jaccard: {jaccard_threshold}, Min Break Mass: {min_break_mass}")
+    print(f"  Break angle: {break_angle}°, Merge angle: {merge_angle}°, Debounce: {debounce_ms}ms")
+    if extra_params:
+        print(f"  V3 params: {extra_params}")
+    particles = midi_to_particles(midi_path)
+    keyframes = extract_keyframes(midi_path)
+    print(f"  Loaded {len(particles)} particles, {len(keyframes)} keyframes")
+
+    interval_angles = ANGLE_MAPS.get(angle_map, INTERVAL_ANGLES_DISSONANCE)
+
+    detector_kwargs = dict(
+        break_angle=break_angle, min_break_mass=min_break_mass, merge_angle=merge_angle,
+        angle_map=angle_map, break_method=break_method, jaccard_threshold=jaccard_threshold,
+        debounce_ms=debounce_ms, **extra_params
+    )
+
+    def run_pass(kf, pass_label=""):
+        """One P1→P2 pass: fresh detector + fresh threader (deterministic)."""
+        print(f"Running Phase 1{pass_label}: Harmonic Regime Detector (Limbo V2.2)...")
+        detector = HarmonicRegimeDetector(**detector_kwargs)
+        rf = detector.process(kf)
+        fl = build_frame_lookup(rf)
+        if phase2_model == 'beam':
+            print(f"Running Phase 2{pass_label}: Beam Search Voice Threading...")
+            threader = BeamVoiceThreader(max_voices=4, beam_width=64)
+        else:
+            print(f"Running Phase 2{pass_label}: Thermodynamic Voice Threading (Greedy)...")
+            threader = VoiceThreader(max_voices=4)
+        scored = threader.thread_particles(particles, fl)
+        return rf, fl, scored
+
+    # Pass 1: P1 with the lowest-note bass proxy, then P2
+    regime_frames, frame_lookup, scored_particles = run_pass(keyframes)
+
+    if relaxation:
+        # =============================================
+        # P1↔P2 Relaxation (fixed 2-pass): re-run Phase 1 with Phase 2's
+        # Voice 4 as the true bass feed, then re-thread. Each phase keeps
+        # its own algorithm; only the bass annotation changes.
+        # =============================================
+        bass_notes = {}
+        for p in scored_particles:
+            if p.voice_tag == 'Voice 4':
+                bass_notes.setdefault(p.pitch, []).append(p.onset)
+        n_bass = sum(len(v) for v in bass_notes.values())
+        print(f"Relaxation: feeding {n_bass} Voice 4 notes back into Phase 1 as true bass...")
+        keyframes2 = annotate_keyframes_with_bass(keyframes, bass_notes)
+        regime_frames, frame_lookup, scored_particles = run_pass(keyframes2, " (relaxation pass)")
+
+    regimes = consolidate_regimes(regime_frames, particles)
 
     print(f"  Detected {len(regimes)} harmonic regimes (after consolidation)")
     state_counts = {}
@@ -196,28 +272,6 @@ def export_analysis(midi_path, output_json="etme_analysis.json", angle_map='diss
         state_counts[r["state"]] = state_counts.get(r["state"], 0) + 1
     for s, c in state_counts.items():
         print(f"    {s}: {c}")
-
-    frame_lookup = []
-    for frame in regime_frames:
-        frame_lookup.append({
-            "time": frame["Time (ms)"],
-            "hue": frame["Hue"],
-            "sat": frame["Sat (%)"],
-            "v_vec": frame["V_vec"],
-            "state": frame["State"],
-            "debug": frame.get("debug", {})
-        })
-
-    # =============================================
-    # Phase 2: Thermodynamic Voice Threading
-    # =============================================
-    if phase2_model == 'beam':
-        print("Running Phase 2: Beam Search Voice Threading...")
-        threader = BeamVoiceThreader(max_voices=4, beam_width=64)
-    else:
-        print("Running Phase 2: Thermodynamic Voice Threading (Greedy)...")
-        threader = VoiceThreader(max_voices=4)
-    scored_particles = threader.thread_particles(particles, frame_lookup)
 
     voice_counts = {}
     for p in scored_particles:
@@ -286,7 +340,8 @@ def export_analysis(midi_path, output_json="etme_analysis.json", angle_map='diss
         "stats": {
             "total_notes": len(notes_json),
             "total_regimes": len(regimes_json),
-            "voice_counts": voice_counts
+            "voice_counts": voice_counts,
+            "relaxation": relaxation
         }
     }
 
@@ -304,6 +359,8 @@ if __name__ == "__main__":
     parser.add_argument('--jaccard', type=float, default=0.5, help='Jaccard threshold')
     parser.add_argument('--min_break_mass', type=float, default=0.75, help='Minimum mass to trigger regime break')
     parser.add_argument('--phase2_model', type=str, default='greedy', choices=['greedy', 'beam'], help='Phase 2 voice threading model')
+    parser.add_argument('--relaxation', action='store_true', help='P1↔P2 relaxation: re-run Phase 1 with Voice 4 as true bass feed, then re-thread')
+    parser.add_argument('--bass_multiplier', type=float, default=1.0, help='Phase 1 bass authority multiplier (V3.1 tuned value: 2.0). Relaxation only has effect when > 1.')
     args = parser.parse_args()
 
     # Auto-discover all .mid files in midis/ so new chunks work immediately
@@ -327,10 +384,10 @@ if __name__ == "__main__":
         out = f"visualizer/public/etme_{base_key}_{args.angle_map}_{args.break_method}"
         if args.break_method in ('hybrid', 'hybrid_split', 'jaccard_only', 'jaccard_only_split', 'hybrid_v2', 'hybrid_v2_split'):
             out += f"_{args.jaccard}.json"
-            export_analysis(midi_path, output_json=out, angle_map=args.angle_map, break_method=args.break_method, jaccard_threshold=args.jaccard, min_break_mass=args.min_break_mass, phase2_model=args.phase2_model)
+            export_analysis(midi_path, output_json=out, angle_map=args.angle_map, break_method=args.break_method, jaccard_threshold=args.jaccard, min_break_mass=args.min_break_mass, phase2_model=args.phase2_model, relaxation=args.relaxation, bass_multiplier=args.bass_multiplier)
         else:
             out += ".json"
-            export_analysis(midi_path, output_json=out, angle_map=args.angle_map, break_method=args.break_method, min_break_mass=args.min_break_mass, phase2_model=args.phase2_model)
+            export_analysis(midi_path, output_json=out, angle_map=args.angle_map, break_method=args.break_method, min_break_mass=args.min_break_mass, phase2_model=args.phase2_model, relaxation=args.relaxation, bass_multiplier=args.bass_multiplier)
     else:
         out = "visualizer/public/etme_pathetique_full_chunk_dissonance_hybrid_0.5.json"
         export_analysis('midis/pathetique_full_chunk.mid', output_json=out,

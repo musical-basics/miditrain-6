@@ -38,6 +38,11 @@ def main(etme_path, grid_path):
     with open(grid_path, 'r') as f:
         grid_data = json.load(f)
 
+    # Grid source can be a spike grid file (flat keys) or a thermo meter
+    # file (phase3_thermo_*.json, keys nested under "meter").
+    if isinstance(grid_data.get('meter'), dict):
+        grid_data = grid_data['meter']
+
     notes = etme_data.get('notes', [])
     barlines = grid_data.get('barlines', [])
     beats_per_measure = grid_data.get('beats_per_measure', 4)

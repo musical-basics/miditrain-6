@@ -9,11 +9,13 @@ instructions; ask before fixing.
   When the user selects "P2: Beam Search" in the UI and runs an
   `__optimized__:` dataset, the re-run still uses greedy. Fix: add a
   `--phase2_model` arg mirroring `export_etme_data.py`.
-- **Thermo meter output lacks `subdivision`** in its `meter{}` block, so it
-  cannot yet replace the spike grid as Phase 4's input. Needs a sub-tactus /
-  subdivision estimate (the spike meter gets it from hierarchical IOI
-  clustering) before the plan-doc goal "thermodynamic meter IS Phase 3's grid"
-  can be completed.
+- ~~**Thermo meter output lacks `subdivision`**~~ — RESOLVED 2026-07-05:
+  `phase3_thermo_meter.py` now estimates subdivision from note-onset IOIs and
+  the thermo file is selectable as Phase 4's grid source ("Grid: Thermo" in
+  the UI). Remaining weakness: when freeze events are sparse the thermo
+  tactus degenerates to the measure length (e.g. Revolutionary chunk:
+  tactus=measure=4000ms, ratio 33 → subdivision falls back to 1). The tactus
+  estimator itself needs the corpus harness to tune.
 - **`dreamflow` is a local file: dependency** (`visualizer/package.json`) on
   `/Users/lionelyu/Documents/UltimatePianist Repos/dreamflow`. Fresh clones on
   another machine will fail `pnpm install` unless that repo is present at the

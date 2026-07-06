@@ -1,5 +1,63 @@
 # Session Log
 
+## 2026-07-05 (later) — Thermo grid source + P1↔P2 relaxation pass
+
+**What was done**
+
+1. **Thermo meter can now feed Phase 4** (plan-doc goal "thermodynamic meter
+   IS Phase 3"):
+   - `phase3_thermo_meter.py`: new `_estimate_subdivision()` — sub-tactus from
+     note-onset IOI clustering (10ms bins), subdivision = freeze-tactus /
+     sub-tactus snapped to the musical-norm ladder [1,2,3,4,6,8,12] with a 35%
+     rejection tolerance. `meter{}` block now includes `subdivision` +
+     `sub_tactus_ms`. Pathétique: 1000ms tactus / 80ms triplet-16ths → 12.
+   - `phase4_quantize.py` / `phase4_notation.py` accept either grid shape:
+     flat spike grid, or a thermo file with keys nested under `"meter"`.
+   - Visualizer: "Grid: Spike (Legacy) | Thermo (Phase 3)" dropdown selects
+     which meter's grid the Phase 4 steps consume; the Phase 4A view and
+     legend render against the same `activeGrid`. Thermo step becomes fatal
+     in runEngine when selected as grid source.
+
+2. **P1↔P2 relaxation pass** (plan-doc item 1, fixed two passes, opt-in):
+   - Keyframe note tuples gain an optional 5th element `is_bass`
+     (contract: `(interval, octave, velocity[, duration_ms[, is_bass]])`).
+     `HarmonicRegimeDetector._build_particles` uses the annotation when
+     present, else falls back to the lowest-note-per-keyframe proxy. The
+     octave ≤ 3 register gate is retained in both modes.
+   - `export_etme_data.py`: `--relaxation` flag → pass 1 (P1 proxy → P2),
+     then Voice 4 notes are layered back onto the keyframes via
+     `annotate_keyframes_with_bass()` (pitch reconstructed from
+     interval+octave, matched inside the 50ms grouping window), then pass 2
+     (fresh P1 → fresh P2). Also added `--bass_multiplier` (default 1.0;
+     V3.1-tuned value is 2.0) since relaxation is a no-op without bass
+     authority. Inline regime-consolidation/frame-lookup code extracted into
+     `consolidate_regimes()` / `build_frame_lookup()` so both passes share it.
+   - `stats.relaxation` recorded in the export JSON.
+   - Visualizer: "P1↔P2: Single Pass | Relaxation (Bass ×2)" dropdown; when
+     on, runEngine passes `--relaxation --bass_multiplier 2.0`. Not available
+     for `__optimized__:` datasets (Phase 1 is fixed there) — logged and
+     skipped.
+
+**Measured** (Pathétique 64s chunk, hybrid/J=0.375/mass=0.75/bass ×2,
+100ms tolerance vs ground-truth markers): single pass P=80.0 R=79.3 F1=79.7;
+relaxation P=81.4 R=79.3 F1=80.3 (two false positives removed, one spike
+boundary moved 10625→10875ms). Voice assignments converged after pass 2
+(identical voice counts) — consistent with the plan doc's "two passes
+converge in practice".
+
+**Verified**: A/B export runs deterministic; thermo-grid quantize works on
+Pathétique (2/2, 12 subdivisions, 24 ticks/measure); module imports for
+`optimize_params.py`/`run_phase2.py` unaffected; `tsc --noEmit` and
+`pnpm build` clean.
+
+**Left incomplete**
+
+- Thermo tactus degenerates when freezes are sparse (Revolutionary:
+  tactus=measure → subdivision 1). Needs corpus-harness tuning, not plumbing.
+- Relaxation's bass ×2 in the UI is hardcoded to the V3.1 tuned value; a
+  proper `bass_multiplier` control (or optimizer-driven value) is future work.
+- Batch runner still runs single-pass/greedy only.
+
 ## 2026-07-05 — Phase 3 + Phase 4 ported from miditrain-4
 
 **What was done**

@@ -149,9 +149,16 @@ class HarmonicRegimeDetector:
         return False
 
     def _build_particles(self, notes, time_ms):
-        """Build particle dicts from raw note tuples."""
+        """Build particle dicts from raw note tuples.
+
+        Note tuple contract: (interval, octave, velocity[, duration_ms[, is_bass]]).
+        When the optional is_bass annotation is present (layered on by the
+        P1↔P2 relaxation pass from Phase 2's Voice 4), it replaces the
+        lowest-note-per-keyframe proxy as the bass-authority target.
+        """
         particles = []
-        # Find lowest octave for bass authority (Method 3)
+        # Find lowest octave for bass authority (Method 3) — the proxy used
+        # when no explicit bass annotation is available
         lowest_octave = min(n[1] for n in notes) if notes else 4
         for n in notes:
             interval, octave, velocity = n[0], n[1], n[2]
@@ -160,8 +167,9 @@ class HarmonicRegimeDetector:
             dur_boost = max(0.5, min(n[3] / 1000.0, 2.0)) if len(n) >= 4 else 1.0
             register_boost = 1.0 + (abs(octave - 4) * 0.15)
             mass = base_mass * dur_boost * register_boost
-            # Method 3: Bass authority — amplify the lowest note(s) ONLY in bass register
-            if octave == lowest_octave and octave <= 3 and self.bass_multiplier > 1.0:
+            # Method 3: Bass authority — amplify the bass note(s) ONLY in bass register
+            is_bass_note = n[4] if len(n) >= 5 else (octave == lowest_octave)
+            if is_bass_note and octave <= 3 and self.bass_multiplier > 1.0:
                 mass *= self.bass_multiplier
             particles.append({
                 'interval': interval, 'octave': octave, 'angle': angle,

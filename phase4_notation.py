@@ -372,6 +372,9 @@ if __name__ == "__main__":
         try:
             with open(sys.argv[2], 'r') as f:
                 grid_data = json.load(f)
+                # Accept a thermo meter file (keys nested under "meter")
+                if isinstance(grid_data.get('meter'), dict):
+                    grid_data = grid_data['meter']
                 beats_per_measure = grid_data.get('beats_per_measure', 4)
                 denominator = grid_data.get('denominator', 4)
                 subdivision = grid_data.get('subdivision', 4)

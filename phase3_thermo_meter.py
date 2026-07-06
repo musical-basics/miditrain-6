@@ -504,6 +504,41 @@ def _meter_type(beats):
     return labels.get(beats, "complex")
 
 
+def _estimate_subdivision(particles, tactus_ms):
+    """
+    Estimate the sub-tactus subdivision (grid ticks per beat) so the thermo
+    meter block can feed Phase 4 directly (the quantizer needs `subdivision`).
+
+    The freeze-derived tactus gives the beat; the note-onset IOI spectrum
+    gives the fastest common pulse (sub-tactus) — same hierarchical IOI
+    clustering idea as the spike meter, applied to all note onsets.
+
+    Returns (subdivision, sub_tactus_ms).
+    """
+    onsets = sorted(set(p["onset"] for p in particles))
+    if len(onsets) < 2 or not tactus_ms:
+        return 1, None
+    iois = [onsets[i] - onsets[i - 1] for i in range(1, len(onsets))]
+    valid = [x for x in iois if 50 <= x <= 2000]
+    if not valid:
+        return 1, None
+    # Tight 10ms binning to resolve fast sub-tactus pulses
+    binned = [round(x / 10) * 10 for x in valid]
+    sub_tactus_ms = Counter(binned).most_common(1)[0][0]
+    if sub_tactus_ms <= 0 or sub_tactus_ms > tactus_ms:
+        return 1, sub_tactus_ms
+
+    ratio = tactus_ms / sub_tactus_ms
+    # Freeze-derived tactus can sit high in the metric hierarchy (half note,
+    # whole measure), so allow the full musical-norm ladder up to 12
+    # (e.g. Pathétique: 1000ms tactus / 80ms triplet-16ths → 12).
+    subdivision = min([1] + MUSICAL_NORM_DIVISORS, key=lambda r: abs(r - ratio))
+    # Reject a snap that misrepresents the true ratio by more than 35%
+    if abs(subdivision - ratio) > 0.35 * subdivision:
+        subdivision = 1
+    return subdivision, sub_tactus_ms
+
+
 def approximate_meter(events, grid, particles):
     """
     Step 4: Use the freezing events to infer time signature and barlines.
@@ -612,6 +647,10 @@ def approximate_meter(events, grid, particles):
 
     meter_label = _meter_type(beats_per_measure)
 
+    # Subdivision (ticks per beat) from note-onset IOIs — required by
+    # Phase 4's quantizer when this meter block is used as the grid source.
+    subdivision, sub_tactus_ms = _estimate_subdivision(particles, tactus_ms)
+
     # ── 4.4: Barline projection (rubber-band snap to freezes) ─────────
 
     barlines = _project_barlines(events, grid, measure_ms, t_start, t_end)
@@ -629,6 +668,8 @@ def approximate_meter(events, grid, particles):
     return {
         "measure_ms": int(measure_ms),
         "tactus_ms": int(tactus_ms),
+        "sub_tactus_ms": int(sub_tactus_ms) if sub_tactus_ms else None,
+        "subdivision": subdivision,
         "bpm_tactus": bpm_tactus,
         "beats_per_measure": beats_per_measure,
         "denominator": denominator,
