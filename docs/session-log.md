@@ -1,5 +1,58 @@
 # Session Log
 
+## 2026-07-05 (evening) — Corpus harness wired in; first measured fights
+
+**What arrived** (built externally, dropped into `corpus files/`):
+`make_ground_truth.py` (music21/MusicXML → leak-free MIDI + ground-truth
+JSON; needs `pip install music21 mido`), `score_against_truth.py` (pure
+stdlib scorer: downbeats/meter/key/voices/spelling, format-sniffing,
+diagnostics that name the failure mode), `corpus_harness.md` (the doc), and
+`corpus_demo/` — 21 pre-rendered pieces (4 smoke, 12 chorales, 5 Essen folk
+songs) with manifest. The zip duplicate is gitignored; `corpus_runs/`
+(eval outputs) is gitignored.
+
+**What was built here**: `run_corpus_eval.py` — runs the full pipeline
+(export_analysis with the V3.1 rank-1 config loaded from
+final_optimized_configs.json, then BOTH Phase 3 meter engines) over every
+metered manifest row, scores each engine's barlines against ground truth
+(±50ms), scores Phase 2 voices on polyphonic pieces, accumulates
+corpus_runs/runs.csv, prints a summed-errors table. Flags: --pieces,
+--phase2_model, --relaxation, --tag-suffix, --tol, --include-free-meter.
+Thermo predictions are scored by flattening the file's meter block (scorer
+sniffs top-level barlines).
+
+**First measured results** (19 metered pieces, errors = FP + FN):
+
+| tag | downbeat errors | mean F1 | notes |
+|---|---|---|---|
+| spike (greedy) | 1113 | 0.143 | |
+| thermo (greedy) | 729 | 0.201 | 1 failure (op004: too few freezes) |
+| spike_beam | 1038 | | beam voices help meters a little |
+| thermo_beam | 688 | | |
+| spike_relax / thermo_relax | 1113 / 729 | | relaxation is a wash on corpus |
+
+- **Thermo beats spike** on 14/18 head-to-head pieces. The freeze theory
+  wins the first fight; both are weak in absolute terms (Pathétique-only
+  tuning — that's what corpus grid search is for next).
+- **Voices: greedy 92.3% vs beam 87.1%** mean note accuracy on SATB
+  ground truth (16 polyphonic pieces). The newer beam threader LOSES to
+  greedy on chorales — first hard evidence; the beam's cost weights were
+  tuned by eye on Pathétique arpeggios.
+- **Relaxation is corpus-neutral** (identical errors): in SATB texture the
+  lowest-note proxy already IS the bass. It only pays on piano textures
+  (Pathétique +0.6 F1). Keeps its off-by-default toggle.
+- bwv66.6 diagnostics name distinct failure modes: spike finds
+  half-measures (period_ratio 0.5), thermo finds a 1.5× period. Neither is
+  the pure anacrusis-phase bug on that piece.
+
+**Known limits respected**: corpus velocities are flat 80 — no
+velocity-weight tuning on corpus tiers; free-meter Essen songs excluded by
+default; Pathétique chunks stay held out.
+
+**Next**: corpus grid search over meter params (existing optimize_params
+pattern on top of runs.csv); beam-weight retune against chorale voice GT;
+anacrusis-aware phase search in barline projection.
+
 ## 2026-07-05 (later) — Thermo grid source + P1↔P2 relaxation pass
 
 **What was done**

@@ -1,0 +1,22 @@
+id,title,meters,anacrusis_ms,n_notes,n_downbeats,monophonic,n_parts,analyzed_key
+bach_bwv66.6,,4/4,500,163,9,False,4,F# minor
+bach_bwv269,,3/4,500,302,31,False,4,G major
+bach_bwv846,,4/4,0,535,34,False,2,C major
+joplin_maple_leaf_rag,,2/4,250,2308,129,False,2,A- major
+chorale_000,Aus meines Herzens Grunde,3/4,500,302,31,False,4,G major
+chorale_001,"Ich dank’ dir, lieber Herre",4/4,500,296,20,False,4,A major
+chorale_002,"Ach Gott, vom Himmel sieh’ darein",4/4,500,271,16,False,4,A minor
+chorale_003,Es ist das Heil uns kommen her,4/4,500,266,17,False,4,E major
+chorale_004,An Wasserflüssen Babylon,4/4,500,402,24,False,4,G major
+chorale_005,"Christus, der ist mein Leben",4/4,500,125,8,False,4,F major
+chorale_006,"Nun lob’, mein’ Seel’, den Herren",3/4,500,418,50,False,4,A major
+chorale_007,"Freuet euch, ihr Christen alle",4/4,0,358,20,False,4,F minor
+chorale_008,"Ermuntre dich, mein schwacher Geist",4/4,500,312,19,False,4,G major
+chorale_009,Aus tiefer Not schrei’ ich zu dir,4/4,0,254,18,False,4,A minor
+chorale_010,"Jesu, nun sei gepreiset",4/4|3/4|4/4,500,988,49,False,9,C major
+chorale_011,Puer natus in Bethlehem,3/4,500,144,16,False,4,A minor
+essenFolksong_altdeu10_op000,Das Hildebrandslied,4/2,1000,60,21,True,1,G major
+essenFolksong_altdeu10_op001,Herzog Ernst,?,0,104,27,True,1,A minor
+essenFolksong_altdeu10_op002,Herzog Ernst,?,0,23,8,True,1,D minor
+essenFolksong_altdeu10_op003,Herzog Ernst,4/1,2000,80,22,True,1,A minor
+essenFolksong_altdeu10_op004,Der Graf von Rom oder der Graf im Pfluge,4/2|4/4|4/2|4/4|4/2|4/4|4/2|4/4|4/2|4/4|4/2|4/4|4/2|4/4|4/2|4/4|4/2|2/4,1000,59,25,True,1,G major

@@ -3,3 +3,5 @@ node_modules/
 __pycache__/
 .DS_Store
 repomix-output.xml
+corpus_runs/
+corpus files/corpus_demo.zip

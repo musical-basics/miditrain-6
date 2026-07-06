@@ -1,0 +1,3615 @@
+{
+ "id": "chorale_009",
+ "title": "Aus tiefer Not schrei\u2019 ich zu dir",
+ "convention": {
+  "tpq": 480,
+  "ms_per_quarter": 500.0
+ },
+ "anacrusis_ms": 0,
+ "downbeats_ms": [
+  0,
+  2000,
+  4000,
+  6000,
+  8000,
+  10000,
+  12000,
+  14000,
+  16000,
+  18000,
+  20000,
+  22000,
+  24000,
+  26000,
+  28000,
+  30000,
+  32000,
+  34000
+ ],
+ "meter_map": [
+  {
+   "start_ms": 0,
+   "time_signature": "4/4",
+   "measure_ms": 2000,
+   "beat_ms": 500,
+   "beats_per_measure": 4
+  }
+ ],
+ "key_map": [
+  {
+   "start_ms": 0,
+   "sharps": 0
+  }
+ ],
+ "analyzed_key": {
+  "tonic": "A",
+  "mode": "minor",
+  "confidence": 0.9085
+ },
+ "notes": [
+  {
+   "onset_ms": 0,
+   "duration_ms": 1000,
+   "pitch": 71,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 4,
+    "name": "B4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 0,
+   "duration_ms": 1000,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 0,
+   "duration_ms": 1000,
+   "pitch": 56,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 1,
+    "octave": 3,
+    "name": "G#3"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 0,
+   "duration_ms": 1000,
+   "pitch": 50,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 3,
+    "name": "D3"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 1000,
+   "duration_ms": 500,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 1000,
+   "duration_ms": 500,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 1000,
+   "duration_ms": 500,
+   "pitch": 57,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 3,
+    "name": "A3"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 1000,
+   "duration_ms": 500,
+   "pitch": 48,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 3,
+    "name": "C3"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 1500,
+   "duration_ms": 500,
+   "pitch": 71,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 4,
+    "name": "B4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 1500,
+   "duration_ms": 500,
+   "pitch": 68,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 1,
+    "octave": 4,
+    "name": "G#4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 1500,
+   "duration_ms": 500,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 1500,
+   "duration_ms": 500,
+   "pitch": 47,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 2,
+    "name": "B2"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 2000,
+   "duration_ms": 500,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 2000,
+   "duration_ms": 500,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 2000,
+   "duration_ms": 500,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 2000,
+   "duration_ms": 500,
+   "pitch": 45,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 2,
+    "name": "A2"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 2500,
+   "duration_ms": 250,
+   "pitch": 71,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 4,
+    "name": "B4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 2500,
+   "duration_ms": 250,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 2500,
+   "duration_ms": 500,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 2500,
+   "duration_ms": 500,
+   "pitch": 47,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 2,
+    "name": "B2"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 2750,
+   "duration_ms": 250,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 2750,
+   "duration_ms": 250,
+   "pitch": 66,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 1,
+    "octave": 4,
+    "name": "F#4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 3000,
+   "duration_ms": 500,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 3000,
+   "duration_ms": 500,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 3000,
+   "duration_ms": 250,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 3000,
+   "duration_ms": 250,
+   "pitch": 48,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 3,
+    "name": "C3"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 3250,
+   "duration_ms": 250,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 3250,
+   "duration_ms": 250,
+   "pitch": 47,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 2,
+    "name": "B2"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 3500,
+   "duration_ms": 500,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 3500,
+   "duration_ms": 500,
+   "pitch": 66,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 1,
+    "octave": 4,
+    "name": "F#4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 3500,
+   "duration_ms": 500,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 3500,
+   "duration_ms": 500,
+   "pitch": 45,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 2,
+    "name": "A2"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 4000,
+   "duration_ms": 1000,
+   "pitch": 71,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 4,
+    "name": "B4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 4000,
+   "duration_ms": 1000,
+   "pitch": 68,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 1,
+    "octave": 4,
+    "name": "G#4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 4000,
+   "duration_ms": 1000,
+   "pitch": 59,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 3,
+    "name": "B3"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 4000,
+   "duration_ms": 1000,
+   "pitch": 52,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 3,
+    "name": "E3"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 5000,
+   "duration_ms": 1000,
+   "pitch": 71,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 4,
+    "name": "B4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 5000,
+   "duration_ms": 1000,
+   "pitch": 68,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 1,
+    "octave": 4,
+    "name": "G#4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 5000,
+   "duration_ms": 1000,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 5000,
+   "duration_ms": 1000,
+   "pitch": 52,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 3,
+    "name": "E3"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 6000,
+   "duration_ms": 500,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 6000,
+   "duration_ms": 500,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 6000,
+   "duration_ms": 500,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 6000,
+   "duration_ms": 500,
+   "pitch": 57,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 3,
+    "name": "A3"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 6500,
+   "duration_ms": 500,
+   "pitch": 74,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 5,
+    "name": "D5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 6500,
+   "duration_ms": 500,
+   "pitch": 71,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 4,
+    "name": "B4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 6500,
+   "duration_ms": 500,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 6500,
+   "duration_ms": 250,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 6750,
+   "duration_ms": 250,
+   "pitch": 53,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 3,
+    "name": "F3"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 7000,
+   "duration_ms": 250,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 7000,
+   "duration_ms": 500,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 7000,
+   "duration_ms": 500,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 7000,
+   "duration_ms": 500,
+   "pitch": 52,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 3,
+    "name": "E3"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 7250,
+   "duration_ms": 250,
+   "pitch": 71,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 4,
+    "name": "B4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 7500,
+   "duration_ms": 500,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 7500,
+   "duration_ms": 500,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 7500,
+   "duration_ms": 500,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 7500,
+   "duration_ms": 500,
+   "pitch": 53,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 3,
+    "name": "F3"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 8000,
+   "duration_ms": 500,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 8000,
+   "duration_ms": 500,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 8000,
+   "duration_ms": 250,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 8000,
+   "duration_ms": 500,
+   "pitch": 48,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 3,
+    "name": "C3"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 8250,
+   "duration_ms": 250,
+   "pitch": 59,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 3,
+    "name": "B3"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 8500,
+   "duration_ms": 500,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 8500,
+   "duration_ms": 250,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 8500,
+   "duration_ms": 500,
+   "pitch": 57,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 3,
+    "name": "A3"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 8500,
+   "duration_ms": 500,
+   "pitch": 50,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 3,
+    "name": "D3"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 8750,
+   "duration_ms": 250,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 9000,
+   "duration_ms": 1000,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 9000,
+   "duration_ms": 1000,
+   "pitch": 59,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 3,
+    "name": "B3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 9000,
+   "duration_ms": 1000,
+   "pitch": 56,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 1,
+    "octave": 3,
+    "name": "G#3"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 9000,
+   "duration_ms": 1000,
+   "pitch": 52,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 3,
+    "name": "E3"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 10000,
+   "duration_ms": 1000,
+   "pitch": 71,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 4,
+    "name": "B4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 10000,
+   "duration_ms": 1000,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 10000,
+   "duration_ms": 1000,
+   "pitch": 56,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 1,
+    "octave": 3,
+    "name": "G#3"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 10000,
+   "duration_ms": 1000,
+   "pitch": 50,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 3,
+    "name": "D3"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 11000,
+   "duration_ms": 500,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 11000,
+   "duration_ms": 500,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 11000,
+   "duration_ms": 500,
+   "pitch": 57,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 3,
+    "name": "A3"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 11000,
+   "duration_ms": 500,
+   "pitch": 48,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 3,
+    "name": "C3"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 11500,
+   "duration_ms": 500,
+   "pitch": 71,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 4,
+    "name": "B4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 11500,
+   "duration_ms": 500,
+   "pitch": 68,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 1,
+    "octave": 4,
+    "name": "G#4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 11500,
+   "duration_ms": 500,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 11500,
+   "duration_ms": 500,
+   "pitch": 47,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 2,
+    "name": "B2"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 12000,
+   "duration_ms": 500,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 12000,
+   "duration_ms": 500,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 12000,
+   "duration_ms": 500,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 12000,
+   "duration_ms": 500,
+   "pitch": 45,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 2,
+    "name": "A2"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 12500,
+   "duration_ms": 250,
+   "pitch": 71,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 4,
+    "name": "B4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 12500,
+   "duration_ms": 250,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 12500,
+   "duration_ms": 500,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 12500,
+   "duration_ms": 500,
+   "pitch": 47,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 2,
+    "name": "B2"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 12750,
+   "duration_ms": 250,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 12750,
+   "duration_ms": 250,
+   "pitch": 66,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 1,
+    "octave": 4,
+    "name": "F#4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 13000,
+   "duration_ms": 500,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 13000,
+   "duration_ms": 500,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 13000,
+   "duration_ms": 250,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 13000,
+   "duration_ms": 250,
+   "pitch": 48,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 3,
+    "name": "C3"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 13250,
+   "duration_ms": 250,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 13250,
+   "duration_ms": 250,
+   "pitch": 47,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 2,
+    "name": "B2"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 13500,
+   "duration_ms": 500,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 13500,
+   "duration_ms": 500,
+   "pitch": 66,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 1,
+    "octave": 4,
+    "name": "F#4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 13500,
+   "duration_ms": 500,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 13500,
+   "duration_ms": 500,
+   "pitch": 45,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 2,
+    "name": "A2"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 14000,
+   "duration_ms": 1000,
+   "pitch": 71,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 4,
+    "name": "B4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 14000,
+   "duration_ms": 1000,
+   "pitch": 68,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 1,
+    "octave": 4,
+    "name": "G#4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 14000,
+   "duration_ms": 1000,
+   "pitch": 59,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 3,
+    "name": "B3"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 14000,
+   "duration_ms": 1000,
+   "pitch": 52,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 3,
+    "name": "E3"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 15000,
+   "duration_ms": 1000,
+   "pitch": 71,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 4,
+    "name": "B4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 15000,
+   "duration_ms": 1000,
+   "pitch": 68,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 1,
+    "octave": 4,
+    "name": "G#4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 15000,
+   "duration_ms": 1000,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 15000,
+   "duration_ms": 1000,
+   "pitch": 52,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 3,
+    "name": "E3"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 16000,
+   "duration_ms": 500,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 16000,
+   "duration_ms": 500,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 16000,
+   "duration_ms": 500,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 16000,
+   "duration_ms": 500,
+   "pitch": 57,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 3,
+    "name": "A3"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 16500,
+   "duration_ms": 500,
+   "pitch": 74,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 5,
+    "name": "D5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 16500,
+   "duration_ms": 500,
+   "pitch": 71,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 4,
+    "name": "B4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 16500,
+   "duration_ms": 500,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 16500,
+   "duration_ms": 250,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 16750,
+   "duration_ms": 250,
+   "pitch": 53,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 3,
+    "name": "F3"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 17000,
+   "duration_ms": 250,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 17000,
+   "duration_ms": 500,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 17000,
+   "duration_ms": 500,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 17000,
+   "duration_ms": 500,
+   "pitch": 52,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 3,
+    "name": "E3"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 17250,
+   "duration_ms": 250,
+   "pitch": 71,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 4,
+    "name": "B4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 17500,
+   "duration_ms": 500,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 17500,
+   "duration_ms": 500,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 17500,
+   "duration_ms": 500,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 17500,
+   "duration_ms": 500,
+   "pitch": 53,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 3,
+    "name": "F3"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 18000,
+   "duration_ms": 500,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 18000,
+   "duration_ms": 500,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 18000,
+   "duration_ms": 250,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 18000,
+   "duration_ms": 500,
+   "pitch": 48,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 3,
+    "name": "C3"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 18250,
+   "duration_ms": 250,
+   "pitch": 59,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 3,
+    "name": "B3"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 18500,
+   "duration_ms": 500,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 18500,
+   "duration_ms": 250,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 18500,
+   "duration_ms": 500,
+   "pitch": 57,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 3,
+    "name": "A3"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 18500,
+   "duration_ms": 500,
+   "pitch": 50,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 3,
+    "name": "D3"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 18750,
+   "duration_ms": 250,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 19000,
+   "duration_ms": 1000,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 19000,
+   "duration_ms": 1000,
+   "pitch": 59,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 3,
+    "name": "B3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 19000,
+   "duration_ms": 1000,
+   "pitch": 56,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 1,
+    "octave": 3,
+    "name": "G#3"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 19000,
+   "duration_ms": 1000,
+   "pitch": 52,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 3,
+    "name": "E3"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 20000,
+   "duration_ms": 1000,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 20000,
+   "duration_ms": 1000,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 20000,
+   "duration_ms": 1000,
+   "pitch": 57,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 3,
+    "name": "A3"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 20000,
+   "duration_ms": 1000,
+   "pitch": 48,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 3,
+    "name": "C3"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 21000,
+   "duration_ms": 500,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 21000,
+   "duration_ms": 500,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 21000,
+   "duration_ms": 500,
+   "pitch": 59,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 3,
+    "name": "B3"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 21000,
+   "duration_ms": 500,
+   "pitch": 47,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 2,
+    "name": "B2"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 21500,
+   "duration_ms": 500,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 21500,
+   "duration_ms": 250,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 21500,
+   "duration_ms": 500,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 21500,
+   "duration_ms": 500,
+   "pitch": 45,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 2,
+    "name": "A2"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 21750,
+   "duration_ms": 250,
+   "pitch": 66,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 1,
+    "octave": 4,
+    "name": "F#4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 22000,
+   "duration_ms": 500,
+   "pitch": 71,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 4,
+    "name": "B4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 22000,
+   "duration_ms": 500,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 22000,
+   "duration_ms": 500,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 22000,
+   "duration_ms": 250,
+   "pitch": 43,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 2,
+    "name": "G2"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 22250,
+   "duration_ms": 250,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 22500,
+   "duration_ms": 500,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 22500,
+   "duration_ms": 500,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 22500,
+   "duration_ms": 250,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 22500,
+   "duration_ms": 250,
+   "pitch": 53,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 3,
+    "name": "F3"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 22750,
+   "duration_ms": 250,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 22750,
+   "duration_ms": 250,
+   "pitch": 52,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 3,
+    "name": "E3"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 23000,
+   "duration_ms": 250,
+   "pitch": 74,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 5,
+    "name": "D5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 23000,
+   "duration_ms": 250,
+   "pitch": 71,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 4,
+    "name": "B4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 23000,
+   "duration_ms": 500,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 23000,
+   "duration_ms": 500,
+   "pitch": 50,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 3,
+    "name": "D3"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 23250,
+   "duration_ms": 250,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 23250,
+   "duration_ms": 250,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 23500,
+   "duration_ms": 500,
+   "pitch": 71,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 4,
+    "name": "B4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 23500,
+   "duration_ms": 500,
+   "pitch": 68,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 1,
+    "octave": 4,
+    "name": "G#4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 23500,
+   "duration_ms": 500,
+   "pitch": 59,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 3,
+    "name": "B3"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 23500,
+   "duration_ms": 500,
+   "pitch": 52,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 3,
+    "name": "E3"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 24000,
+   "duration_ms": 1000,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 24000,
+   "duration_ms": 1000,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 24000,
+   "duration_ms": 1000,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 24000,
+   "duration_ms": 1000,
+   "pitch": 45,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 2,
+    "name": "A2"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 25000,
+   "duration_ms": 1000,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 25000,
+   "duration_ms": 1000,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 25000,
+   "duration_ms": 1000,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 25000,
+   "duration_ms": 1000,
+   "pitch": 57,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 3,
+    "name": "A3"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 26000,
+   "duration_ms": 500,
+   "pitch": 71,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 4,
+    "name": "B4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 26000,
+   "duration_ms": 500,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 26000,
+   "duration_ms": 500,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 26000,
+   "duration_ms": 500,
+   "pitch": 52,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 3,
+    "name": "E3"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 26500,
+   "duration_ms": 500,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 26500,
+   "duration_ms": 500,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 26500,
+   "duration_ms": 500,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 26500,
+   "duration_ms": 250,
+   "pitch": 50,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 3,
+    "name": "D3"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 26750,
+   "duration_ms": 250,
+   "pitch": 48,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 3,
+    "name": "C3"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 27000,
+   "duration_ms": 500,
+   "pitch": 74,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 5,
+    "name": "D5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 27000,
+   "duration_ms": 250,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 27000,
+   "duration_ms": 500,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 27000,
+   "duration_ms": 500,
+   "pitch": 47,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 2,
+    "name": "B2"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 27250,
+   "duration_ms": 250,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 27500,
+   "duration_ms": 500,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 27500,
+   "duration_ms": 500,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 27500,
+   "duration_ms": 500,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 27500,
+   "duration_ms": 500,
+   "pitch": 48,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 3,
+    "name": "C3"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 28000,
+   "duration_ms": 500,
+   "pitch": 71,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 4,
+    "name": "B4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 28000,
+   "duration_ms": 500,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 28000,
+   "duration_ms": 250,
+   "pitch": 54,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 1,
+    "octave": 3,
+    "name": "F#3"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 28000,
+   "duration_ms": 500,
+   "pitch": 50,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 3,
+    "name": "D3"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 28250,
+   "duration_ms": 500,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 28500,
+   "duration_ms": 500,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 28500,
+   "duration_ms": 500,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 28500,
+   "duration_ms": 500,
+   "pitch": 38,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 2,
+    "name": "D2"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 28750,
+   "duration_ms": 250,
+   "pitch": 54,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 1,
+    "octave": 3,
+    "name": "F#3"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 29000,
+   "duration_ms": 1000,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 29000,
+   "duration_ms": 1000,
+   "pitch": 59,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 3,
+    "name": "B3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 29000,
+   "duration_ms": 1000,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 29000,
+   "duration_ms": 1000,
+   "pitch": 43,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 2,
+    "name": "G2"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 30000,
+   "duration_ms": 1000,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 30000,
+   "duration_ms": 1000,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 30000,
+   "duration_ms": 1000,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 30000,
+   "duration_ms": 1000,
+   "pitch": 48,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 3,
+    "name": "C3"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 31000,
+   "duration_ms": 500,
+   "pitch": 72,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 5,
+    "name": "C5"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 31000,
+   "duration_ms": 500,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 31000,
+   "duration_ms": 500,
+   "pitch": 57,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 3,
+    "name": "A3"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 31000,
+   "duration_ms": 500,
+   "pitch": 45,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 2,
+    "name": "A2"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 31500,
+   "duration_ms": 500,
+   "pitch": 71,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 4,
+    "name": "B4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 31500,
+   "duration_ms": 250,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 31500,
+   "duration_ms": 500,
+   "pitch": 56,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 1,
+    "octave": 3,
+    "name": "G#3"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 31500,
+   "duration_ms": 500,
+   "pitch": 52,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 3,
+    "name": "E3"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 31750,
+   "duration_ms": 250,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 32000,
+   "duration_ms": 500,
+   "pitch": 69,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 4,
+    "name": "A4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 32000,
+   "duration_ms": 500,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 32000,
+   "duration_ms": 500,
+   "pitch": 57,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 3,
+    "name": "A3"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 32000,
+   "duration_ms": 500,
+   "pitch": 53,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 3,
+    "name": "F3"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 32500,
+   "duration_ms": 500,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 32500,
+   "duration_ms": 500,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 32500,
+   "duration_ms": 500,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 32500,
+   "duration_ms": 500,
+   "pitch": 48,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 3,
+    "name": "C3"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 33000,
+   "duration_ms": 500,
+   "pitch": 67,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 4,
+    "name": "G4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 33000,
+   "duration_ms": 1500,
+   "pitch": 62,
+   "velocity": 80,
+   "spelling": {
+    "step": "D",
+    "alter": 0,
+    "octave": 4,
+    "name": "D4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 33000,
+   "duration_ms": 500,
+   "pitch": 55,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 0,
+    "octave": 3,
+    "name": "G3"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 33000,
+   "duration_ms": 500,
+   "pitch": 46,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": -1,
+    "octave": 2,
+    "name": "B-2"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 33500,
+   "duration_ms": 500,
+   "pitch": 65,
+   "velocity": 80,
+   "spelling": {
+    "step": "F",
+    "alter": 0,
+    "octave": 4,
+    "name": "F4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 33500,
+   "duration_ms": 500,
+   "pitch": 57,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 3,
+    "name": "A3"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 33500,
+   "duration_ms": 500,
+   "pitch": 45,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 2,
+    "name": "A2"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 34000,
+   "duration_ms": 2000,
+   "pitch": 64,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 4,
+    "name": "E4"
+   },
+   "gt_voice": 0,
+   "gt_voice_name": "Soprano"
+  },
+  {
+   "onset_ms": 34000,
+   "duration_ms": 500,
+   "pitch": 59,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 3,
+    "name": "B3"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 34000,
+   "duration_ms": 500,
+   "pitch": 44,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 1,
+    "octave": 2,
+    "name": "G#2"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 34500,
+   "duration_ms": 500,
+   "pitch": 60,
+   "velocity": 80,
+   "spelling": {
+    "step": "C",
+    "alter": 0,
+    "octave": 4,
+    "name": "C4"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 34500,
+   "duration_ms": 500,
+   "pitch": 57,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 3,
+    "name": "A3"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 34500,
+   "duration_ms": 500,
+   "pitch": 45,
+   "velocity": 80,
+   "spelling": {
+    "step": "A",
+    "alter": 0,
+    "octave": 2,
+    "name": "A2"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  },
+  {
+   "onset_ms": 35000,
+   "duration_ms": 1000,
+   "pitch": 59,
+   "velocity": 80,
+   "spelling": {
+    "step": "B",
+    "alter": 0,
+    "octave": 3,
+    "name": "B3"
+   },
+   "gt_voice": 1,
+   "gt_voice_name": "Alto"
+  },
+  {
+   "onset_ms": 35000,
+   "duration_ms": 1000,
+   "pitch": 56,
+   "velocity": 80,
+   "spelling": {
+    "step": "G",
+    "alter": 1,
+    "octave": 3,
+    "name": "G#3"
+   },
+   "gt_voice": 2,
+   "gt_voice_name": "Tenor"
+  },
+  {
+   "onset_ms": 35000,
+   "duration_ms": 1000,
+   "pitch": 40,
+   "velocity": 80,
+   "spelling": {
+    "step": "E",
+    "alter": 0,
+    "octave": 2,
+    "name": "E2"
+   },
+   "gt_voice": 3,
+   "gt_voice_name": "Bass"
+  }
+ ],
+ "stats": {
+  "n_notes": 254,
+  "n_downbeats": 18,
+  "graces_dropped": 0,
+  "max_quantize_err_ticks": 0.0,
+  "monophonic": false,
+  "n_parts": 4
+ }
+}
