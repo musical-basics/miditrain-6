@@ -33,10 +33,17 @@ re-scores Phase 3) and produces one scorecard:
 
 | metric | severity | phase |
 |---|---|---|
+| downbeat_errors_bus (corpus, ±50ms) | 1 — global | Phase 4 (evidence bus) |
 | downbeat_errors_thermo / _spike (corpus, ±50ms) | 1 — global | Phase 3 |
 | heldout_phase1_errors (markers, ±100ms) | 1 — global | Phase 1 |
 | voices_mean_acc (SATB, permutation-matched) | 2 — local | Phase 2 |
-| key / spelling (reserved — activates when pipeline emits fields) | 3 — cosmetic | Phase 4 |
+| key / spelling (reserved — activates when pipeline emits fields) | 3 — cosmetic | Phase 5 |
+
+Caveat when comparing engines to each other (not to their own baseline):
+`downbeat_errors_*` sums only pieces where the engine produced barlines.
+Thermo skips pieces with too few freezes (they count as `failed`, not as
+errors), while spike and bus always predict. Head-to-head engine claims
+should use per-piece comparisons on the shared subset (see runs.csv).
 
 Verdicts (also the exit code, CI-friendly):
 
@@ -54,7 +61,9 @@ hide a per-piece collapse.
 ## The adoption loop
 
 1. Tune ONE phase against ITS OWN ground truth (Phase 1 → optimize_params
-   vs markers; Phase 2 → chorale SATB; Phase 3 → corpus downbeats).
+   vs markers; Phase 2 → chorale SATB; Phase 3/4 → corpus downbeats;
+   Phase 4 bus weights via `--config` sweeps, see
+   docs/phase4_signal_scaffold.md).
 2. Run `run_benchmark.py` with the candidate settings.
 3. PASS → adopt (update code/`final_optimized_configs.json`), re-run with
    `--save-baseline`, commit the new baseline in the same commit as the
@@ -79,8 +88,18 @@ Adopted as defaults in phase3_thermo_meter.py.
   voices=92.26%.
 - 2026-07-06 (val split, pre-adoption): thermo=1188, spike=1694,
   heldout=27, voices=90.57%.
-- 2026-07-06 (val split, thermo V4=4/V1=3 adopted — CURRENT):
+- 2026-07-06 (val split, thermo V4=4/V1=3 adopted):
   thermo=1147, spike=1694, heldout=27 (F1 88.0), voices=90.57%.
+- 2026-07-07 (Phase 4 bus added at untuned default weights — CURRENT):
+  bus=1385 (all 43 pieces), thermo=1147 (37 pieces), spike=1694,
+  heldout=27 (F1 88.0), voices=90.57%. Shared-subset head-to-head:
+  bus 1272 vs thermo 1147, 17-17-3.
+
+## Rejected candidates (the gate working in reverse)
+
+- 2026-07-07: partial discharge (energy_hierarchy port) in thermo's
+  energy accumulator → REGRESSION (polonaises +32/+31, chorales
+  +14/+10 downbeat errors). Reverted; standalone annotator retained.
 
 ## Known gaps
 

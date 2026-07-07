@@ -36,6 +36,9 @@ import sys
 from export_etme_data import export_analysis
 from phase3_spike_meter import MacroMeterEstimator
 from phase3_thermo_meter import ThermodynamicMeterEstimator
+from phase4_make_votes import spike_votes
+
+ENGINES = ("spike", "thermo", "bus")
 
 CORPUS_DIR = os.path.join("corpus files", "corpus_demo")
 SCORER = os.path.join("corpus files", "score_against_truth.py")
@@ -128,7 +131,7 @@ def evaluate(corpus=CORPUS_DIR, out=OUT_DIR, tol=50.0, pieces=None,
         truth = os.path.join(corpus, "groundtruth", f"{pid}.gt.json")
         etme_path = os.path.join(
             out, f"etme_{pid}_{config['angle_map']}_{config['break_method']}_{config['jaccard_threshold']}.json")
-        per_piece[pid] = {"spike": None, "thermo": None, "voices": None}
+        per_piece[pid] = {"spike": None, "thermo": None, "bus": None, "voices": None}
 
         print(f"\n########## {pid} ##########")
         try:
@@ -144,7 +147,7 @@ def evaluate(corpus=CORPUS_DIR, out=OUT_DIR, tol=50.0, pieces=None,
                                 relaxation=relaxation, **config)
         except Exception as e:
             print(f"  PIPELINE FAILED (export): {e}")
-            for tag in ("spike", "thermo"):
+            for tag in ENGINES:
                 t = totals.setdefault(tag + tag_suffix, {"errors": 0, "pieces": 0, "failed": 0})
                 t["failed"] += 1
             continue
@@ -160,6 +163,7 @@ def evaluate(corpus=CORPUS_DIR, out=OUT_DIR, tol=50.0, pieces=None,
         except Exception as e:
             print(f"  SPIKE METER FAILED: {e}")
         silencer = contextlib.redirect_stdout(io.StringIO()) if quiet else contextlib.nullcontext()
+        thermo = None
         try:
             with silencer:
                 thermo = ThermodynamicMeterEstimator(etme_path).estimate(write_json=False)
@@ -174,7 +178,32 @@ def evaluate(corpus=CORPUS_DIR, out=OUT_DIR, tol=50.0, pieces=None,
         except Exception as e:
             print(f"  THERMO METER FAILED: {e}")
 
-        for engine in ("spike", "thermo"):
+        # Phase 4: meter evidence bus, fed Phase 1 spikes + Phase 3 freezes
+        try:
+            h_path = os.path.join(out, f"phase4_votes_harmonic_{pid}.json")
+            with open(h_path, "w") as f:
+                json.dump(spike_votes(etme_path), f)
+            vote_args = ["--votes", f"harmonic={h_path}"]
+            if thermo and thermo.get("freezing_events"):
+                f_path = os.path.join(out, f"phase4_votes_freezes_{pid}.json")
+                with open(f_path, "w") as f:
+                    json.dump([{"time_ms": e["time_ms"],
+                                "weight": e.get("magnitude", 1.0)}
+                               for e in thermo["freezing_events"]], f)
+                vote_args += ["--votes", f"freezes={f_path}"]
+            bus_path = os.path.join(out, f"phase4_bus_{pid}.json")
+            proc = subprocess.run(
+                [sys.executable, "phase4_meter_bus.py", "--notes", etme_path,
+                 *vote_args, "--out", bus_path],
+                capture_output=True, text=True)
+            if proc.returncode == 0:
+                preds["bus"] = bus_path
+            else:
+                print(f"  METER BUS FAILED: {proc.stderr.strip()[:200]}")
+        except Exception as e:
+            print(f"  METER BUS FAILED: {e}")
+
+        for engine in ENGINES:
             tag = engine + tag_suffix
             t = totals.setdefault(tag, {"errors": 0, "pieces": 0, "failed": 0})
             if engine not in preds:

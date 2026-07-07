@@ -120,6 +120,7 @@ def build_scorecard(phase2_model, relaxation, tol, label=""):
 
     metrics = {
         # severity 1 — global
+        "downbeat_errors_bus": totals.get("bus", {}).get("errors"),
         "downbeat_errors_thermo": totals.get("thermo", {}).get("errors"),
         "downbeat_errors_spike": totals.get("spike", {}).get("errors"),
         "heldout_phase1_errors": heldout["errors"],
@@ -127,6 +128,7 @@ def build_scorecard(phase2_model, relaxation, tol, label=""):
         "voices_mean_acc": round(sum(accs) / len(accs), 4) if accs else None,
         # informational
         "heldout_phase1_f1": heldout["f1"],
+        "bus_pieces_scored": totals.get("bus", {}).get("pieces"),
         "thermo_pieces_scored": totals.get("thermo", {}).get("pieces"),
         "spike_pieces_scored": totals.get("spike", {}).get("pieces"),
         "voices_pieces_scored": len(accs),
@@ -144,6 +146,7 @@ def build_scorecard(phase2_model, relaxation, tol, label=""):
 
 # metric → (severity, direction) ; direction "min" = lower is better
 GATED_METRICS = {
+    "downbeat_errors_bus": (1, "min"),
     "downbeat_errors_thermo": (1, "min"),
     "downbeat_errors_spike": (1, "min"),
     "heldout_phase1_errors": (1, "min"),
@@ -179,7 +182,7 @@ def compare(baseline, current):
         print(f"{name:<28}{b:>12}{c:>12}{d_str:>12}  {mark}")
 
     # informational rows
-    for name in ("heldout_phase1_f1", "thermo_pieces_scored",
+    for name in ("heldout_phase1_f1", "bus_pieces_scored", "thermo_pieces_scored",
                  "spike_pieces_scored", "voices_pieces_scored"):
         b, c = b_m.get(name), c_m.get(name)
         print(f"{name:<28}{str(b):>12}{str(c):>12}{'':>12}  (info)")
@@ -188,7 +191,7 @@ def compare(baseline, current):
     movers = []
     for pid, cur in current.get("per_piece", {}).items():
         base = baseline.get("per_piece", {}).get(pid, {})
-        for engine in ("thermo", "spike"):
+        for engine in ("bus", "thermo", "spike"):
             cb = (base.get(engine) or {}).get("errors")
             cc = (cur.get(engine) or {}).get("errors")
             if cb is not None and cc is not None and cc != cb:

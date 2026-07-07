@@ -4,7 +4,7 @@ import { VexFlowRenderer } from './dreamflow/VexFlowRenderer';
 /**
  * Modernized NotationView using the DreamFlow MIDI Rendering Engine.
  * This component acts as a lightweight wrapper around the VexFlowRenderer,
- * providing the IntermediateScore data fetched from Phase 4B (notation map).
+ * providing the IntermediateScore data fetched from Phase 5B (notation map).
  */
 export default function NotationView({
   notationData,

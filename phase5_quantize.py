@@ -1,19 +1,19 @@
 """
-Phase 4A: Micro-Quantize
+Phase 5A: Micro-Quantize
 ================================================================================
 Snaps ETME notes (with Phase 2 voice_tags) onto the Phase 3 barline grid.
 
 (Ported from miditrain-4's phase3b_quantize.py; renumbered per
-`plan for improvements.md` — quantize-and-notate is Phase 4.)
+`plan for improvements.md` — quantize-and-notate is now Phase 5 (the Phase 4 meter evidence bus sits before it).)
 
-Reads:  etme_*.json (notes with voice_tag) + phase3_grid_*.json (barlines,
+Reads:  etme_*.json (notes with voice_tag) + phase3_grid_*.json or phase3_thermo_*.json or phase4_bus_*.json (barlines,
         beats_per_measure, subdivision, measure_ms, denominator)
-Writes: visualizer/public/phase4_quantized_{...}.json — the full ETME data with
+Writes: visualizer/public/phase5_quantized_{...}.json — the full ETME data with
         n["quantized"] = {abs_tick_start, abs_tick_end, duration_ticks,
         measure, beat, sub_tick} added per note.
 
 Usage:
-    python phase4_quantize.py <etme_json> <phase3_grid_json>
+    python phase5_quantize.py <etme_json> <phase3_grid_json>
 """
 import json
 import sys
@@ -253,7 +253,7 @@ def main(etme_path, grid_path):
                 curr_n['quantized']['duration_ticks'] = next_start - curr_n['quantized']['abs_tick_start']
 
     # Step 5: Save JSON
-    out_name = "visualizer/public/phase4_quantized_" + etme_path.split('/')[-1].replace('etme_', '')
+    out_name = "visualizer/public/phase5_quantized_" + etme_path.split('/')[-1].replace('etme_', '')
     
     with open(out_name, 'w') as f:
         json.dump(etme_data, f, indent=2)
@@ -303,6 +303,6 @@ def main(etme_path, grid_path):
 
 if __name__ == "__main__":
     if len(sys.argv) < 3:
-        print("Usage: python phase4_quantize.py <etme_json> <phase3_grid_json>")
+        print("Usage: python phase5_quantize.py <etme_json> <phase3_grid_json>")
         sys.exit(1)
     main(sys.argv[1], sys.argv[2])

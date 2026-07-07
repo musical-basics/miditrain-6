@@ -1,5 +1,47 @@
 # Session Log
 
+## 2026-07-07 — Phase 4 = meter evidence bus; quantize/notation renumbered to Phase 5
+
+**New phase map**: P1 harmonic regimes → P2 voice threading → P3 meter
+(thermo + legacy spike) → **P4 meter evidence bus** → P5 quantize+notation.
+
+- Installed the signal scaffold from `more miditrain files/` (canonical
+  copies now at repo root; theory doc → docs/phase4_signal_scaffold.md):
+  signals_common, accent_rhythm, parallelism, surprisal,
+  melodic_attraction, energy_hierarchy, and the combiner as
+  `phase4_meter_bus.py`. The bus does one joint (period, phase) argmax
+  over literature channels (Povel-Essens, agogic, LBDM, IDyOM surprisal,
+  Lerdahl attraction, gap-fill, bass cadence, GTTM parallelism) plus our
+  engines as external vote channels (`phase4_make_votes.py` converts
+  Phase 1 spikes + Phase 3 freezes).
+- Bus meter block extended for the Phase 5 grid contract
+  (beats_per_measure/denominator/subdivision + barline measure numbers);
+  phase5_quantize/notation renamed from phase4_* and accept all three
+  grid sources. Visualizer: Phase 4 view (bus barlines + channel-vote
+  legend), "Grid: Meter Bus" option, 7-step runEngine, all Phase 5
+  renames. tsc + build clean.
+- Eval/benchmark now score the bus as a third engine
+  (downbeat_errors_bus, severity 1).
+
+**Measured results** (val split, ±50ms):
+
+- bwv66.6 with harmonic votes: **F1 100%, strict 4/4** — the anacrusis
+  piece both our engines scored 0% on. Phase handled by construction.
+- Full val: bus=1385 vs thermo=1147 — but NOT comparable directly:
+  thermo skips its 6 impossible pieces, bus scores all 43. On the 37
+  shared pieces: bus 1272 vs thermo 1147, head-to-head 17-17-3. Bus
+  covers thermo's failures at ~19 err/piece. Bus worst: mozart_k155
+  (223), beethoven 9/8 (218), essen op003 (archaic 4/1 outside default
+  240-1600ms period range — known limit). Bus weights are deliberately
+  rough; weight tuning via --config sweeps is the next grid search.
+- **Partial-discharge experiment REJECTED by the gate**: ported
+  energy_hierarchy's partial discharge into thermo's Step 3.3 energy
+  reset → thermo regressed (polonaises +32/+31, chorales +14/+10).
+  Reverted. energy_hierarchy.py stays as a standalone annotator (its
+  primary/secondary freeze labels can still feed the bus as votes).
+  First candidate formally rejected by the benchmark gate — the process
+  works in both directions.
+
 ## 2026-07-06 — Corpus expanded to 89 pieces; first gated grid search adopted
 
 - Built `corpus files/corpus_full` with the factory (music21+mido in

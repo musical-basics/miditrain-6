@@ -1,18 +1,18 @@
 """
-Phase 4B: Notation Map
+Phase 5B: Notation Map
 ================================================================================
 Key detection (Krumhansl / Temperley), enharmonic spelling, and conversion of
-Phase 4A quantized notes into the DreamFlow IntermediateScore JSON consumed by
+Phase 5A quantized notes into the DreamFlow IntermediateScore JSON consumed by
 the visualizer's VexFlow notation renderer.
 
 (Ported from miditrain-4's phase3c_notation.py; renumbered per
-`plan for improvements.md` — quantize-and-notate is Phase 4. The old
+`plan for improvements.md` — quantize-and-notate is now Phase 5 (the Phase 4 meter evidence bus sits before it). The old
 "osmd_ready" output prefix was renamed: the renderer is VexFlow, not OSMD.)
 
 Usage:
-    python phase4_notation.py <phase4_quantized_json> [<phase3_grid_json>] [--algo temperley|krumhansl]
+    python phase5_notation.py <phase5_quantized_json> [<phase3_grid_json>] [--algo temperley|krumhansl]
 
-Output: visualizer/public/phase4_notation_{...}.json
+Output: visualizer/public/phase5_notation_{...}.json
 """
 import json
 import sys
@@ -357,7 +357,7 @@ def build_dreamflow_score(notes, ticks_per_measure, beats_per_measure, time_sig_
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("Usage: python phase4_notation.py <phase4_quantized_json> [<phase3_grid_json>]")
+        print("Usage: python phase5_notation.py <phase5_quantized_json> [<phase3_grid_json>]")
         sys.exit(1)
         
     p3b_path = sys.argv[1]
@@ -399,10 +399,10 @@ if __name__ == "__main__":
     score = build_dreamflow_score(valid_notes, ticks_per_measure, beats_per_measure, beats_per_measure, denominator, algorithm)
     
     basename = os.path.basename(p3b_path)
-    out_name = basename.replace('phase4_quantized_', 'phase4_notation_')
+    out_name = basename.replace('phase5_quantized_', 'phase5_notation_')
     out_path = os.path.join(os.path.dirname(p3b_path), out_name)
 
     with open(out_path, 'w') as f:
         json.dump(score, f, indent=2)
 
-    print(f"Phase 4B DreamFlow mapping complete! Detected Key: {score['measures'][0].get('keySignature', 'C')} (Algorithm: {algorithm}). Wrote to {out_path}")
+    print(f"Phase 5B DreamFlow mapping complete! Detected Key: {score['measures'][0].get('keySignature', 'C')} (Algorithm: {algorithm}). Wrote to {out_path}")
