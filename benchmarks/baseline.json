@@ -1,5 +1,5 @@
 {
- "label": "bus prior sigmas 0.9/1.4 adopted (structural grid search)",
+ "label": "bus priors 0.9/1.4; scorecard gains per-tier breakdown",
  "pipeline": {
   "phase2_model": "greedy",
   "relaxation": false,
@@ -30,6 +30,23 @@
   "thermo_pieces_scored": 37,
   "spike_pieces_scored": 43,
   "voices_pieces_scored": 24
+ },
+ "per_tier": {
+  "mixed": {
+   "bus": 592,
+   "thermo": 583,
+   "spike": 511
+  },
+  "chorale": {
+   "bus": 374,
+   "thermo": 364,
+   "spike": 587
+  },
+  "essen": {
+   "bus": 405,
+   "thermo": 200,
+   "spike": 596
+  }
  },
  "heldout_detail": {
   "tp": 99,

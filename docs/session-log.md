@@ -12,11 +12,11 @@
   scores), not a bigger multiplier.
 - **Structural sweep (8 configs): WIN.** tactus_prior_sigma_oct
   0.55→0.9 + measure_prior_sigma_oct 1.0→1.4: train 1359→1270 (−89),
-  val 1385→1368, gate PASS, adopted. The narrow van-Noorden prior — not
+  val 1385→1371 via the production path (the sweep's inline predictor said 1368; CLI barline int-rounding flips 3 boundary matches), gate PASS, adopted. The narrow van-Noorden prior — not
   the 1600ms search ceiling — was crushing slow-tactus pieces
   (MAX_PERIOD widening alone changed nothing). Movers: two Essen songs
   23→0 each, mozart_k155 −18; cost: op023 +37, chorale_009 0→9.
-- New baseline: bus=1368, thermo=1147, spike=1694, heldout=27 (88.0),
+- New baseline: bus=1371, thermo=1147, spike=1694, heldout=27 (88.0),
   voices=90.57%.
 
 ## 2026-07-07 — Phase 4 = meter evidence bus; quantize/notation renumbered to Phase 5

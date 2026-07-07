@@ -58,6 +58,25 @@ The pipeline is deterministic, so any nonzero delta is real — there is no
 noise band. Per-piece movers are printed so a summed improvement can't
 hide a per-piece collapse.
 
+## Ad-hoc ground truth: your MIDI + your MusicXML
+
+`eval_pair.py` turns any (MIDI, MusicXML) pair into a scored run — the
+XML is the ground truth, rendered through the corpus factory under the
+120 BPM convention; the MIDI goes through the full pipeline and every
+decision (downbeats per engine, meter, voices) is scored, with an
+alignment sanity check up front (onset+pitch overlap %) so a misaligned
+MIDI reads as "misaligned", not as pipeline failure:
+
+```bash
+python3 eval_pair.py --midi my_piece.mid --xml my_piece.musicxml
+python3 eval_pair.py --xml score.xml --use-rendered-midi   # leak-free render
+```
+
+Artifacts land in corpus_runs/pairs/<name>/; per-engine rows accumulate
+in corpus_runs/pairs/runs.csv. Pieces you want in the permanent corpus
+should instead be built via make_ground_truth.py --files into
+corpus_full and re-split.
+
 ## The adoption loop
 
 1. Tune ONE phase against ITS OWN ground truth (Phase 1 → optimize_params
@@ -93,7 +112,9 @@ scale; bass down-weighting slightly hurt val. Weights left at defaults.
 `tactus_prior_sigma_oct 0.55→0.9, measure_prior_sigma_oct 1.0→1.4`
 (MAX_PERIOD widening alone: zero effect — the narrow prior, not the
 range, was crushing slow-tactus candidates). Train 1359→1270, val
-1385→1368, gate PASS (all other metrics exactly unchanged). Adopted
+1385→1371, gate PASS (all other metrics exactly unchanged; the sweep's
+inline predictor said 1368 — CLI barline int-rounding flips 3 boundary
+matches). Adopted
 into phase4_meter_bus.py DEFAULT_WEIGHTS.
 
 ## Baseline history
@@ -108,7 +129,7 @@ into phase4_meter_bus.py DEFAULT_WEIGHTS.
   bus=1385 (all 43 pieces), thermo=1147 (37 pieces), spike=1694,
   heldout=27 (F1 88.0), voices=90.57%. Shared-subset head-to-head:
   bus 1272 vs thermo 1147, 17-17-3.
-- 2026-07-07 (bus prior sigmas 0.9/1.4 adopted — CURRENT): bus=1368,
+- 2026-07-07 (bus prior sigmas 0.9/1.4 adopted — CURRENT): bus=1371,
   thermo=1147, spike=1694, heldout=27 (F1 88.0), voices=90.57%.
 
 ## Rejected candidates (the gate working in reverse)

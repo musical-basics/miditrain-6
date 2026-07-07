@@ -6,7 +6,7 @@ code. Contracts, algorithms, tuned parameters, measured accuracy, and file
 map. Deeper theory lives in the pointed-to docs; this is the canonical map.
 
 Last updated: 2026-07-07 (after Phase 4 bus adoption, baseline
-bus=1368 / thermo=1147 / spike=1694 / heldout=27 / voices=90.57%).
+bus=1371 / thermo=1147 / spike=1694 / heldout=27 / voices=90.57%).
 
 ---
 
@@ -288,9 +288,9 @@ into vote files; keys become `extra:harmonic`, `extra:freezes`.
   vote DENSITY (per-beat harmonic scores, hierarchical freeze levels),
   not weight scale.
 - Structural sweep won: prior sigmas 0.55/1.0 → 0.9/1.4 (train
-  1359→1270, val 1385→1368, gate PASS, adopted).
+  1359→1270, val 1385→1371, gate PASS, adopted).
 
-**Measured (validation)**: bus 1368 on all 43 pieces; head-to-head with
+**Measured (validation)**: bus 1371 on all 43 pieces; head-to-head with
 thermo on the 37 shared pieces roughly even, but the bus covers the 6
 pieces thermo can't process. Worst failures: long dense movements
 (mozart_k155 205, beethoven 9/8 218) and archaic meters — where denser
@@ -374,6 +374,12 @@ That wiring is the cheapest way to give Phase 5 numbers.
   `grid_search_thermo.py`, `grid_search_bus.py`. Pattern: freeze
   upstream, sweep one phase, rank on train, confirm on val, gate, adopt
   + re-baseline in the same commit.
+- **Ad-hoc pairs** (`eval_pair.py`): user MIDI + user MusicXML → the XML
+  becomes ground truth via the factory, the MIDI runs the full pipeline,
+  all engines + voices scored, with an onset-overlap alignment check.
+- **Reporting is tier-stratified**: the benchmark prints per-tier
+  downbeat errors (chorale / essen / mixed-piano) because 76/89 corpus
+  pieces are chorales+folk and aggregates would mask piano regressions.
 
 **Result history worth remembering**: thermo > spike (14/18 pieces);
 greedy voices > beam (92.3 vs 87.1) yet beam slightly helps both meters;
@@ -407,17 +413,51 @@ token (`_dissonance`/`_fifths`).
 
 ---
 
-## Open problems (ranked by expected payoff)
+## Open problems (ranked by expected payoff — 2026-07-07 review)
 
-1. **Densify the bus's harmonic channel** — per-beat harmonic-change
-   scores from Phase 1 and/or energy_hierarchy-leveled freezes. The
-   oracle test proves the ceiling; sparse votes are the bottleneck.
-2. **Thermo tactus degeneracy** — sparse-freeze pieces produce no meter
-   (6/43 val pieces are total losses).
-3. **Wire Phase 5 key/spelling into the scorer** — ground truth already
-   captured, activation is cheap.
-4. **Retune beam voice weights against chorale SATB** — first hard
-   numbers exist (87.1 vs greedy's 92.3).
-5. Measure numbering across chunks; `dreamflow` local-path dependency;
-   rubato mode for performance MIDI (Large-Jones style DP over the bus
-   grid).
+1. **Soft evidence + channel normalization** (one move, two edits):
+   phases currently threshold their continuous internals into ~30 binary
+   events before anyone downstream sees them — the measured reason the
+   bus weight sweep was inert. (a) Export Phase 1's pre-threshold
+   salience (centroid diff + Jaccard novelty per keyframe) and thermo's
+   grid_sample (η, T, E per 25ms bin) as DENSE vote channels — the
+   quantities already exist internally, this is plumbing. (b) Normalize
+   each bus channel's total mass to 1 before weighting, so influence
+   stops scaling with vote count and the weight grid search regains
+   leverage. Attacks the oracle gap and the k155/9-8 failures directly.
+2. **Piecewise grids via DP with a switch penalty**: one (period, phase)
+   per piece makes time-signature changes unwinnable by construction
+   (chorale_010 is 4/4|3/4|4/4 in our own corpus) and long movements
+   accumulate risk. Windowed DP with an inertia/switch cost is ONE
+   mechanism that solves meter changes, the long-dense failures, AND
+   becomes the rubato tracker for live MIDI when the penalty is loosened
+   into phase correction (Large-Jones). Thermo degeneracy (open problem
+   formerly #2) folds into this.
+3. **External data**: the ASAP dataset (aligned scores + performance
+   MIDI with downbeat labels) is the bridge to real velocities and
+   rubato — the velocity channel is dormant on flat-80 corpus data. The
+   DCML annotated corpora (Mozart sonatas, Beethoven quartets,
+   When-in-Rome) carry beat-level harmony labels: corpus-scale Phase 1
+   supervision instead of 116 hand markers, and real ground truth for
+   the dense harmonic channel from (1).
+4. **Phase 5 scoring**: wire key/spelling into the scorer (GT already
+   captured) + add duration accuracy vs GT (min-1-tick snapping and
+   monophony truncation are silent distortions only a metric catches).
+   Then: regime-aware spelling (spell against the local tonicization,
+   not the global key) and per-measure subdivision (a global value
+   fails on duplet/triplet mixtures).
+5. **Phase 2 weight search** — neither threader's cost weights have ever
+   seen an optimizer; chorale SATB gives the objective (greedy 92.3 vs
+   beam 87.1). Decompose costs, stratify per-voice metrics, encode the
+   greedy post-patches as beam cost terms, then sweep.
+6. **Engine consolidation** (after (1) passes the gate): retire spike
+   (measured-worst), demote thermo to a freeze/salience channel
+   generator, make the bus the sole meter decider. Three engines is A/B
+   discipline, not a destination.
+7. Rolling/corpus-calibrated thermo percentile thresholds (per-piece
+   percentiles are unknowable mid-performance); measure numbering across
+   chunks; `dreamflow` local-path dependency.
+
+**Ad-hoc ground truth**: `eval_pair.py --midi X --xml Y` — the MusicXML
+is the truth (120 BPM convention), the MIDI runs the full pipeline, every
+decision is scored, alignment is sanity-checked first.

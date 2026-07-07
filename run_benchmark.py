@@ -31,6 +31,7 @@ import os
 import sys
 
 from export_etme_data import export_analysis
+from make_corpus_split import tier_of
 from run_corpus_eval import evaluate, load_v31_config, OUT_DIR
 
 BASELINE_PATH = os.path.join("benchmarks", "baseline.json")
@@ -133,12 +134,22 @@ def build_scorecard(phase2_model, relaxation, tol, label=""):
         "spike_pieces_scored": totals.get("spike", {}).get("pieces"),
         "voices_pieces_scored": len(accs),
     }
+    # Per-tier breakdown: 76/89 corpus pieces are chorales+folk, so the
+    # aggregate can mask a piano regression. Informational, not gated.
+    per_tier = {}
+    for pid, res in corpus["per_piece"].items():
+        t = per_tier.setdefault(tier_of(pid), {})
+        for engine in ("bus", "thermo", "spike"):
+            if res.get(engine):
+                t[engine] = t.get(engine, 0) + res[engine]["errors"]
+
     return {
         "label": label,
         "pipeline": {"phase2_model": phase2_model, "relaxation": relaxation,
                      "corpus_tol_ms": tol, "corpus_split": split_name},
         "config": config,
         "metrics": metrics,
+        "per_tier": per_tier,
         "heldout_detail": heldout,
         "per_piece": corpus["per_piece"],
     }
@@ -186,6 +197,19 @@ def compare(baseline, current):
                  "spike_pieces_scored", "voices_pieces_scored"):
         b, c = b_m.get(name), c_m.get(name)
         print(f"{name:<28}{str(b):>12}{str(c):>12}{'':>12}  (info)")
+
+    # per-tier breakdown (informational — catches domain-masked shifts)
+    b_t, c_t = baseline.get("per_tier", {}), current.get("per_tier", {})
+    if c_t:
+        print("\nPer-tier downbeat errors (baseline → current):")
+        for tier in sorted(c_t):
+            row = "  " + f"{tier:<10}"
+            for engine in ("bus", "thermo", "spike"):
+                b = b_t.get(tier, {}).get(engine)
+                c = c_t.get(tier, {}).get(engine)
+                if c is not None:
+                    row += f"{engine}: {b if b is not None else '--'}→{c}   "
+            print(row)
 
     # per-piece movers (severity-1 drill-down)
     movers = []
