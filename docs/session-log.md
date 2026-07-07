@@ -1,5 +1,24 @@
 # Session Log
 
+## 2026-07-07 (later) — Bus grid searches: weights inert, prior widths win
+
+- **Channel-weight sweep (18 configs): INERT.** External-channel weights
+  (1.8→4.5) and bass_cadence scaling flip ZERO train pieces — ~30 sparse
+  harmonic votes can't move an argmax built from thousands of onset
+  votes, at any scale. The corpus's answer to "tune the harmonic channel
+  weight" is: the weight isn't the lever, vote density is. To make the
+  harmonic channel decisive it needs richer votes (e.g. hierarchical
+  freeze levels from energy_hierarchy, or per-beat harmonic-change
+  scores), not a bigger multiplier.
+- **Structural sweep (8 configs): WIN.** tactus_prior_sigma_oct
+  0.55→0.9 + measure_prior_sigma_oct 1.0→1.4: train 1359→1270 (−89),
+  val 1385→1368, gate PASS, adopted. The narrow van-Noorden prior — not
+  the 1600ms search ceiling — was crushing slow-tactus pieces
+  (MAX_PERIOD widening alone changed nothing). Movers: two Essen songs
+  23→0 each, mozart_k155 −18; cost: op023 +37, chorale_009 0→9.
+- New baseline: bus=1368, thermo=1147, spike=1694, heldout=27 (88.0),
+  voices=90.57%.
+
 ## 2026-07-07 — Phase 4 = meter evidence bus; quantize/notation renumbered to Phase 5
 
 **New phase map**: P1 harmonic regimes → P2 voice threading → P3 meter

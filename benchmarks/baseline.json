@@ -1,5 +1,5 @@
 {
- "label": "phases renumbered; Phase 4 = meter evidence bus (untuned defaults)",
+ "label": "bus prior sigmas 0.9/1.4 adopted (structural grid search)",
  "pipeline": {
   "phase2_model": "greedy",
   "relaxation": false,
@@ -20,7 +20,7 @@
   "bass_multiplier": 2.0
  },
  "metrics": {
-  "downbeat_errors_bus": 1385,
+  "downbeat_errors_bus": 1371,
   "downbeat_errors_thermo": 1147,
   "downbeat_errors_spike": 1694,
   "heldout_phase1_errors": 27,
@@ -126,8 +126,8 @@
     "f1": 0.2963
    },
    "bus": {
-    "errors": 0,
-    "f1": 1.0
+    "errors": 9,
+    "f1": 0.6667
    },
    "voices": 0.9843
   },
@@ -213,8 +213,8 @@
     "f1": 0.2667
    },
    "bus": {
-    "errors": 33,
-    "f1": 0.0571
+    "errors": 30,
+    "f1": 0.0
    },
    "voices": 0.9729
   },
@@ -378,8 +378,8 @@
     "f1": 0.3077
    },
    "bus": {
-    "errors": 9,
-    "f1": 0.3077
+    "errors": 12,
+    "f1": 0.0
    },
    "voices": null
   },
@@ -393,8 +393,8 @@
     "f1": 0.9677
    },
    "bus": {
-    "errors": 23,
-    "f1": 0.3784
+    "errors": 0,
+    "f1": 1.0
    },
    "voices": null
   },
@@ -477,8 +477,8 @@
    },
    "thermo": null,
    "bus": {
-    "errors": 29,
-    "f1": 0.5085
+    "errors": 66,
+    "f1": 0.175
    },
    "voices": null
   },
@@ -489,8 +489,8 @@
    },
    "thermo": null,
    "bus": {
-    "errors": 23,
-    "f1": 0.3784
+    "errors": 0,
+    "f1": 1.0
    },
    "voices": null
   },
@@ -543,8 +543,8 @@
    },
    "thermo": null,
    "bus": {
-    "errors": 6,
-    "f1": 0.7
+    "errors": 10,
+    "f1": 0.375
    },
    "voices": null
   },
@@ -648,8 +648,8 @@
     "f1": 0.0625
    },
    "bus": {
-    "errors": 223,
-    "f1": 0.0511
+    "errors": 205,
+    "f1": 0.0465
    },
    "voices": 0.7469
   },

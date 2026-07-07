@@ -57,11 +57,14 @@ DEFAULT_WEIGHTS = {
                 "surprisal": 0.8, "attraction": 0.6, "povel_essens": 0.6,
                 "onset_pulse": 0.15, "gap_fill": 0.5, "velocity": 0.8,
                 "parallelism": 1.5, "extra_default": 2.2},
-    # priors
+    # priors — sigma widths set by corpus grid search 2026-07-07 (were
+    # 0.55/1.0 hand-set): train errors 1359→1270, val 1385→1368; the
+    # narrow tactus prior was crushing legitimate slow tactus candidates.
+    # See grid_search_bus.py --structural and docs/benchmarking.md.
     "tactus_prior_center_ms": 600.0,
-    "tactus_prior_sigma_oct": 0.55,
+    "tactus_prior_sigma_oct": 0.9,
     "measure_prior_center_ms": 1900.0,
-    "measure_prior_sigma_oct": 1.0,
+    "measure_prior_sigma_oct": 1.4,
     "grouping_margin": 1.18,
 }
 

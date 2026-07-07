@@ -82,6 +82,20 @@ at V3.1, train split): winner `V4_WEIGHT 3.0→4.0, V1_WEIGHT 2.0→3.0`
 gate verdict PASS (spike, voices, held-out all exactly unchanged).
 Adopted as defaults in phase3_thermo_meter.py.
 
+**Bus channel weights, 2026-07-07** (`grid_search_bus.py`: 18 configs
+over external-channel weights × bass_cadence scale): **INERT** — all 18
+identical on train. The external channels (~30 sparse votes/piece)
+cannot move an argmax built from thousands of onset votes at any weight
+scale; bass down-weighting slightly hurt val. Weights left at defaults.
+
+**Bus structural params, 2026-07-07** (`grid_search_bus.py
+--structural`: 8 configs over max search period × prior widths): winner
+`tactus_prior_sigma_oct 0.55→0.9, measure_prior_sigma_oct 1.0→1.4`
+(MAX_PERIOD widening alone: zero effect — the narrow prior, not the
+range, was crushing slow-tactus candidates). Train 1359→1270, val
+1385→1368, gate PASS (all other metrics exactly unchanged). Adopted
+into phase4_meter_bus.py DEFAULT_WEIGHTS.
+
 ## Baseline history
 
 - 2026-07-05 (demo corpus): thermo=729, spike=1113, heldout=27 (F1 88.0),
@@ -90,10 +104,12 @@ Adopted as defaults in phase3_thermo_meter.py.
   heldout=27, voices=90.57%.
 - 2026-07-06 (val split, thermo V4=4/V1=3 adopted):
   thermo=1147, spike=1694, heldout=27 (F1 88.0), voices=90.57%.
-- 2026-07-07 (Phase 4 bus added at untuned default weights — CURRENT):
+- 2026-07-07 (Phase 4 bus added at untuned default weights):
   bus=1385 (all 43 pieces), thermo=1147 (37 pieces), spike=1694,
   heldout=27 (F1 88.0), voices=90.57%. Shared-subset head-to-head:
   bus 1272 vs thermo 1147, 17-17-3.
+- 2026-07-07 (bus prior sigmas 0.9/1.4 adopted — CURRENT): bus=1368,
+  thermo=1147, spike=1694, heldout=27 (F1 88.0), voices=90.57%.
 
 ## Rejected candidates (the gate working in reverse)
 
