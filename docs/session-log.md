@@ -30,6 +30,11 @@ loop:
   normalization unmasked the scaffold doc's one-beat-early bass
   diagnosis. Final baseline: **bus=863** (chorale 222 / essen 382 /
   piano 259) vs thermo 1147 vs spike 1694. One day's arc: 1371→863.
+- **Dense-channel weight sweep: NEGATIVE.** Salience inert at every
+  weight; Δη+ hurts ≥1.0. Dense-as-extracted adds nothing under norm —
+  the harmonic-density path now runs through real per-beat labels
+  (DCML), not re-weighted change salience. Roadmap #1 closed: norm
+  adopted, dense channels measured out. docs/HANDOFF.md written.
 - Also this session: `eval_pair.py` (user MIDI + MusicXML ad-hoc ground
   truth, alignment-checked) and tier-stratified benchmark reporting.
 

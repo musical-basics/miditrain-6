@@ -420,13 +420,13 @@ token (`_dissonance`/`_fifths`).
 
 ## Open problems (ranked by expected payoff — 2026-07-07 review)
 
-1. **Soft evidence + channel normalization** — PARTIALLY DONE
-   2026-07-08: normalization adopted (`channel_norm: 1`, bus 1371→945,
-   piano tier −59%); dense channels (salience from debug.diff, Δη+ from
-   grid_sample) are built in phase4_make_votes.py but NOT yet in
-   production defaults — at default weight they slightly hurt under
-   normalization. Remaining: weight-sweep the dense channels and the
-   (now-live) external-channel weights under norm.
+1. **Soft evidence + channel normalization** — DONE 2026-07-08 and
+   CLOSED: normalization adopted (bus 1371→945), weight retune adopted
+   (945→863). Dense channels (salience, Δη+) measured OUT: salience is
+   inert at every weight (no phase information beyond onset_pulse), Δη+
+   hurts. They remain available in phase4_make_votes.py for experiments.
+   The harmonic-density path now requires per-beat harmonic QUALITY
+   labels — see external data (DCML) below.
 2. **Piecewise grids via DP with a switch penalty**: one (period, phase)
    per piece makes time-signature changes unwinnable by construction
    (chorale_010 is 4/4|3/4|4/4 in our own corpus) and long movements

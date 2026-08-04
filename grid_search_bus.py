@@ -77,6 +77,15 @@ SOFT_GRID = {
 }
 SOFT_BASELINE = {"NORM": 1, "DENSE": "none"}
 
+# Dense-weight sweep (--dense): the soft sweep ran dense channels at
+# extra_default (1.8) where they slightly hurt under normalization; with
+# unit channel mass the weight IS the influence, so try light weights.
+DENSE_GRID = {
+    "DENSE": ["none", "salience", "visc", "both"],
+    "DENSE_W": [0.2, 0.5, 1.0, 1.8],
+}
+DENSE_BASELINE = {"DENSE": "none", "DENSE_W": 0.2}  # W irrelevant for none
+
 ALL_INTERNAL = ["onset_pulse", "povel_essens", "agogic", "lbdm",
                 "velocity", "surprisal", "attraction", "gap_fill",
                 "bass_cadence"]
@@ -148,6 +157,10 @@ def run_config(cfg, prepped_pieces, truths, tol):
     weights = make_weights(cfg)
     max_period = cfg.get("MAX_PERIOD", 1600.0)
     dense_sel = cfg.get("DENSE", "none")
+    # Match the production CLI: external channels default to extra_default
+    # unless the config sets them (the CLI does the same setdefault).
+    for key in ("extra:harmonic", "extra:freezes"):
+        weights.setdefault(key, weights["extra_default"])
     errors = 0
     for pid, prepped in prepped_pieces.items():
         channels = dict(prepped["channels"])
@@ -155,7 +168,10 @@ def run_config(cfg, prepped_pieces, truths, tol):
             short = key.split(":")[1]
             if votes and dense_sel in (short, "both"):
                 channels[key] = votes
-                weights.setdefault(key, weights["extra_default"])
+                if "DENSE_W" in cfg:
+                    weights[key] = cfg["DENSE_W"]
+                else:
+                    weights.setdefault(key, weights["extra_default"])
         # Respect the production default (weights["channel_norm"]) unless
         # the config explicitly overrides it via a NORM key.
         if cfg.get("NORM", weights.get("channel_norm")):
@@ -184,9 +200,12 @@ def main():
                     help="sweep period range + prior widths instead of channel weights")
     ap.add_argument("--soft", action="store_true",
                     help="sweep dense soft-evidence channels × channel normalization")
+    ap.add_argument("--dense", action="store_true",
+                    help="sweep dense-channel weights under the production norm")
     args = ap.parse_args()
 
-    grid, baseline_cfg = ((SOFT_GRID, SOFT_BASELINE) if args.soft
+    grid, baseline_cfg = ((DENSE_GRID, DENSE_BASELINE) if args.dense
+                          else (SOFT_GRID, SOFT_BASELINE) if args.soft
                           else (STRUCTURAL_GRID, STRUCTURAL_BASELINE)
                           if args.structural else (GRID, BASELINE_CFG))
 

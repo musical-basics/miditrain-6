@@ -144,6 +144,17 @@ peak pre-cadentially and lock the grid a beat early). Train 967→807,
 val 949→867, gate PASS; chorales 310→222 with chorale_013 −31 and two
 chorales to zero. Adopted.
 
+**Dense-channel weight sweep, 2026-07-08** (`grid_search_bus.py
+--dense`: 16 configs under production norm): **NEGATIVE, no adoption.**
+Salience (per-keyframe debug.diff) is perfectly inert at every weight
+(as a per-onset-event channel it folds to ~the same phase histogram as
+onset_pulse — no new information); thermo Δη+ hurts at weight ≥1.0 and
+is neutral lighter. Conclusion: densifying the harmonic channel needs
+harmonic QUALITY per beat (DCML-style labels), not re-weighted change
+salience. (Harness note: this sweep also exposed that inline extras ran
+at weight 1.0 vs the CLI's 1.8 setdefault — run_config now mirrors the
+CLI.)
+
 ## Baseline history
 
 - 2026-07-05 (demo corpus): thermo=729, spike=1113, heldout=27 (F1 88.0),
