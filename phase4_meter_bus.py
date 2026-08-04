@@ -49,14 +49,19 @@ DEFAULT_WEIGHTS = {
     "surprisal": 0.8,
     "attraction": 0.9,
     "gap_fill": 0.5,
-    "bass_cadence": 1.8,
+    # bass_cadence halved + measure extra_default 2.2→1.0 by corpus grid
+    # search 2026-07-08 under channel_norm (train 967→807, val 949→867):
+    # normalization unmasked the doc's original diagnosis — dense chorale
+    # fifth-arrivals peak on the PRE-cadential beat and were locking the
+    # grid one beat early.
+    "bass_cadence": 0.9,
     "parallelism": 1.6,
     "extra_default": 1.8,      # Phase 1 spikes / freezes when supplied
     # measure-level multipliers (applied on top of channel weights)
-    "measure": {"bass_cadence": 2.0, "agogic": 1.2, "lbdm": 0.8,
+    "measure": {"bass_cadence": 1.0, "agogic": 1.2, "lbdm": 0.8,
                 "surprisal": 0.8, "attraction": 0.6, "povel_essens": 0.6,
                 "onset_pulse": 0.15, "gap_fill": 0.5, "velocity": 0.8,
-                "parallelism": 1.5, "extra_default": 2.2},
+                "parallelism": 1.5, "extra_default": 1.0},
     # priors — sigma widths set by corpus grid search 2026-07-07 (were
     # 0.55/1.0 hand-set): train errors 1359→1270, val 1385→1368; the
     # narrow tactus prior was crushing legitimate slow tactus candidates.
@@ -66,11 +71,33 @@ DEFAULT_WEIGHTS = {
     "measure_prior_center_ms": 1900.0,
     "measure_prior_sigma_oct": 1.4,
     "grouping_margin": 1.18,
+    # 1 = normalize each channel's total vote mass to 1 before weighting,
+    # so influence stops scaling with vote count and the channel weights
+    # above regain leverage over dense vs sparse channels. Adopted by
+    # corpus grid search 2026-07-08: train errors 1270→817, val 1368→872
+    # — the largest single improvement in the project. (Dense soft
+    # channels at default weight slightly hurt UNDER normalization;
+    # they need their own weight sweep before joining the defaults.)
+    "channel_norm": 1,
 }
 
 
 def log_gauss_prior(x, center, sigma_oct):
     return math.exp(-0.5 * (math.log2(x / center) / sigma_oct) ** 2)
+
+
+def normalize_channels(channels):
+    """Scale each channel so its total vote mass is 1: a channel's
+    influence then comes from its weight, not its vote count."""
+    out = {}
+    for name, votes in channels.items():
+        total = sum(v["weight"] for v in votes)
+        if total <= 0:
+            out[name] = votes
+            continue
+        out[name] = [{"time_ms": v["time_ms"], "weight": v["weight"] / total}
+                     for v in votes]
+    return out
 
 
 def collect_channels(notes, enabled, tonic_pc, mode):
@@ -317,6 +344,9 @@ def main():
 
     pvotes = (par_mod.period_votes(notes)
               if args.channels == "all" or "parallelism" in enabled else [])
+
+    if weights.get("channel_norm"):
+        channels = normalize_channels(channels)
 
     P, phi_t, top = search_tactus(channels, pvotes, weights,
                                   args.min_period, args.max_period)

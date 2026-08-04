@@ -117,6 +117,33 @@ inline predictor said 1368 — CLI barline int-rounding flips 3 boundary
 matches). Adopted
 into phase4_meter_bus.py DEFAULT_WEIGHTS.
 
+**Soft evidence × channel normalization, 2026-07-08**
+(`grid_search_bus.py --soft`: 8 configs): **channel-mass normalization
+is the largest single improvement in the project** — normalizing each
+channel's total vote mass to 1 before weighting (so influence stops
+scaling with vote count) cut train errors 1270→817 and val 1368→872
+(inline; 945 via the production path — see below). Gate PASS; adopted as
+`channel_norm: 1` in DEFAULT_WEIGHTS. Per-tier: the win concentrates in
+the PIANO tier (592→243, −59%) — the product domain — with chorales
+−64 and essen −13. The dense soft-evidence channels (Phase 1
+per-keyframe salience via debug.diff, thermo Δη+ from grid_sample; now
+emitted by phase4_make_votes.py) helped modestly WITHOUT norm but
+slightly hurt UNDER norm at default weight — they need their own weight
+sweep before joining the defaults. The 872 vs 945 gap traces to the
+external-channel weight (sweep ran extras at 1.0, production at 1.8),
+which means the weight knob is finally LIVE under normalization — the
+follow-up weight sweep exists for exactly this.
+
+**Bus weights retuned under norm, 2026-07-08** (24 configs, harness
+fixed to inherit the production channel_norm flag — its first run
+silently swept the no-norm regime): configs now spread 807–1078 where
+the pre-norm sweep was flat. Winner: measure extra multiplier 2.2→1.0
+and **bass_cadence halved** (0.9 / measure 1.0) — normalization
+unmasked the scaffold doc's original diagnosis (chorale fifth-arrivals
+peak pre-cadentially and lock the grid a beat early). Train 967→807,
+val 949→867, gate PASS; chorales 310→222 with chorale_013 −31 and two
+chorales to zero. Adopted.
+
 ## Baseline history
 
 - 2026-07-05 (demo corpus): thermo=729, spike=1113, heldout=27 (F1 88.0),
@@ -129,8 +156,15 @@ into phase4_meter_bus.py DEFAULT_WEIGHTS.
   bus=1385 (all 43 pieces), thermo=1147 (37 pieces), spike=1694,
   heldout=27 (F1 88.0), voices=90.57%. Shared-subset head-to-head:
   bus 1272 vs thermo 1147, 17-17-3.
-- 2026-07-07 (bus prior sigmas 0.9/1.4 adopted — CURRENT): bus=1371,
+- 2026-07-07 (bus prior sigmas 0.9/1.4 adopted): bus=1371,
   thermo=1147, spike=1694, heldout=27 (F1 88.0), voices=90.57%.
+- 2026-07-08 (bus channel_norm=1 adopted): **bus=945** —
+  now the best meter engine overall — thermo=1147, spike=1694,
+  heldout=27 (F1 88.0), voices=90.57%. Per-tier bus: chorale 310,
+  essen 392, mixed/piano 243 (thermo still leads essen with 200).
+- 2026-07-08 (bus weights retuned under norm — CURRENT): **bus=863**
+  (chorale 222 / essen 382 / piano 259), thermo=1147, spike=1694,
+  heldout=27 (F1 88.0), voices=90.57%.
 
 ## Rejected candidates (the gate working in reverse)
 

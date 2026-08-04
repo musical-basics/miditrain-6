@@ -1,5 +1,38 @@
 # Session Log
 
+## 2026-07-08 — Channel normalization: the largest single win
+
+Roadmap item #1 (soft evidence + normalization) executed via the gated
+loop:
+
+- Built dense soft-evidence extraction (`phase4_make_votes.py`):
+  Phase 1 per-keyframe salience from the already-persisted debug.diff
+  (~1 vote/onset vs ~30 binary spikes) and thermo Δη+ from grid_sample.
+- Built `normalize_channels` in the bus combiner (`channel_norm` flag):
+  each channel's total vote mass scales to 1 before weighting.
+- `--soft` sweep (8 configs): **normalization alone: train 1270→817,
+  val 1368→872 inline / 945 production**. Gate PASS, adopted. Bus is
+  now the best meter engine (945 vs thermo 1147 vs spike 1694), and the
+  per-tier breakdown (added this session) shows the win concentrated in
+  the piano tier: 592→243 (−59%) — the product domain. Chorale −64,
+  essen −13; thermo still leads the essen tier (200 vs 392).
+- Dense channels at default weight: modest help without norm, slight
+  HURT under norm — their weights need a dedicated sweep before
+  adoption. The 872/945 inline-vs-production gap traces to the external
+  channel weight (1.0 vs 1.8) — i.e. the weight knob is now live, and
+  the re-run weight sweep (grid widened down to 0.5) is the follow-up.
+  (First run of that sweep silently skipped normalization — the harness
+  keyed norm off the sweep config, not the production default; fixed.)
+- **Weight retune under norm (24 configs)**: the knob is live — spread
+  807–1078 where the pre-norm sweep was flat. Winner: measure extra
+  multiplier 2.2→1.0 + bass_cadence HALVED. Train 967→807, val 949→867,
+  gate PASS. Chorales 310→222 (chorale_013 −31, two chorales to zero) —
+  normalization unmasked the scaffold doc's one-beat-early bass
+  diagnosis. Final baseline: **bus=863** (chorale 222 / essen 382 /
+  piano 259) vs thermo 1147 vs spike 1694. One day's arc: 1371→863.
+- Also this session: `eval_pair.py` (user MIDI + MusicXML ad-hoc ground
+  truth, alignment-checked) and tier-stratified benchmark reporting.
+
 ## 2026-07-07 (later) — Bus grid searches: weights inert, prior widths win
 
 - **Channel-weight sweep (18 configs): INERT.** External-channel weights

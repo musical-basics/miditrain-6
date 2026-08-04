@@ -35,7 +35,7 @@ import os
 import phase4_meter_bus as bus
 import parallelism as par_mod
 from signals_common import load_notes
-from phase4_make_votes import spike_votes
+from phase4_make_votes import spike_votes, salience_votes, viscosity_votes
 from phase3_thermo_meter import ThermodynamicMeterEstimator
 from grid_search_thermo import match_events, ensure_etme
 from run_corpus_eval import load_v31_config, OUT_DIR
@@ -43,11 +43,16 @@ from run_corpus_eval import load_v31_config, OUT_DIR
 SPLIT_FILE = os.path.join("benchmarks", "corpus_split.json")
 
 GRID = {
-    "EXTRA_W": [1.8, 3.0, 4.5],
-    "EXTRA_MW": [2.2, 4.0, 6.0],
+    # Widened DOWNWARD after channel_norm adoption: normalized sparse
+    # channels carry full unit mass, so the extras' old floor (1.8) is
+    # likely too heavy — the soft sweep's inline run at extras=1.0
+    # scored 872 val vs production's 945 at 1.8.
+    "EXTRA_W": [0.5, 1.0, 1.8, 3.0],
+    "EXTRA_MW": [1.0, 2.2, 4.0],
     "BASS_SCALE": [0.5, 1.0],
 }
-BASELINE_CFG = {"EXTRA_W": 1.8, "EXTRA_MW": 2.2, "BASS_SCALE": 1.0}
+# BASS_SCALE is relative to the (already-halved) defaults adopted 2026-07-08
+BASELINE_CFG = {"EXTRA_W": 1.8, "EXTRA_MW": 1.0, "BASS_SCALE": 1.0}
 
 # Structural sweep (--structural): the channel-weight sweep proved inert
 # (all 18 configs identical on train — external votes are too sparse to
@@ -62,16 +67,29 @@ STRUCTURAL_GRID = {
 STRUCTURAL_BASELINE = {"MAX_PERIOD": 1600.0, "TACTUS_SIGMA": 0.9,
                        "MEASURE_SIGMA": 1.4}
 
+# Soft-evidence sweep (--soft): dense pre-threshold channels (Phase 1
+# per-keyframe salience, thermo Δη+) × channel-mass normalization — the
+# two halves of "export soft evidence, normalize before weighting", the
+# fix for the measured vote-density problem.
+SOFT_GRID = {
+    "NORM": [0, 1],
+    "DENSE": ["none", "salience", "visc", "both"],
+}
+SOFT_BASELINE = {"NORM": 1, "DENSE": "none"}
+
 ALL_INTERNAL = ["onset_pulse", "povel_essens", "agogic", "lbdm",
                 "velocity", "surprisal", "attraction", "gap_fill",
                 "bass_cadence"]
 
 
 def prep_piece(etme_path):
-    """Weight-independent per-piece inputs: notes, channels, period votes."""
+    """Weight-independent per-piece inputs: notes, channels, period votes,
+    plus the dense soft-evidence channels kept separate so sweep configs
+    can include or exclude them."""
     notes = load_notes(etme_path)
     channels = bus.collect_channels(notes, ALL_INTERNAL, None, None)
     channels["extra:harmonic"] = spike_votes(etme_path)
+    dense = {"extra:salience": salience_votes(etme_path)}
     try:
         with contextlib.redirect_stdout(io.StringIO()):
             thermo = ThermodynamicMeterEstimator(etme_path).estimate(write_json=False)
@@ -79,10 +97,13 @@ def prep_piece(etme_path):
             channels["extra:freezes"] = [
                 {"time_ms": e["time_ms"], "weight": e.get("magnitude", 1.0)}
                 for e in thermo["freezing_events"]]
+        if thermo:
+            dense["extra:visc"] = viscosity_votes(thermo)
     except Exception:
         pass
     pvotes = par_mod.period_votes(notes)
-    return {"notes": notes, "channels": channels, "pvotes": pvotes}
+    return {"notes": notes, "channels": channels, "pvotes": pvotes,
+            "dense": dense}
 
 
 def make_weights(cfg):
@@ -126,10 +147,22 @@ def bus_predict(prepped, weights, max_period=1600.0):
 def run_config(cfg, prepped_pieces, truths, tol):
     weights = make_weights(cfg)
     max_period = cfg.get("MAX_PERIOD", 1600.0)
+    dense_sel = cfg.get("DENSE", "none")
     errors = 0
     for pid, prepped in prepped_pieces.items():
+        channels = dict(prepped["channels"])
+        for key, votes in prepped.get("dense", {}).items():
+            short = key.split(":")[1]
+            if votes and dense_sel in (short, "both"):
+                channels[key] = votes
+                weights.setdefault(key, weights["extra_default"])
+        # Respect the production default (weights["channel_norm"]) unless
+        # the config explicitly overrides it via a NORM key.
+        if cfg.get("NORM", weights.get("channel_norm")):
+            channels = bus.normalize_channels(channels)
+        piece = dict(prepped, channels=channels)
         try:
-            pred = bus_predict(prepped, weights, max_period)
+            pred = bus_predict(piece, weights, max_period)
         except Exception:
             pred = []
         gt = truths[pid]
@@ -149,9 +182,12 @@ def main():
     ap.add_argument("--on-val", action="store_true")
     ap.add_argument("--structural", action="store_true",
                     help="sweep period range + prior widths instead of channel weights")
+    ap.add_argument("--soft", action="store_true",
+                    help="sweep dense soft-evidence channels × channel normalization")
     args = ap.parse_args()
 
-    grid, baseline_cfg = ((STRUCTURAL_GRID, STRUCTURAL_BASELINE)
+    grid, baseline_cfg = ((SOFT_GRID, SOFT_BASELINE) if args.soft
+                          else (STRUCTURAL_GRID, STRUCTURAL_BASELINE)
                           if args.structural else (GRID, BASELINE_CFG))
 
     with open(args.split) as f:

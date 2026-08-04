@@ -1,5 +1,5 @@
 {
- "label": "bus priors 0.9/1.4; scorecard gains per-tier breakdown",
+ "label": "bus norm + retuned weights (extra_mw 1.0, bass halved)",
  "pipeline": {
   "phase2_model": "greedy",
   "relaxation": false,
@@ -20,7 +20,7 @@
   "bass_multiplier": 2.0
  },
  "metrics": {
-  "downbeat_errors_bus": 1371,
+  "downbeat_errors_bus": 863,
   "downbeat_errors_thermo": 1147,
   "downbeat_errors_spike": 1694,
   "heldout_phase1_errors": 27,
@@ -33,17 +33,17 @@
  },
  "per_tier": {
   "mixed": {
-   "bus": 592,
+   "bus": 259,
    "thermo": 583,
    "spike": 511
   },
   "chorale": {
-   "bus": 374,
+   "bus": 222,
    "thermo": 364,
    "spike": 587
   },
   "essen": {
-   "bus": 405,
+   "bus": 382,
    "thermo": 200,
    "spike": 596
   }
@@ -83,8 +83,8 @@
     "f1": 0.1481
    },
    "bus": {
-    "errors": 23,
-    "f1": 0.303
+    "errors": 3,
+    "f1": 0.9189
    },
    "voices": 0.9899
   },
@@ -98,8 +98,8 @@
     "f1": 0.0833
    },
    "bus": {
-    "errors": 31,
-    "f1": 0.0
+    "errors": 24,
+    "f1": 0.2
    },
    "voices": 0.9662
   },
@@ -143,8 +143,8 @@
     "f1": 0.2963
    },
    "bus": {
-    "errors": 9,
-    "f1": 0.6667
+    "errors": 0,
+    "f1": 1.0
    },
    "voices": 0.9843
   },
@@ -200,7 +200,7 @@
     "f1": 0.6667
    },
    "bus": {
-    "errors": 24,
+    "errors": 26,
     "f1": 0.0
    },
    "voices": 0.9447
@@ -230,8 +230,8 @@
     "f1": 0.2667
    },
    "bus": {
-    "errors": 30,
-    "f1": 0.0
+    "errors": 19,
+    "f1": 0.4242
    },
    "voices": 0.9729
   },
@@ -245,8 +245,8 @@
     "f1": 0.24
    },
    "bus": {
-    "errors": 28,
-    "f1": 0.125
+    "errors": 3,
+    "f1": 0.9143
    },
    "voices": 0.9748
   },
@@ -260,8 +260,8 @@
     "f1": 0.1875
    },
    "bus": {
-    "errors": 25,
-    "f1": 0.359
+    "errors": 17,
+    "f1": 0.4138
    },
    "voices": 0.993
   },
@@ -275,7 +275,7 @@
     "f1": 0.3333
    },
    "bus": {
-    "errors": 17,
+    "errors": 16,
     "f1": 0.0
    },
    "voices": 0.9799
@@ -290,8 +290,8 @@
     "f1": 0.0
    },
    "bus": {
-    "errors": 19,
-    "f1": 0.1739
+    "errors": 1,
+    "f1": 0.9565
    },
    "voices": 0.9854
   },
@@ -305,8 +305,8 @@
     "f1": 0.2069
    },
    "bus": {
-    "errors": 29,
-    "f1": 0.1212
+    "errors": 3,
+    "f1": 0.9143
    },
    "voices": 1.0
   },
@@ -320,8 +320,8 @@
     "f1": 0.1071
    },
    "bus": {
-    "errors": 37,
-    "f1": 0.0
+    "errors": 30,
+    "f1": 0.1667
    },
    "voices": 0.9781
   },
@@ -335,8 +335,8 @@
     "f1": 0.1
    },
    "bus": {
-    "errors": 22,
-    "f1": 0.1538
+    "errors": 0,
+    "f1": 1.0
    },
    "voices": 0.9829
   },
@@ -365,8 +365,8 @@
     "f1": 0.1111
    },
    "bus": {
-    "errors": 0,
-    "f1": 1.0
+    "errors": 21,
+    "f1": 0.0
    },
    "voices": null
   },
@@ -395,7 +395,7 @@
     "f1": 0.3077
    },
    "bus": {
-    "errors": 12,
+    "errors": 13,
     "f1": 0.0
    },
    "voices": null
@@ -467,8 +467,8 @@
     "f1": 0.0
    },
    "bus": {
-    "errors": 10,
-    "f1": 0.2857
+    "errors": 16,
+    "f1": 0.0
    },
    "voices": null
   },
@@ -533,8 +533,8 @@
    },
    "thermo": null,
    "bus": {
-    "errors": 25,
-    "f1": 0.3902
+    "errors": 0,
+    "f1": 1.0
    },
    "voices": null
   },
@@ -548,8 +548,8 @@
     "f1": 0.2857
    },
    "bus": {
-    "errors": 15,
-    "f1": 0.0
+    "errors": 0,
+    "f1": 1.0
    },
    "voices": null
   },
@@ -560,8 +560,8 @@
    },
    "thermo": null,
    "bus": {
-    "errors": 10,
-    "f1": 0.375
+    "errors": 0,
+    "f1": 1.0
    },
    "voices": null
   },
@@ -575,8 +575,8 @@
     "f1": 0.0
    },
    "bus": {
-    "errors": 16,
-    "f1": 0.3333
+    "errors": 10,
+    "f1": 0.4444
    },
    "voices": null
   },
@@ -590,8 +590,8 @@
     "f1": 0.4444
    },
    "bus": {
-    "errors": 9,
-    "f1": 0.6897
+    "errors": 14,
+    "f1": 0.4167
    },
    "voices": null
   },
@@ -620,8 +620,8 @@
     "f1": 0.5929
    },
    "bus": {
-    "errors": 168,
-    "f1": 0.0
+    "errors": 106,
+    "f1": 0.1587
    },
    "voices": 0.5373
   },
@@ -635,8 +635,8 @@
     "f1": 0.4948
    },
    "bus": {
-    "errors": 1,
-    "f1": 0.9921
+    "errors": 0,
+    "f1": 1.0
    },
    "voices": 0.6222
   },
@@ -650,8 +650,8 @@
     "f1": 0.2105
    },
    "bus": {
-    "errors": 0,
-    "f1": 1.0
+    "errors": 64,
+    "f1": 0.0
    },
    "voices": 0.5089
   },
@@ -665,8 +665,8 @@
     "f1": 0.0625
    },
    "bus": {
-    "errors": 205,
-    "f1": 0.0465
+    "errors": 0,
+    "f1": 1.0
    },
    "voices": 0.7469
   },
@@ -680,8 +680,8 @@
     "f1": 0.2609
    },
    "bus": {
-    "errors": 218,
-    "f1": 0.0439
+    "errors": 89,
+    "f1": 0.5936
    },
    "voices": 0.702
   }

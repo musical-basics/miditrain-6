@@ -5,8 +5,9 @@ a future AI (or human) can reason about the system without reading the
 code. Contracts, algorithms, tuned parameters, measured accuracy, and file
 map. Deeper theory lives in the pointed-to docs; this is the canonical map.
 
-Last updated: 2026-07-07 (after Phase 4 bus adoption, baseline
-bus=1371 / thermo=1147 / spike=1694 / heldout=27 / voices=90.57%).
+Last updated: 2026-07-08 (after channel-norm + weight retune, baseline
+bus=863 / thermo=1147 / spike=1694 / heldout=27 / voices=90.57%;
+per-tier bus: chorale 222 / essen 382 / piano 259).
 
 ---
 
@@ -290,9 +291,13 @@ into vote files; keys become `extra:harmonic`, `extra:freezes`.
 - Structural sweep won: prior sigmas 0.55/1.0 → 0.9/1.4 (train
   1359→1270, val 1385→1371, gate PASS, adopted).
 
-**Measured (validation)**: bus 1371 on all 43 pieces; head-to-head with
-thermo on the 37 shared pieces roughly even, but the bus covers the 6
-pieces thermo can't process. Worst failures: long dense movements
+**Measured (validation)**: bus 863 on all 43 pieces — the best engine
+overall by a wide margin since 2026-07-08's two adoptions: channel
+normalization (`channel_norm: 1`, each channel's vote mass scaled to 1
+before weighting — the project's largest single win, piano tier −59%)
+and the weight retune it enabled (measure extra multiplier 1.0,
+bass_cadence halved — fixing the chorale one-beat-early lock).
+Thermo still leads the essen tier (200 vs 382). Worst failures: long dense movements
 (mozart_k155 205, beethoven 9/8 218) and archaic meters — where denser
 harmonic votes are the predicted fix (oracle test: perfect harmonic votes
 lift bwv846 from 0.673 to 1.000).
@@ -415,16 +420,13 @@ token (`_dissonance`/`_fifths`).
 
 ## Open problems (ranked by expected payoff — 2026-07-07 review)
 
-1. **Soft evidence + channel normalization** (one move, two edits):
-   phases currently threshold their continuous internals into ~30 binary
-   events before anyone downstream sees them — the measured reason the
-   bus weight sweep was inert. (a) Export Phase 1's pre-threshold
-   salience (centroid diff + Jaccard novelty per keyframe) and thermo's
-   grid_sample (η, T, E per 25ms bin) as DENSE vote channels — the
-   quantities already exist internally, this is plumbing. (b) Normalize
-   each bus channel's total mass to 1 before weighting, so influence
-   stops scaling with vote count and the weight grid search regains
-   leverage. Attacks the oracle gap and the k155/9-8 failures directly.
+1. **Soft evidence + channel normalization** — PARTIALLY DONE
+   2026-07-08: normalization adopted (`channel_norm: 1`, bus 1371→945,
+   piano tier −59%); dense channels (salience from debug.diff, Δη+ from
+   grid_sample) are built in phase4_make_votes.py but NOT yet in
+   production defaults — at default weight they slightly hurt under
+   normalization. Remaining: weight-sweep the dense channels and the
+   (now-live) external-channel weights under norm.
 2. **Piecewise grids via DP with a switch penalty**: one (period, phase)
    per piece makes time-signature changes unwinnable by construction
    (chorale_010 is 4/4|3/4|4/4 in our own corpus) and long movements
