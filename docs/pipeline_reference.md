@@ -348,6 +348,45 @@ dep: `file:../../../UltimatePianist Repos/dreamflow`).
 the scorer auto-activates when Phase 5 emits `key` / `spelling` fields.
 That wiring is the cheapest way to give Phase 5 numbers.
 
+### 5C MusicXML export (`phase5_musicxml.py`)
+The back-propagation endpoint: quantized notes → standard MusicXML 4.0, the
+same interchange format a human-authored score uses. Exports from the 5A
+quantized notes (NOT from 5B's output) and reuses 5B's key detection and
+enharmonic spelling as a library — 5B emits the VexFlow dialect (rests
+pre-resolved, accidentals chronologically filtered) while MusicXML wants
+absolute `<divisions>`, explicit `<backup>` between voices, and unfiltered
+accidentals. One part, two staves, 5B's voice map.
+
+`divisions` (per quarter) is derived as `subdivision × denominator / 4`, so
+one Phase 5A tick is one division whenever that is integral.
+
+**Gotcha**: 5A measure numbering is 0-based on some grids and 1-based on
+others, and an anacrusis can make `abs_tick_start` negative — so each
+measure's tick origin is derived from the notes IN that measure, never from
+the first measure number. Getting this wrong overflows bars silently
+(6/8 mazurka: 74 malformed measures; the 1-based Clementi looked fine).
+Output: `<name>.musicxml`.
+
+### Comparing a generated score against a real one
+`run_xml_compare.py --midi X.mid --xml X.musicxml [--name N] [--engine bus]`
+runs the whole chain and writes `visualizer/public/compare/<N>/`
+(manifest, both IntermediateScores, both MusicXMLs, comparison.json), then
+the GUI at **`/compare`** shows them stacked with synchronized scrolling,
+diff-coloured notes and a note-by-note table.
+
+`compare_musicxml.py` is the scorer: NOTES ONLY (dynamics, articulations,
+fingerings, slurs, ornaments and layout are out of scope by design). It
+matches on (onset within `--tol` quarters, exact pitch), greedy
+nearest-onset and one-to-one. Spelling and duration agreement are reported
+separately as secondary stats — they are 5B/5A quality signals, not
+note-identity errors.
+
+**Measured (user's Clementi Sonatina, 333 notes)**: bus meter 4/4 strict
+F1 100%; note precision/recall/F1 **1.000 at zero onset tolerance**;
+spelling 100%; key C correct. Duration 88% — 40 notes the score holds a
+quarter that the engine writes as an eighth, all from 5A's monophony
+truncation. This is the first actual measurement of that known distortion.
+
 ---
 
 ## Evaluation infrastructure (how truth is decided)
@@ -410,6 +449,10 @@ adopted (+).
 | energy_hierarchy.py | 4 | standalone freeze annotator (primary/secondary) |
 | phase5_quantize.py | 5 | etme + grid → phase5_quantized_*.json |
 | phase5_notation.py | 5 | quantized + grid → phase5_notation_*.json |
+| phase5_musicxml.py | 5 | quantized + grid → *.musicxml (Phase 5C) |
+| musicxml_to_score.py | 5 | reference .musicxml → IntermediateScore (needs music21) |
+| compare_musicxml.py | eval | two .musicxml → notes-only diff (needs music21) |
+| run_xml_compare.py | eval | MIDI + reference .musicxml → visualizer/public/compare/&lt;name&gt;/ |
 | run_corpus_eval.py / run_benchmark.py / grid_search_*.py / make_corpus_split.py | eval | see Evaluation |
 | visualizer/ (Next.js) | UI | runs the whole chain via /api/run-python; views per phase |
 

@@ -6,3 +6,5 @@ repomix-output.xml
 corpus_runs/
 corpus files/corpus_demo.zip
 corpus files/venv/
+# regenerable comparison runs (run_xml_compare.py rebuilds these)
+visualizer/public/compare/

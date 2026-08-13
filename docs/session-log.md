@@ -1,5 +1,62 @@
 # Session Log
 
+## 2026-08-13 — Phase 5C MusicXML export + score comparison GUI
+
+Closes the loop the project was missing: MIDI in, **MusicXML out**, diffed
+against a human-authored score. Everything this session is ADDITIVE — no
+existing pipeline file was modified, so `benchmarks/baseline.json` is
+untouched by construction and the gate was not re-run.
+
+**New: Phase 5C (`phase5_musicxml.py`)**. The pipeline previously ended at
+the DreamFlow `IntermediateScore` (VexFlow-shaped, with rests already
+resolved and a chronological accidental filter). MusicXML needs absolute
+`<divisions>`, explicit `<backup>` between voices, and unfiltered
+accidentals — a different dialect, so 5C exports from the Phase 5A
+quantized notes directly and reuses 5B's key detection + enharmonic
+spelling as a library rather than translating one dialect into the other.
+One part, two staves, Phase 5B's voice map (V1/V2 treble, V3/V4 bass).
+
+**New tooling**:
+- `compare_musicxml.py` — notes-only diff. Matches on (onset within tol,
+  exact pitch), greedy nearest-onset and one-to-one (same no-double-counting
+  discipline as the downbeat scorer). Spelling and duration agreement are
+  reported as SEPARATE secondary stats, not note-identity errors.
+- `musicxml_to_score.py` — reference MusicXML → IntermediateScore, so both
+  scores render through the SAME VexFlow renderer and any visual difference
+  is a real difference in the notes, not two renderers' conventions.
+- `run_xml_compare.py` — one command for the whole loop; writes
+  `visualizer/public/compare/<name>/`.
+- GUI at **`/compare`** (`ScoreCompare.js` + `/api/compare-runs`): stacked
+  staves with **synchronized horizontal scrolling**, a scorecard, and a
+  note-by-note table. Generated notes are recoloured by comparison status
+  (neutral = matches, amber = right note/wrong duration or spelling, red =
+  not in the reference), with a toggle back to Phase 1 harmonic colour.
+
+**Result on the user's Clementi Sonatina** (Op. 36 No. 1, 333 notes):
+the bus engine gets **4/4 strict, F1 100%, 0 downbeat errors**, and the
+back-propagated MusicXML is **100% note-accurate — precision, recall and
+F1 all 1.000, exact at ZERO onset tolerance**, spelling 100%, key C major
+correct. The only difference is **duration: 88% (40/333)**, and it is a
+single systematic pattern — repeated notes the score holds a quarter, the
+engine writes as an eighth. That is Phase 5A's documented monophony
+truncation (it cuts a note at the next onset in the same voice), i.e. a
+known silent distortion, now visible and measurable for the first time.
+It is exactly the "duration accuracy vs GT" metric that pipeline_reference
+open problem #4 asked for.
+
+**Gotcha found and fixed** (would have bitten anyone reusing 5C): Phase 5A
+measure numbering is **0-based on some grids and 1-based on others**, and
+an anacrusis can push `abs_tick_start` negative. Anchoring a measure's tick
+origin on `first_measure` therefore silently overflowed bars — a 6/8
+Chopin mazurka produced 74 malformed measures while the 1-based Clementi
+looked perfect. 5C now derives each measure's origin from the notes
+actually in it. Verified: 4/4 Clementi and 6/8 mazurka (787 notes) both
+export bar-exact, music21 parses both.
+
+**Verification**: `npx tsc --noEmit` clean, `pnpm build` clean, both
+scores render in a real browser (screenshotted), scroll-sync asserted in
+Playwright, dev server killed.
+
 ## 2026-07-08 — Channel normalization: the largest single win
 
 Roadmap item #1 (soft evidence + normalization) executed via the gated
