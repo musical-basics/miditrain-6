@@ -130,3 +130,25 @@ Piecewise DP remains valuable LATER as the rubato/live tracker (loosening
 the switch penalty is the Large-Jones formulation) — but that is blocked
 on ASAP performance data regardless, since corpus MIDI is quantized and
 flat-velocity.
+
+
+## Corpus scope: piano is primary, chorale/essen are secondary (2026-08-13)
+
+User's decision after weighing full removal of the non-keyboard tiers:
+**keep them, stop treating them as the target.** 74 of 87 corpus pieces
+are chorales or folk songs — tuning aggregates on that mix optimizes for
+the wrong domain ("a drug for monkeys when humans are the primary
+consumer"). But deleting them would (a) destroy Phase 2's ONLY ground
+truth, since SATB part labels are the voice-threading objective, (b)
+shrink the corpus to ~13 pieces, below grid-search viability, and (c)
+void every committed baseline.
+
+Resolution: keep scoring them (regressions stay visible, Phase 2 keeps
+its objective), report per-tier — already implemented in
+run_benchmark.py — and treat the piano tier as the headline. Grow the
+piano tier before trusting any piano-only number: `musicxmls/` is the
+drop-in location, 4 pairs today.
+
+Corollary already applied: the "hands" metric reads n/a on references
+with more than 2 parts, instead of reporting a category error as a ~30%
+failure.

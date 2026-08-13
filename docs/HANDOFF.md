@@ -67,6 +67,17 @@ cannot land.
   500ms), all engines + voices scored, alignment sanity-checked first.
 - **Corpus eval**: `python3 run_corpus_eval.py` (all engines, all
   pieces, runs.csv).
+- **Compare generated vs reference engraving, any corpus piece**:
+  `python3 run_compare_batch.py --all` (or `--tier mixed`, `--split val`,
+  `--pieces a,b`) re-exports each piece's music21 source as a reference
+  MusicXML and runs the full compare pipeline, one run per piece; then
+  `http://localhost:3000/compare` (filter box + tier groups + ‹ › stepping).
+  Runs are skipped if already built — `--force` to rebuild.
+- **Hand separation (Phase 0) truth + baselines**:
+  `python3 score_hands.py --emit-truth --all` then
+  `python3 score_hands.py --truth "corpus_runs/hands/<piece>.hands.json"`.
+  Keyboard pairs live in `musicxmls/` (MIDI + MusicXML, same stem).
+  Spec: docs/phase0_hands_spec.md.
 - **See WHY a meter is wrong**: `python3 run_meter_diag.py --split-key val`
   then `http://localhost:3000/meter?run=val` — per piece: notes with GT vs
   every engine's barlines on one timeline, the GT/predicted measure ratio
@@ -105,12 +116,22 @@ cannot land.
 
 ## Next moves, ranked (full detail: pipeline_reference "Open problems")
 
-1. **Densify the harmonic channel with REAL labels** — the cheap
+1. **Phase 0: hand separation** (docs/phase0_hands_spec.md) — proposed
+   NEW first phase, before harmonic regimes. Highest cascade value:
+   wrong hands break Phase 5 staves, beaming and rhythm (all measured on
+   Clementi). Metric, ground truth and baselines are BUILT
+   (`score_hands.py`); the algorithm is deliberately left to an architect
+   model. Bar to beat: 94.5% overall / 87.2% crossover (oracle per-piece
+   pitch split). Key finding: pitch alone provably cannot solve it —
+   Clementi's oracle split still misses 29% of crossover notes, because
+   the piece has pitch-identical hand-opposite textures. Line continuity
+   is the discriminator.
+2. **Densify the harmonic channel with REAL labels** — the cheap
    versions are measured out (2026-07-08 `--dense` sweep: salience inert
    at every weight, Δη+ hurts). What's left is per-beat harmonic QUALITY
    votes, which needs DCML-style annotations (see 3). The extraction
    plumbing in `phase4_make_votes.py` is ready for richer sources.
-2. **Metrical hierarchy selection redesign** — THE top item, spec'd in
+3. **Metrical hierarchy selection redesign** — THE top item, spec'd in
    docs/meter_hierarchy_spec.md and visible at `/meter`. 59% of all val
    error (507/863) is the bus committing to the wrong LEVEL (bar vs beat
    vs hypermeasure), including a 106-error piano-tier piece; 242 of those
@@ -120,16 +141,16 @@ cannot land.
    not another parameter. Time-signature CHANGES are explicitly out of
    scope (only 1 corpus piece has one — unmeasurable until constant-meter
    is fixed).
-3. **External data**: ASAP (performance MIDI + downbeats — real
+4. **External data**: ASAP (performance MIDI + downbeats — real
    velocities, real rubato) and DCML corpora (beat-level harmony labels
    → corpus-scale Phase 1 supervision + dense harmonic ground truth).
-4. **Phase 5 scoring** — cheapest activation in the repo: emit `key` +
+5. **Phase 5 scoring** — cheapest activation in the repo: emit `key` +
    per-note `spelling` from phase5_notation.py and the scorer's
    key/spelling sections wake up automatically; add duration accuracy.
    Then regime-aware spelling and per-measure subdivision.
-5. **Phase 2 weight search** — neither threader has ever been optimized;
+6. **Phase 2 weight search** — neither threader has ever been optimized;
    chorale SATB is the objective (greedy 92.3 vs beam 87.1).
-6. **Retire spike** — measured-worst in every tier; keep as a vote
+7. **Retire spike** — measured-worst in every tier; keep as a vote
    channel only. Do this after (1) settles so the bus is unambiguous.
 
 ## Repo map (one line each; full table in pipeline_reference)

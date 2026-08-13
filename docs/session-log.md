@@ -1,5 +1,51 @@
 # Session Log
 
+## 2026-08-13 (later) — Phase 0 scaffolding; /compare covers the whole corpus
+
+**User's call on corpus scope**, after considering and rejecting full
+removal of chorale/essen: they stay (they are the ONLY Phase 2 voice
+ground truth, and useful for harmonic inference), but they are not the
+target domain — "optimizing a drug for monkeys when humans are the
+primary consumer". Piano is primary. Recorded in docs/debt.md.
+
+**Phase 0 (hand separation) proposed as a NEW FIRST phase**, before
+harmonic regimes. Rationale: hands are a coarser, physically constrained
+partition than voices, and getting them right first constrains Phase 2
+and gives Phase 1 a real bass feed. Caveat surfaced and written into the
+spec: Phase 0 cannot consume Phase 1/2 output, so it must work on raw
+pitch/time alone — a different algorithm, not a reordering.
+
+Built (scaffolding only, per user — implementation goes to an architect
+model): `score_hands.py` — ground-truth extractor (MusicXML part index =
+hand) + scorer + baselines. Measured over the 4 keyboard pairs now in
+`musicxmls/` (Clementi, 2x Burgmüller, Kuhlau; 2435 notes):
+
+| baseline | overall | crossover |
+|---|---|---|
+| fixed split @ middle C | 72.8% | 43.5% |
+| oracle per-piece split | 94.5% | 87.2% |
+
+Three findings that shape the spec: (1) the optimal fixed split moves
+almost two octaves between pieces (49 for The Storm, 68 for the
+Arabesque), so no global pitch constant is right; (2) **pitch alone
+provably cannot solve this** — Clementi's oracle is 91.3% overall but
+70.7% in the crossover, and no threshold beats it, because the piece has
+pitch-identical hand-opposite textures; (3) line continuity is the
+discriminator and is measurable — split@60 makes 130–139 hand switches
+inside a single true hand, the oracle drops the Arabesque to 6. The
+crossover region is 43% of all notes and is the metric that matters.
+
+Spec: docs/phase0_hands_spec.md.
+
+**/compare now covers the corpus, not just Clementi.** `run_compare_batch.py`
+re-exports each corpus piece's music21 source as a reference MusicXML
+(the factory built the corpus from those same sources) and runs the full
+compare pipeline per piece: **80 runs built, 0 failed**. The run picker
+gained a filter box, tier optgroups and prev/next stepping. The "hands"
+stat now reads n/a on 4-part references instead of showing a false ~30%
+failure — a 2-staff mapping is a category error for SATB.
+
+
 ## 2026-08-13 (end+1) — Idle-hand reclaim: the low-hanging fruit, taken
 
 User's model: **one voice per hand, splitting to two only when a hand holds

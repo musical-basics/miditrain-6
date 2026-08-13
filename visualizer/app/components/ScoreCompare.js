@@ -229,9 +229,7 @@ function Header({ runs, run, onRunChange, view, setView, manifest }) {
         </span>
       </div>
 
-      <select value={run || ''} onChange={onRunChange} style={selectStyle}>
-        {runs.map((r) => <option key={r} value={r}>{r}</option>)}
-      </select>
+      <RunPicker runs={runs} run={run} onRunChange={onRunChange} />
 
       {manifest && (
         <span style={{ color: C.dim, fontSize: 12 }}>
@@ -255,12 +253,71 @@ function Header({ runs, run, onRunChange, view, setView, manifest }) {
   );
 }
 
+// Run picker: the corpus batch (run_compare_batch.py) can produce ~90
+// runs, so a flat select is unusable — filter box + tier grouping +
+// prev/next stepping so you can walk a tier without hunting.
+function RunPicker({ runs, run, onRunChange }) {
+  const [q, setQ] = React.useState('');
+  const tierOf = (r) =>
+    r.startsWith('chorale_') ? 'chorale'
+      : r.startsWith('essenFolksong') ? 'essen'
+        : 'other';
+
+  const shown = React.useMemo(() => {
+    const needle = q.trim().toLowerCase();
+    return runs.filter((r) => !needle || r.toLowerCase().includes(needle));
+  }, [runs, q]);
+
+  const groups = React.useMemo(() => {
+    const g = {};
+    shown.forEach((r) => { (g[tierOf(r)] ||= []).push(r); });
+    return g;
+  }, [shown]);
+
+  const step = (delta) => {
+    const list = shown.length ? shown : runs;
+    const i = list.indexOf(run);
+    const next = list[(i < 0 ? 0 : i + delta + list.length) % list.length];
+    if (next) onRunChange({ target: { value: next } });
+  };
+
+  return (
+    <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+      <input
+        value={q}
+        onChange={(e) => setQ(e.target.value)}
+        placeholder={`filter ${runs.length} pieces…`}
+        style={{ ...selectStyle, width: 150 }}
+      />
+      <select value={run || ''} onChange={onRunChange}
+              style={{ ...selectStyle, maxWidth: 260 }}>
+        {Object.keys(groups).sort().map((tier) => (
+          <optgroup key={tier} label={`${tier} (${groups[tier].length})`}>
+            {groups[tier].map((r) => <option key={r} value={r}>{r}</option>)}
+          </optgroup>
+        ))}
+      </select>
+      <button onClick={() => step(-1)} style={btnStyle} title="Previous piece">‹</button>
+      <button onClick={() => step(1)} style={btnStyle} title="Next piece">›</button>
+      {q && (
+        <span style={{ fontSize: 11, color: C.dim }}>
+          {shown.length}/{runs.length}
+        </span>
+      )}
+    </span>
+  );
+}
+
 const tone3 = (x) => (x >= 0.97 ? C.good : x >= 0.85 ? C.warn : C.bad);
 
 function Scorecard({ manifest }) {
   const c = manifest.counts || {};
   const d = manifest.decisions || {};
   const h = d.hands, b = d.beaming, du = d.durations, db = d.downbeats;
+  // Keyboard music has 2 parts (one per hand). SATB chorales and string
+  // quartets have 4, so a 2-staff mapping cannot be correct there and the
+  // "hands" percentage is not a pipeline failure — it is a category error.
+  const multiPart = (h?.ref_parts?.length || 0) > 2;
 
   return (
     <div style={{ borderBottom: `1px solid ${C.border}`, background: C.panelAlt }}>
@@ -279,8 +336,16 @@ function Scorecard({ manifest }) {
           </>
         )}
         {h && (
-          <Stat label="Hands (L/R)" value={pct(h.accuracy)} tone={tone3(h.accuracy)} big
-            sub={`${h.correct}/${h.total}${h.mapping_is_swapped ? ' · swapped' : ''}`} />
+          // "Hands" only means something when the reference is keyboard
+          // music (2 parts). SATB chorales and quartets have 4 parts, so
+          // a 2-staff mapping cannot be right and the % is not a failure.
+          multiPart ? (
+            <Stat label="Hands (L/R)" value="n/a" tone={C.dim} big
+              sub={`${h.ref_parts?.length || '?'}-part reference — not keyboard`} />
+          ) : (
+            <Stat label="Hands (L/R)" value={pct(h.accuracy)} tone={tone3(h.accuracy)} big
+              sub={`${h.correct}/${h.total}${h.mapping_is_swapped ? ' · swapped' : ''}`} />
+          )
         )}
         {h?.per_hand?.RH && (
           <Stat label="Right hand" value={pct(h.per_hand.RH.accuracy)}

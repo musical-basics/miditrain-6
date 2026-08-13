@@ -10,3 +10,5 @@ corpus files/venv/
 visualizer/public/compare/
 # regenerable meter diagnostics (run_meter_diag.py rebuilds these)
 visualizer/public/meterdiag/
+# regenerable hand-separation truth (score_hands.py --emit-truth rebuilds)
+corpus_runs/hands/
