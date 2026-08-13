@@ -1,5 +1,59 @@
 # Session Log
 
+## 2026-08-13 (later) — Scoring what the engine DECIDES, not the identity function
+
+User's correction, and it was right: the Clementi MIDI is a **render of the
+same MusicXML**, so comparing pitch+onset measures the identity function.
+The 100% "note accuracy" reported earlier was tautological — it proved the
+renderer round-trips, not that the pipeline works. It is now demoted to an
+explicit *alignment check* everywhere (CLI, manifest, and a standing caveat
+line in the GUI).
+
+**New `score_notation.py`** scores the decisions that can actually be wrong,
+using the reference's own structure as truth (part index = hand, measure
+offsets = downbeats, beams = beam groups):
+
+| decision | Clementi | notes |
+|---|---|---|
+| downbeats | **F1 100%**, 0 errors, 4/4 strict | genuinely correct |
+| hands (L/R) | **94.6%** (RH 96.5 / LH 90.6) | 18 real errors |
+| beaming | **97.2%** | after two fixes below |
+| rhythm | **88.0%** | 40 notes, one systematic cause |
+
+**Two real bugs this exposed and fixed in Phase 5C:**
+
+1. **Beaming did not exist as an engine output.** Neither 5B nor 5C emitted
+   beams — the VexFlow renderer inferred them at draw time, so the "beaming"
+   the UI showed was the renderer's guess, not the engine's claim. 5C now
+   derives beam groups from the inferred meter (`beam_group_ticks`), which
+   makes beaming a scoreable metrical assertion. Groups: compound meters
+   beam by dotted-quarter, 4/4 beams to the **half-bar** (measured: beaming
+   to the quarter caused 40/40 of the initial disagreements), others by beat.
+   64% → 78.5%.
+2. **Phase 2 voice-splitting was silently wrecking the engraving.** A bar of
+   continuous eighths arrives split across Voice 1 and Voice 2 (alternating
+   notes — the known 3→4 / fast-run instability in
+   docs/voice_threading_issues.md). Each voice then sees gaps where the
+   other's notes are, so *nothing beamed* — measure 7 came out as 8 unbeamed
+   eighths. Fixed at the input, not in the beamer: `merge_monophonic_voices`
+   merges same-staff voices whose notes never overlap in time. Genuine
+   polyphony (overlapping spans) is untouched, so this cannot flatten a real
+   two-voice texture. 78.5% → **97.2%**.
+
+**Left as a finding, not patched**: the 18 hand errors are all in the D4–F4
+crossover region (measures 9/11 repeated D4 → should be LH; 24–30 G3–D4 →
+should be RH). That is Phase 2 pitch-proximity threading failing where the
+hands meet, not an export artifact — a real Phase 2 lead. Likewise the 40
+rhythm errors are one systematic cause: Phase 5A's monophony truncation
+writing eighths where the score holds quarters.
+
+**`run.sh` is now one command**: kills whatever holds the port (by port,
+then by name), installs deps only when stale, boots, waits for the server to
+actually answer, opens the browser, and traps Ctrl-C so it never orphans a
+dev server. `PORT=xxxx ./run.sh` and `--no-open` supported. Verified by
+running it twice in a row — second run detected PID, killed it, rebooted,
+exactly one server left on the port.
+
 ## 2026-08-13 — Phase 5C MusicXML export + score comparison GUI
 
 Closes the loop the project was missing: MIDI in, **MusicXML out**, diffed

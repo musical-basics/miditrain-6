@@ -360,6 +360,24 @@ accidentals. One part, two staves, 5B's voice map.
 `divisions` (per quarter) is derived as `subdivision × denominator / 4`, so
 one Phase 5A tick is one division whenever that is integral.
 
+**Beaming is an engine output, not an engraving detail.** Beam groups follow
+the meter the engine inferred, so they are a metrical assertion that can be
+scored. `beam_group_ticks`: compound meters (6/8, 9/8, 12/8) beam by the
+dotted-quarter group of three; **4/4 beams to the half-bar** (beaming to the
+quarter was measured wrong — 40/40 of the initial disagreements against the
+engraved Clementi); everything else beams to the beat. Only the primary
+(8th-level) beam is emitted. Before this, NEITHER 5B nor 5C emitted beams —
+the VexFlow renderer inferred them at draw time, so beaming was the
+renderer's guess and was never the engine's claim.
+
+**`merge_monophonic_voices` (architectural fix, not a patch)**: Phase 2
+splits one melodic line across two voices (the 3→4 / fast-run instability in
+docs/voice_threading_issues.md). Downstream, each voice sees gaps where the
+other's notes are, so a bar of continuous eighths beamed as nothing at all.
+5C merges same-staff voices whose notes never overlap in time — they were
+one voice all along. Voices with genuinely overlapping spans are left alone,
+so real polyphony cannot be flattened. Beaming 78.5% → 97.2%.
+
 **Gotcha**: 5A measure numbering is 0-based on some grids and 1-based on
 others, and an anacrusis can make `abs_tick_start` negative — so each
 measure's tick origin is derived from the notes IN that measure, never from
@@ -381,11 +399,35 @@ nearest-onset and one-to-one. Spelling and duration agreement are reported
 separately as secondary stats — they are 5B/5A quality signals, not
 note-identity errors.
 
-**Measured (user's Clementi Sonatina, 333 notes)**: bus meter 4/4 strict
-F1 100%; note precision/recall/F1 **1.000 at zero onset tolerance**;
-spelling 100%; key C correct. Duration 88% — 40 notes the score holds a
-quarter that the engine writes as an eighth, all from 5A's monophony
-truncation. This is the first actual measurement of that known distortion.
+**Note accuracy is NOT a result when the MIDI came from the score.** If the
+MIDI is a render of the reference MusicXML (the usual case for an ad-hoc
+pair), pitch+onset agreement is the identity function — it proves the
+renderer round-trips, nothing about the pipeline. `compare_musicxml.py`
+output is therefore an *alignment check*; the real scorecard is:
+
+`score_notation.py -g gen.musicxml -r ref.musicxml --grid <grid>.json`
+
+scores what the engine actually decides, taking truth from the reference's
+own structure (part index = hand, measure offsets = downbeats, beam groups =
+beaming):
+
+- **hands (L/R)** — Phase 2 voices collapsed to staves vs the reference's
+  parts, reported raw AND under the best global mapping (so a wholesale
+  label swap reads as a swap, not as 0%), plus per-hand accuracy;
+- **downbeats** — engine barlines vs measure starts, P/P/F1 at ±tol, same
+  two-pointer 1:1 discipline as the corpus scorer, plus time signature;
+- **beaming** — per adjacent pair of beamable notes, do both sides agree
+  they are beamed together? (a metrical claim, see 5C below);
+- **notated duration** and **stem direction** (engraving only).
+
+**Measured (user's Clementi Sonatina, 333 notes, bus grid)**: downbeats
+**F1 100%** / 0 errors / 4/4 strict · hands **94.6%** (RH 96.5, LH 90.6) ·
+beaming **97.2%** · rhythm **88.0%**.
+
+The residuals are both real engine leads, not export artifacts: the 18 hand
+errors sit entirely in the D4–F4 crossover where Phase 2's pitch-proximity
+threading fails, and the 40 rhythm errors are one systematic cause — Phase
+5A's monophony truncation writing eighths where the score holds quarters.
 
 ---
 
@@ -451,7 +493,8 @@ adopted (+).
 | phase5_notation.py | 5 | quantized + grid → phase5_notation_*.json |
 | phase5_musicxml.py | 5 | quantized + grid → *.musicxml (Phase 5C) |
 | musicxml_to_score.py | 5 | reference .musicxml → IntermediateScore (needs music21) |
-| compare_musicxml.py | eval | two .musicxml → notes-only diff (needs music21) |
+| compare_musicxml.py | eval | two .musicxml → alignment check (needs music21) |
+| score_notation.py | eval | two .musicxml + grid → hands/downbeats/beaming/rhythm scorecard (needs music21) |
 | run_xml_compare.py | eval | MIDI + reference .musicxml → visualizer/public/compare/&lt;name&gt;/ |
 | run_corpus_eval.py / run_benchmark.py / grid_search_*.py / make_corpus_split.py | eval | see Evaluation |
 | visualizer/ (Next.js) | UI | runs the whole chain via /api/run-python; views per phase |

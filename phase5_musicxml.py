@@ -169,6 +169,8 @@ def build_musicxml(notes, grid, algorithm='temperley', title='MidiTrain Export',
             staff, voice = VOICE_MAP.get(n.get('voice_tag'), DEFAULT_VOICE)
             buckets.setdefault((staff, voice), []).append(n)
 
+        buckets = merge_monophonic_voices(buckets)
+
         # Ensure both staves are represented so the part stays 2-staff even
         # in measures where one hand is silent.
         for staff in (1, 2):
@@ -187,7 +189,11 @@ def build_musicxml(notes, grid, algorithm='temperley', title='MidiTrain Export',
                     ET.SubElement(b, 'duration').text = str(cursor)
                 cursor = 0
 
-            local = 0  # ticks consumed within the measure for this voice
+            # Pass 1: resolve this voice's measure into a timeline of events
+            # (notes, chords and the rests between them). Beaming needs to see
+            # neighbours, so nothing is emitted until the timeline is built.
+            events = []
+            local = 0
             i = 0
             while i < len(v_notes):
                 n = v_notes[i]
@@ -205,13 +211,10 @@ def build_musicxml(notes, grid, algorithm='temperley', title='MidiTrain Export',
                     continue
 
                 if start_local > local:
-                    gap = start_local - local
-                    _emit_rest(measure, gap, divs_per_tick,
-                               divisions_per_whole, staff, voice)
-                    cursor += _divs(gap, divs_per_tick)
+                    events.append({'rest': True, 'start': local,
+                                   'ticks': start_local - local})
                     local = start_local
 
-                # collect the chord: same voice, same start tick
                 chord = [n]
                 j = i + 1
                 while (j < len(v_notes)
@@ -220,20 +223,31 @@ def build_musicxml(notes, grid, algorithm='temperley', title='MidiTrain Export',
                     chord.append(v_notes[j])
                     j += 1
 
-                dur_divs = _divs(dur_ticks, divs_per_tick)
-                ntype, dots = duration_type(dur_divs, divisions_per_whole)
-                for ci, cn in enumerate(chord):
-                    _emit_note(measure, cn, spelling_map, dur_divs, ntype,
-                               dots, staff, voice, is_chord=(ci > 0))
-                cursor += dur_divs
+                events.append({'rest': False, 'start': start_local,
+                               'ticks': dur_ticks, 'chord': chord})
                 local = start_local + dur_ticks
                 i = j
 
             if local < ticks_per_measure:
-                gap = ticks_per_measure - local
-                _emit_rest(measure, gap, divs_per_tick, divisions_per_whole,
-                           staff, voice)
-                cursor += _divs(gap, divs_per_tick)
+                events.append({'rest': True, 'start': local,
+                               'ticks': ticks_per_measure - local})
+
+            assign_beams(events, subdivision, beats_per_measure, denominator)
+
+            # Pass 2: emit
+            for ev in events:
+                if ev['rest']:
+                    _emit_rest(measure, ev['ticks'], divs_per_tick,
+                               divisions_per_whole, staff, voice)
+                    cursor += _divs(ev['ticks'], divs_per_tick)
+                    continue
+                dur_divs = _divs(ev['ticks'], divs_per_tick)
+                ntype, dots = duration_type(dur_divs, divisions_per_whole)
+                for ci, cn in enumerate(ev['chord']):
+                    _emit_note(measure, cn, spelling_map, dur_divs, ntype,
+                               dots, staff, voice, is_chord=(ci > 0),
+                               beams=(ev.get('beams') if ci == 0 else None))
+                cursor += dur_divs
 
     return score
 
@@ -243,8 +257,140 @@ def _divs(ticks, divs_per_tick):
     return max(1, int(round(ticks * divs_per_tick)))
 
 
+def merge_monophonic_voices(buckets):
+    """Merge same-staff voices that never sound at the same time.
+
+    Phase 2 is known to split one melodic line across two voices (the
+    documented 3->4 transition / fast-run instability in
+    docs/voice_threading_issues.md). Downstream that shows up as a bar of
+    continuous eighths arriving as two half-empty voices, each seeing gaps
+    where the other's notes are — so nothing beams and the engraving is
+    wrong for a reason that has nothing to do with engraving.
+
+    Rather than special-casing it in the beamer, fix the input: within a
+    staff, if two voices' notes never overlap in time, they were one voice
+    all along and are merged. Voices that genuinely overlap (real
+    polyphony) are left alone, so this cannot collapse a true two-voice
+    texture into a monophonic one.
+    """
+    out = {}
+    by_staff = {}
+    for (staff, voice), notes in buckets.items():
+        by_staff.setdefault(staff, []).append((voice, notes))
+
+    for staff, entries in by_staff.items():
+        entries.sort()
+        merged = []  # list of (voice, notes, spans)
+        for voice, notes in entries:
+            spans = [(n['quantized']['abs_tick_start'],
+                      n['quantized']['abs_tick_start']
+                      + max(1, n['quantized'].get('duration_ticks', 1)))
+                     for n in notes]
+            target = None
+            for m in merged:
+                if not _spans_overlap(m[2], spans):
+                    target = m
+                    break
+            if target is None:
+                merged.append((voice, list(notes), list(spans)))
+            else:
+                target[1].extend(notes)
+                target[2].extend(spans)
+
+        for voice, notes, _ in merged:
+            out[(staff, voice)] = notes
+
+    return out
+
+
+def _spans_overlap(a, b):
+    """Do any two half-open intervals from a and b intersect?
+
+    Chords are fine (identical spans are a chord, not an overlap of two
+    voices), so exact-equal spans do not count as overlapping.
+    """
+    for s1, e1 in a:
+        for s2, e2 in b:
+            if (s1, e1) == (s2, e2):
+                continue
+            if s1 < e2 and s2 < e1:
+                return True
+    return False
+
+
+def beam_group_ticks(subdivision, beats_per_measure, denominator):
+    """How many ticks one beam group spans.
+
+    Beaming is a METRICAL claim, so the group size comes from the meter the
+    engine inferred, not from a fixed constant. Standard engraving practice:
+
+    - compound meters (6/8, 9/8, 12/8): beam the dotted-quarter group of
+      three beats, which IS the felt beat there;
+    - 4/4 (and 2/2): beam eighths to the half-bar, not to the quarter —
+      this is the conventional grouping and, measured against a real
+      engraved Clementi, was the single largest source of beam disagreement
+      (every one of 40 mismatches was "reference beams, we don't");
+    - everything else (3/4, 2/4, …): beam to the beat.
+
+    Note this governs the EIGHTH-level group. Sixteenths inside it still
+    subdivide by beat in engraving practice, but only the primary beam is
+    emitted and scored here.
+    """
+    if denominator == 8 and beats_per_measure % 3 == 0:
+        return subdivision * 3
+    if denominator == 4 and beats_per_measure == 4:
+        return subdivision * 2  # half-bar
+    if denominator == 2 and beats_per_measure == 2:
+        return subdivision
+    return subdivision
+
+
+def assign_beams(events, subdivision, beats_per_measure, denominator):
+    """Attach MusicXML beam types to a measure's events, in place.
+
+    A run of consecutive beamable notes (eighth or shorter, no intervening
+    rest) that sits inside ONE beam group gets start/continue/stop. Notes
+    alone in their group stay unbeamed. Only the primary (8th-level) beam is
+    emitted — that is what beam-agreement scoring compares.
+    """
+    group = beam_group_ticks(subdivision, beats_per_measure, denominator)
+    if group <= 0:
+        return
+
+    # An eighth note lasts subdivision/2 ticks (subdivision ticks = one beat =
+    # a quarter in x/4). Anything longer than an eighth is never beamed.
+    max_beamable = subdivision / 2.0
+    beamable = []
+    for idx, ev in enumerate(events):
+        if ev['rest'] or ev['ticks'] > max_beamable:
+            beamable.append(None)  # a barrier: rest, or a note too long
+        else:
+            beamable.append(idx)
+
+    run = []
+    for idx, mark in enumerate(beamable):
+        same_group = (run and mark is not None
+                      and events[run[-1]]['start'] // group
+                      == events[idx]['start'] // group)
+        if mark is not None and (not run or same_group):
+            run.append(idx)
+            continue
+        _flush_beam_run(events, run)
+        run = [idx] if mark is not None else []
+    _flush_beam_run(events, run)
+
+
+def _flush_beam_run(events, run):
+    if len(run) < 2:
+        return
+    for pos, idx in enumerate(run):
+        events[idx]['beams'] = ('begin' if pos == 0
+                                else 'end' if pos == len(run) - 1
+                                else 'continue')
+
+
 def _emit_note(measure, n, spelling_map, dur_divs, ntype, dots, staff, voice,
-               is_chord):
+               is_chord, beams=None):
     el = ET.SubElement(measure, 'note')
     if is_chord:
         ET.SubElement(el, 'chord')
@@ -261,6 +407,9 @@ def _emit_note(measure, n, spelling_map, dur_divs, ntype, dots, staff, voice,
     for _ in range(dots):
         ET.SubElement(el, 'dot')
     ET.SubElement(el, 'staff').text = str(staff)
+    if beams:
+        # primary (8th-level) beam only; MusicXML numbers beams from 1
+        ET.SubElement(el, 'beam', number='1').text = beams
 
 
 def _emit_rest(measure, gap_ticks, divs_per_tick, divisions_per_whole,

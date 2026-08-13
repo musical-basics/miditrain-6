@@ -115,6 +115,8 @@ def main():
                     choices=["greedy", "beam"])
     ap.add_argument("--tol", type=float, default=0.25,
                     help="onset tolerance in quarter notes")
+    ap.add_argument("--tol-ms", type=float, default=50.0,
+                    help="downbeat tolerance in ms (corpus convention: 50)")
     args = ap.parse_args()
 
     need_venv()
@@ -189,17 +191,28 @@ def main():
         raise SystemExit(f"reference conversion failed: {proc.stderr.strip()[:400]}")
     print(proc.stdout.strip())
 
-    print("[7/7] Comparing notes...")
+    print("[7/8] Comparing notes (alignment check)...")
     cmp_json = os.path.join(out_dir, "comparison.json")
     proc = subprocess.run([VENV_PY, "compare_musicxml.py", "-g", gen_xml,
                            "-r", ref_xml, "--tol", str(args.tol),
                            "--json", cmp_json], capture_output=True, text=True)
-    print(proc.stdout)
     if proc.returncode != 0:
         raise SystemExit(f"comparison failed: {proc.stderr.strip()[:400]}")
 
+    print("[8/8] Scoring engine decisions (hands, downbeats, beaming)...")
+    dec_json = os.path.join(out_dir, "decisions.json")
+    proc = subprocess.run([VENV_PY, "score_notation.py", "-g", gen_xml,
+                           "-r", ref_xml, "--grid", grid,
+                           "--tol-ms", str(args.tol_ms),
+                           "--json", dec_json], capture_output=True, text=True)
+    print(proc.stdout)
+    if proc.returncode != 0:
+        raise SystemExit(f"decision scoring failed: {proc.stderr.strip()[:400]}")
+
     with open(cmp_json) as f:
         rep = json.load(f)
+    with open(dec_json) as f:
+        dec = json.load(f)
     with open(grid) as f:
         gd = json.load(f)
     gm = gd.get("meter") if isinstance(gd.get("meter"), dict) else gd
@@ -222,6 +235,16 @@ def main():
         "note_accuracy": rep["note_accuracy"],
         "secondary": rep["secondary"],
         "engines_available": sorted(preds),
+        # the numbers that actually measure the engine; note_accuracy above is
+        # an ALIGNMENT check (the MIDI is a render of this score, so pitch and
+        # onset agreement is expected and proves nothing about the pipeline)
+        "decisions": {
+            "hands": dec["hands"],
+            "beaming": dec["beaming"],
+            "durations": dec["durations"],
+            "stems": dec["stems"],
+            "downbeats": dec.get("downbeats"),
+        },
     }
     with open(os.path.join(out_dir, "manifest.json"), "w") as f:
         json.dump(manifest, f, indent=1)

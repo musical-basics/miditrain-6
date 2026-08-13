@@ -43,7 +43,7 @@ export default function ScoreCompare() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [view, setView] = useState('stacked'); // stacked | generated | reference | table
-  const [filter, setFilter] = useState('all'); // all | mismatch | extra | missing
+  const [filter, setFilter] = useState('problems'); // problems | hand | rhythm | all
   const [showDurations, setShowDurations] = useState(true);
   const [colorMode, setColorMode] = useState('diff'); // diff | harmonic
 
@@ -84,10 +84,11 @@ export default function ScoreCompare() {
       fetch(`${base}/generated_score.json`).then((r) => r.json()),
       fetch(`${base}/reference_score.json`).then((r) => r.json()),
       fetch(`${base}/comparison.json`).then((r) => r.json()),
+      fetch(`${base}/decisions.json`).then((r) => (r.ok ? r.json() : null)),
     ])
-      .then(([manifest, generated, reference, comparison]) => {
+      .then(([manifest, generated, reference, comparison, decisions]) => {
         if (!alive) return;
-        setData({ manifest, generated, reference, comparison });
+        setData({ manifest, generated, reference, comparison, decisions });
         setLoading(false);
       })
       .catch((e) => {
@@ -100,37 +101,27 @@ export default function ScoreCompare() {
     };
   }, [run]);
 
+  // One row per note, carrying every decision we can check on it.
   const rows = useMemo(() => {
     if (!data) return [];
-    const { comparison } = data;
+    const { comparison, decisions } = data;
+    const wrongHand = new Map();
+    for (const w of decisions?.wrong_hand || []) {
+      wrongHand.set(`${w.pitch}@${Number(w.onset_q).toFixed(4)}`,
+        `staff ${w.generated_staff} → ${w.reference_staff}`);
+    }
     const out = [];
     for (const p of comparison.pairs || []) {
-      const durOK = p.duration_match;
-      const spellOK = p.spelling_match;
+      const hand = wrongHand.get(`${p.pitch}@${Number(p.onset_q).toFixed(4)}`);
       out.push({
-        kind: durOK && spellOK ? 'match' : 'mismatch',
         measure: p.gen_measure,
         onset: p.onset_q,
         gen: p.gen_name,
         ref: p.ref_name,
         genDur: p.gen_dur_q,
         refDur: p.ref_dur_q,
-        spellOK,
-        durOK,
-      });
-    }
-    for (const e of comparison.extra || []) {
-      out.push({
-        kind: 'extra', measure: e.measure, onset: e.onset_q,
-        gen: e.name, ref: '—', genDur: e.dur_q, refDur: null,
-        spellOK: false, durOK: false,
-      });
-    }
-    for (const m of comparison.missing || []) {
-      out.push({
-        kind: 'missing', measure: m.measure, onset: m.onset_q,
-        gen: '—', ref: m.name, genDur: null, refDur: m.dur_q,
-        spellOK: false, durOK: false,
+        durOK: p.duration_match,
+        handErr: hand || null,
       });
     }
     out.sort((a, b) => a.onset - b.onset || String(a.gen).localeCompare(String(b.gen)));
@@ -138,9 +129,10 @@ export default function ScoreCompare() {
   }, [data]);
 
   const filtered = useMemo(() => {
-    if (filter === 'all') return rows;
-    if (filter === 'mismatch') return rows.filter((r) => r.kind === 'mismatch');
-    return rows.filter((r) => r.kind === filter);
+    if (filter === 'hand') return rows.filter((r) => r.handErr);
+    if (filter === 'rhythm') return rows.filter((r) => !r.durOK);
+    if (filter === 'problems') return rows.filter((r) => r.handErr || !r.durOK);
+    return rows;
   }, [rows, filter]);
 
   const onRunChange = useCallback((e) => {
@@ -187,6 +179,7 @@ export default function ScoreCompare() {
                 reference={data.reference}
                 colorMode={colorMode}
                 comparison={data.comparison}
+                decisions={data.decisions}
                 ticksPerQuarter={data.manifest.ticks_per_quarter || 4}
               />
             </>
@@ -257,37 +250,64 @@ function Header({ runs, run, onRunChange, view, setView, manifest }) {
   );
 }
 
+const tone3 = (x) => (x >= 0.97 ? C.good : x >= 0.85 ? C.warn : C.bad);
+
 function Scorecard({ manifest }) {
-  const a = manifest.note_accuracy || {};
   const c = manifest.counts || {};
-  const s = manifest.secondary || {};
-  const perfect = c.extra_in_generated === 0 && c.missing_from_generated === 0;
+  const d = manifest.decisions || {};
+  const h = d.hands, b = d.beaming, du = d.durations, db = d.downbeats;
 
   return (
-    <div style={{ display: 'flex', gap: 12, padding: '16px 20px', flexWrap: 'wrap',
-      borderBottom: `1px solid ${C.border}`, background: C.panelAlt }}>
-      <Stat label="Note F1" value={pct(a.f1 ?? 0)}
-        tone={a.f1 >= 0.999 ? C.good : a.f1 >= 0.9 ? C.warn : C.bad} big />
-      <Stat label="Precision" value={pct(a.precision ?? 0)} />
-      <Stat label="Recall" value={pct(a.recall ?? 0)} />
-      <Divider />
-      <Stat label="Matched" value={c.matched} tone={C.good} />
-      <Stat label="Extra" value={c.extra_in_generated}
-        tone={c.extra_in_generated ? C.bad : C.dim} />
-      <Stat label="Missing" value={c.missing_from_generated}
-        tone={c.missing_from_generated ? C.bad : C.dim} />
-      <Divider />
-      <Stat label="Spelling" value={pct(s.spelling_pct ?? 0)}
-        tone={s.spelling_pct >= 0.99 ? C.good : C.warn} sub="not note identity" />
-      <Stat label="Duration" value={pct(s.duration_pct ?? 0)}
-        tone={s.duration_pct >= 0.99 ? C.good : C.warn} sub="not note identity" />
+    <div style={{ borderBottom: `1px solid ${C.border}`, background: C.panelAlt }}>
+      <div style={{ display: 'flex', gap: 14, padding: '15px 20px', flexWrap: 'wrap',
+        alignItems: 'flex-start' }}>
+        {db && (
+          <>
+            <Stat label="Downbeats F1" value={pct(db.f1)} tone={tone3(db.f1)} big
+              sub={`${db.errors} errors · ±${db.tolerance_ms}ms`} />
+            <Stat label="Time sig"
+              value={db.predicted_time_signature || '—'}
+              tone={db.predicted_time_signature === db.reference_time_signature
+                ? C.good : C.bad}
+              sub={`reference ${db.reference_time_signature || '?'}`} />
+            <Divider />
+          </>
+        )}
+        {h && (
+          <Stat label="Hands (L/R)" value={pct(h.accuracy)} tone={tone3(h.accuracy)} big
+            sub={`${h.correct}/${h.total}${h.mapping_is_swapped ? ' · swapped' : ''}`} />
+        )}
+        {h?.per_hand?.RH && (
+          <Stat label="Right hand" value={pct(h.per_hand.RH.accuracy)}
+            tone={tone3(h.per_hand.RH.accuracy)}
+            sub={`${h.per_hand.RH.correct}/${h.per_hand.RH.notes}`} />
+        )}
+        {h?.per_hand?.LH && (
+          <Stat label="Left hand" value={pct(h.per_hand.LH.accuracy)}
+            tone={tone3(h.per_hand.LH.accuracy)}
+            sub={`${h.per_hand.LH.correct}/${h.per_hand.LH.notes}`} />
+        )}
+        <Divider />
+        {b && b.accuracy != null && (
+          <Stat label="Beaming" value={pct(b.accuracy)} tone={tone3(b.accuracy)} big
+            sub={`${b.agree}/${b.considered_adjacent_pairs} pairs`} />
+        )}
+        {du && (
+          <Stat label="Rhythm" value={pct(du.accuracy)} tone={tone3(du.accuracy)} big
+            sub={`${du.correct}/${du.total} notated durations`} />
+        )}
+      </div>
 
-      {perfect && (
-        <div style={{ marginLeft: 'auto', alignSelf: 'center', color: C.good,
-          fontSize: 13, fontWeight: 600 }}>
-          ✓ every note reconstructed
-        </div>
-      )}
+      <div style={{ padding: '0 20px 12px', fontSize: 11.5, color: C.dim,
+        display: 'flex', gap: 8, alignItems: 'baseline', flexWrap: 'wrap' }}>
+        <span style={{ color: C.warn }}>note</span>
+        <span>
+          all {c.reference} notes align on pitch + onset, but that is an{' '}
+          <b style={{ color: C.text }}>alignment check, not a result</b> — the MIDI
+          was rendered from this score, so the notes were never in question. The
+          numbers above are what the engine actually decides.
+        </span>
+      </div>
     </div>
   );
 }
@@ -310,9 +330,9 @@ const Divider = () => (
 
 function ColorLegend({ colorMode, setColorMode }) {
   const swatches = colorMode === 'diff'
-    ? [['rgba(232,232,240,0.92)', 'matches the reference'],
-       [C.warn, 'right note, different duration/spelling'],
-       [C.bad, 'not in the reference']]
+    ? [['rgba(232,232,240,0.92)', 'engraved as the reference does'],
+       [C.warn, 'wrong notated rhythm'],
+       [C.bad, 'assigned to the wrong hand']]
     : [['linear-gradient(90deg,#ff004c,#ffb340,#3ddc84,#6c8cff)',
         'Phase 1 harmonic colour']];
 
@@ -357,16 +377,18 @@ function ColorLegend({ colorMode, setColorMode }) {
  * not match is painted red; duration/spelling disagreements amber; exact
  * matches are left neutral so the eye goes to the problems.
  */
-function recolorByStatus(score, comparison, divisionsPerQuarter) {
+function recolorByStatus(score, comparison, decisions, divisionsPerQuarter) {
   if (!score?.measures || !comparison) return score;
 
-  const status = new Map();
   const key = (pitch, onsetQ) => `${pitch}@${Number(onsetQ).toFixed(4)}`;
+  const status = new Map();
   for (const p of comparison.pairs || []) {
-    status.set(key(p.pitch, p.onset_q),
-      p.duration_match && p.spelling_match ? 'match' : 'soft');
+    status.set(key(p.pitch, p.onset_q), p.duration_match ? 'match' : 'soft');
   }
-  for (const e of comparison.extra || []) status.set(key(e.pitch, e.onset_q), 'hard');
+  // wrong hand outranks a rhythm difference — it is the worse error
+  for (const w of decisions?.wrong_hand || []) {
+    status.set(key(w.pitch, w.onset_q), 'hard');
+  }
 
   const TONE = { match: null, soft: C.warn, hard: C.bad };
 
@@ -385,7 +407,7 @@ function recolorByStatus(score, comparison, divisionsPerQuarter) {
             const pitch = Number(mt[1]);
             const onsetQ = Number(mt[2]) / divisionsPerQuarter;
             const s = status.get(key(pitch, onsetQ));
-            const tone = s ? TONE[s] : C.bad; // unknown => unmatched
+            const tone = s ? TONE[s] : null; // unknown => leave neutral
             return tone ? { ...n, color: tone }
                         : { ...n, color: 'rgba(232,232,240,0.92)' };
           }),
@@ -396,12 +418,12 @@ function recolorByStatus(score, comparison, divisionsPerQuarter) {
 }
 
 function ScorePanes({ view, generated, reference, colorMode, comparison,
-                      ticksPerQuarter }) {
+                      decisions, ticksPerQuarter }) {
   const genScore = useMemo(
     () => (colorMode === 'diff'
-      ? recolorByStatus(generated, comparison, ticksPerQuarter)
+      ? recolorByStatus(generated, comparison, decisions, ticksPerQuarter)
       : generated),
-    [colorMode, generated, comparison, ticksPerQuarter]);
+    [colorMode, generated, comparison, decisions, ticksPerQuarter]);
 
   const panes = view === 'stacked'
     ? [['Generated — MIDI through the engine', genScore, C.accent],
@@ -480,17 +502,17 @@ function ScorePanes({ view, generated, reference, colorMode, comparison,
 
 function NoteTable({ rows, allRows, filter, setFilter, showDurations, setShowDurations }) {
   const counts = useMemo(() => ({
+    problems: allRows.filter((r) => r.handErr || !r.durOK).length,
+    hand: allRows.filter((r) => r.handErr).length,
+    rhythm: allRows.filter((r) => !r.durOK).length,
     all: allRows.length,
-    mismatch: allRows.filter((r) => r.kind === 'mismatch').length,
-    extra: allRows.filter((r) => r.kind === 'extra').length,
-    missing: allRows.filter((r) => r.kind === 'missing').length,
   }), [allRows]);
 
   const filters = [
-    ['all', 'All notes'],
-    ['mismatch', 'Spelling/duration differs'],
-    ['extra', 'Extra in generated'],
-    ['missing', 'Missing from generated'],
+    ['problems', 'All problems'],
+    ['hand', 'Wrong hand'],
+    ['rhythm', 'Wrong rhythm'],
+    ['all', 'Every note'],
   ];
 
   return (
@@ -528,23 +550,23 @@ function NoteTable({ rows, allRows, filter, setFilter, showDurations, setShowDur
             fontVariantNumeric: 'tabular-nums' }}>
             <thead>
               <tr style={{ background: C.panel, textAlign: 'left' }}>
-                <Th>Status</Th><Th>Measure</Th><Th>Onset (q)</Th>
-                <Th>Generated</Th><Th>Reference</Th>
-                {showDurations && <><Th>Gen dur</Th><Th>Ref dur</Th></>}
+                <Th>Issue</Th><Th>Measure</Th><Th>Beat (q)</Th><Th>Note</Th>
+                <Th>Hand</Th>
+                {showDurations && <><Th>Written</Th><Th>Should be</Th></>}
               </tr>
             </thead>
             <tbody>
               {rows.slice(0, 2000).map((r, i) => (
                 <tr key={i} style={{ borderTop: `1px solid ${C.border}`,
                   background: i % 2 ? 'transparent' : 'rgba(255,255,255,0.015)' }}>
-                  <Td><StatusChip kind={r.kind} spellOK={r.spellOK} durOK={r.durOK} /></Td>
+                  <Td><IssueChip handErr={r.handErr} durOK={r.durOK} /></Td>
                   <Td>{r.measure}</Td>
                   <Td>{r.onset}</Td>
-                  <Td tone={r.kind === 'missing' ? C.dim : C.text}>{r.gen}</Td>
-                  <Td tone={r.kind === 'extra' ? C.dim : C.text}>{r.ref}</Td>
+                  <Td>{r.gen}</Td>
+                  <Td tone={r.handErr ? C.bad : C.dim}>{r.handErr || 'ok'}</Td>
                   {showDurations && <>
-                    <Td tone={r.durOK ? C.text : C.warn}>{r.genDur ?? '—'}</Td>
-                    <Td tone={r.durOK ? C.text : C.warn}>{r.refDur ?? '—'}</Td>
+                    <Td tone={r.durOK ? C.dim : C.warn}>{r.genDur ?? '—'}</Td>
+                    <Td tone={r.durOK ? C.dim : C.warn}>{r.refDur ?? '—'}</Td>
                   </>}
                 </tr>
               ))}
@@ -561,14 +583,11 @@ function NoteTable({ rows, allRows, filter, setFilter, showDurations, setShowDur
   );
 }
 
-function StatusChip({ kind, spellOK, durOK }) {
-  const map = {
-    match: ['match', C.good],
-    mismatch: [!spellOK ? 'spelling' : 'duration', C.warn],
-    extra: ['extra', C.bad],
-    missing: ['missing', C.bad],
-  };
-  const [label, tone] = map[kind] || ['?', C.dim];
+function IssueChip({ handErr, durOK }) {
+  const [label, tone] = handErr && !durOK ? ['hand + rhythm', C.bad]
+    : handErr ? ['wrong hand', C.bad]
+      : !durOK ? ['rhythm', C.warn]
+        : ['ok', C.good];
   return (
     <span style={{ color: tone, border: `1px solid ${tone}44`, background: `${tone}18`,
       padding: '1px 7px', borderRadius: 10, fontSize: 10.5, fontWeight: 600 }}>
