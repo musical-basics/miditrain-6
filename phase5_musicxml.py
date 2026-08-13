@@ -169,6 +169,7 @@ def build_musicxml(notes, grid, algorithm='temperley', title='MidiTrain Export',
             staff, voice = VOICE_MAP.get(n.get('voice_tag'), DEFAULT_VOICE)
             buckets.setdefault((staff, voice), []).append(n)
 
+        buckets = reclaim_idle_hand(buckets, ticks_per_measure)
         buckets = merge_monophonic_voices(buckets)
 
         # Ensure both staves are represented so the part stays 2-staff even
@@ -255,6 +256,60 @@ def build_musicxml(notes, grid, algorithm='temperley', title='MidiTrain Export',
 def _divs(ticks, divs_per_tick):
     """ticks -> MusicXML divisions (one scale, used by notes and rests)."""
     return max(1, int(round(ticks * divs_per_tick)))
+
+
+def reclaim_idle_hand(buckets, ticks_per_measure):
+    """Give an idle hand back the sustained note the busy hand is holding.
+
+    The pianistic model is ONE voice per hand, splitting to two only when a
+    hand genuinely holds a note while playing others. Phase 2 threads SATB
+    voices, not hands, so it can hand the same staff both a sustained note
+    and the moving line above it while the other staff sits empty for the
+    whole bar — which engraves as one hand playing a two-voice texture and
+    the other resting, when the score simply has a whole note in the left
+    hand (Clementi m16/m17: LH holds F4 / Eb4 for the bar).
+
+    A staff is only reclaimed when the evidence is unambiguous:
+      - the other staff has NOTHING in this measure (it is idle, not quiet),
+      - the busy staff holds a note lasting at least half the bar, and
+      - that note is the lowest sounding pitch, with every other note above
+        it (so we are moving a bass, never stealing an inner melody note).
+
+    Anything less than that is left alone: hand assignment is Phase 2's job
+    and a pitch/register model measurably loses to it (docs/debt.md).
+    """
+    # runs before empty placeholder staves are added, so a staff with no
+    # entry here genuinely has no notes this measure
+    for idle, busy in ((2, 1), (1, 2)):
+        if any(v for k, v in buckets.items() if k[0] == idle):
+            continue  # that hand already has notes — nothing to reclaim
+        busy_notes = [n for k, v in buckets.items() if k[0] == busy for n in v]
+        if len(busy_notes) < 2:
+            continue
+
+        held = [n for n in busy_notes
+                if n['quantized'].get('duration_ticks', 1) >= ticks_per_measure / 2]
+        if not held:
+            continue
+        cand = min(held, key=lambda n: n['pitch'])
+        others = [n for n in busy_notes if n is not cand]
+        if not others:
+            continue
+        # only move an outer note: the bass of a left hand, the top of a right
+        if idle == 2 and min(n['pitch'] for n in others) <= cand['pitch']:
+            continue
+        if idle == 1 and max(n['pitch'] for n in others) >= cand['pitch']:
+            continue
+
+        out = {}
+        for k, v in buckets.items():
+            kept = [n for n in v if n is not cand]
+            if kept or k[0] != busy:
+                out[k] = kept
+        out.setdefault((idle, 3 if idle == 2 else 1), []).append(cand)
+        return out
+
+    return buckets
 
 
 def merge_monophonic_voices(buckets):

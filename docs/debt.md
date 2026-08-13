@@ -51,6 +51,39 @@ Three concrete Phase 2 leads, ranked, all needing the benchmark gate:
 Related: the 40 rhythm errors (88.0%) are a single cause — Phase 5A's
 monophony truncation writing eighths where the score holds quarters.
 
+### Hand model: one voice per hand (2026-08-13)
+
+The user's model — **one voice per hand, splitting to two only when a hand
+genuinely holds a note while playing others** — matches the reference
+exactly (38/38 measures single-voice on BOTH staves). We are now at 74/76
+staff-measures single-voice. `reclaim_idle_hand` in `phase5_musicxml.py`
+implements the safe half: when one hand has NOTHING in a measure and the
+other holds a >= half-bar note that is the lowest sounding pitch with every
+other note above it, that note goes back to the idle hand. Hands 94.6% →
+95.2%, LH 90.6% → 92.5%, zero regressions; fires on **0 of 363 corpus
+measures**, so it is tightly scoped to this texture.
+
+**The m9/m11 offbeat case is NOT yet solvable from the exported data** — do
+not keep trying heuristics on it, this is the record of what already failed:
+
+| candidate rule | fix | break |
+|---|---|---|
+| offbeat interleaved with LH + within an octave | 8 | 8 |
+| "fast hand" owns the offbeat (per-measure onset count) | 0 | 5 |
+| move to whichever hand is closer in pitch | 3 | 24 |
+| LH-pulse offbeat AND below the RH line | 8 | 8 |
+| ... plus a proximity threshold (0 / 2 / 4 semitones) | 8/4/4 | 8/8/8 |
+
+The blocker: **m9 and m20 are identical on every extractable feature.**
+Both have a repeated offbeat run alternating with the other hand's regular
+pulse; in both, each hand fills 3 of 3 gaps; and m11 (dLH=2, belongs LH) vs
+m20 (dLH=2, belongs RH) are indistinguishable by pitch distance. The only
+real difference is *which hand owns the underlying figure* — m9's D4
+continues the LH's broken-chord accompaniment, m20's G4 continues the RH's
+own alternation. That is a Phase 2 line-continuity judgement; a Phase 5C
+rule sees one measure and cannot make it. Any threshold that separates the
+two is overfitting to this piece.
+
 ## From the Phase 3/4 port (2026-07-05)
 
 - **`run_phase2.py` hardcodes the greedy threader** (`VoiceThreader`, line ~50).

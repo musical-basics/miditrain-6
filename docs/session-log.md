@@ -1,5 +1,39 @@
 # Session Log
 
+## 2026-08-13 (end+1) — Idle-hand reclaim: the low-hanging fruit, taken
+
+User's model: **one voice per hand, splitting to two only when a hand holds
+a note while playing others.** Checked against the reference — it is exactly
+right: the reference is single-voice on both staves in all 38 measures. We
+were at 72/76 staff-measures; now 74/76.
+
+**Shipped**: `reclaim_idle_hand` (phase5_musicxml.py). When one hand has
+NOTHING in a measure and the other holds a >= half-bar note that is the
+lowest sounding pitch with every other note above it, that note goes back to
+the idle hand. Clementi m16/m17 are the case the user pointed at — the LH's
+entire content is one whole note (F4 / Eb4) and Phase 2 gave it to the RH,
+which engraved as the RH playing two voices while the LH rested.
+
+- Hands **94.6% → 95.2%**, LH **90.6% → 92.5%**; downbeats/beaming/rhythm
+  unchanged; bars still sum exactly; 6/8 mazurka unaffected.
+- Fires on **0 of 363 corpus measures** across 12 pieces — tightly scoped,
+  no collateral risk. Only `phase5_musicxml.py` changed, so the benchmark
+  baseline is untouched by construction.
+
+**NOT shipped — m9/m11's offbeat D4.** The user's rhythmic-role reasoning is
+sound ("the RH cannot bounce A5→D4→A5; that D4 is the LH's"), but it is not
+yet decidable from the exported data. Five candidate rules were measured and
+all break as much as they fix (table in docs/debt.md). The blocker is
+concrete: **m9 and m20 are identical on every extractable feature** — both
+are a repeated offbeat run alternating with the other hand's regular pulse,
+both have each hand filling 3/3 gaps, and m11 (dLH=2, belongs LH) vs m20
+(dLH=2, belongs RH) cannot be separated by pitch distance. The real
+difference is which hand owns the underlying figure — m9's D4 continues the
+LH's broken-chord accompaniment, m20's G4 continues the RH's own
+alternation. That is Phase 2 line-continuity, not something a per-measure
+Phase 5C rule can see. Recorded rather than fudged with a threshold that
+would only fit this piece.
+
 ## 2026-08-13 (end) — Hand-split diagnosed: Phase 2, not engraving
 
 Measure numbers added to all three `/compare` panes (bar-aligned across
