@@ -1,5 +1,48 @@
 # Session Log
 
+## 2026-08-13 (later still) — Verovio as a second renderer; /compare in light mode
+
+User's call, and the evidence backs it: **DreamFlow/VexFlow is a drawing
+library, not an engraver.** Beam grouping, spacing and stem logic are whatever
+the caller passes in or whatever its heuristics guess, so "is the beaming
+right?" could not be answered while VexFlow was the only renderer — a bad beam
+might be our data or might be the library.
+
+- Added **Verovio 6.2** (`VerovioScore.js`). It is a real engraver: it applies
+  notation rules to the MusicXML itself. Ships as self-contained WASM, so
+  nothing is fetched from a CDN and the offline setup is preserved. The
+  toolkit is ~7MB and single-instance, so it is created once and shared.
+- **Three panes**: generated·Verovio, reference·Verovio, generated·VexFlow.
+  Rendering the generated and the reference through the SAME engraver is the
+  controlled comparison — any difference there is OURS. The VexFlow pane stays
+  so renderer artefacts remain visible instead of being blamed on the data.
+  A "Compare renderers" tab puts the same MusicXML through both side by side.
+- **/compare is light mode now.** A score is read on paper and the page is
+  about comparing engravings. This also fixed an invisible-ink bug: the diff
+  recolouring painted its neutral as `rgba(232,232,240,.92)` (a dark-mode
+  grey), which on white was white-on-white.
+- **Reference markings stripped before engraving.** The file is an "All
+  Markings Version"; its fingerings and dynamics are ~50% of the bytes and
+  buried the notes. Stripped on the MusicXML (not by hiding SVG) so Verovio
+  also reclaims the space they reserved. `<notations>` is deliberately NOT
+  stripped — it holds ties and tuplets, which are rhythm.
+
+**Two rendering bugs found and fixed:**
+
+1. **VexFlow allocates a fixed 99999×11500 canvas** regardless of content, so
+   the pane reported ~100k px of scroll for ~9.6k px of music and looked blank
+   at almost every scroll position. `VexflowPane` measures the real content
+   with `getBBox()` after render and crops. Both axes must be corrected AND
+   agree with the viewBox — fixing width alone left `height=11500` against a
+   361-tall viewBox, which scaled the music to near-invisibility.
+2. **Scroll sync was pixel-based.** Verovio engraves this piece ~5.7k px wide,
+   VexFlow ~9.6k — matching `scrollLeft` directly put the panes bars apart.
+   Sync is now by FRACTION of scrollable extent, and rebinds when a pane's
+   extent changes after render (the crop above changes it).
+
+Verified in a real browser: 3 panes render, 0 console errors, all three hold
+the same scroll fraction, dev server killed after.
+
 ## 2026-08-13 (later) — Scoring what the engine DECIDES, not the identity function
 
 User's correction, and it was right: the Clementi MIDI is a **render of the

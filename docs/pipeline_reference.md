@@ -388,9 +388,29 @@ Output: `<name>.musicxml`.
 ### Comparing a generated score against a real one
 `run_xml_compare.py --midi X.mid --xml X.musicxml [--name N] [--engine bus]`
 runs the whole chain and writes `visualizer/public/compare/<N>/`
-(manifest, both IntermediateScores, both MusicXMLs, comparison.json), then
-the GUI at **`/compare`** shows them stacked with synchronized scrolling,
-diff-coloured notes and a note-by-note table.
+(manifest, both IntermediateScores, both MusicXMLs, comparison.json,
+decisions.json), then the GUI at **`/compare`** (light mode) shows three
+panes with synchronized scrolling plus a note-by-note table.
+
+**Two renderers, on purpose.** DreamFlow/VexFlow is a *drawing library* —
+beam grouping, spacing and stems are whatever the caller passes or its
+heuristics guess. **Verovio** (`VerovioScore.js`, v6.2, self-contained WASM,
+no CDN) is a real *engraver* that applies notation rules to the MusicXML.
+Panes: generated·Verovio, reference·Verovio, generated·VexFlow. Putting the
+generated and reference through the SAME engraver is the controlled
+comparison — a difference there is ours, not the renderer's; keeping the
+VexFlow pane means renderer artefacts stay visible rather than being blamed
+on the data. The reference's fingerings/dynamics/slurs are stripped from the
+MusicXML before engraving (but NOT `<notations>` — it carries ties and
+tuplets, which are rhythm).
+
+**Renderer gotchas** (both cost real debugging): VexFlow allocates a fixed
+99999×11500 SVG regardless of content, so a pane looks blank until the real
+extent is measured with `getBBox()` and cropped — and width, height AND
+viewBox must all be corrected together or the music is scaled to
+invisibility. And because the two renderers lay the same piece out at very
+different widths (~5.7k vs ~9.6k px), scroll sync must be by FRACTION of
+scrollable extent, not by pixels.
 
 `compare_musicxml.py` is the scorer: NOTES ONLY (dynamics, articulations,
 fingerings, slurs, ornaments and layout are out of scope by design). It

@@ -16,22 +16,25 @@
  *   comparison.json        per-note matched / extra / missing
  */
 
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import NotationView from './NotationView';
+import VerovioScore from './VerovioScore';
 
 const RUNS_ENDPOINT = '/api/compare-runs';
 
+// Light palette — a score is read on paper, and the point of this page is
+// comparing engravings, so the staves get a white ground like real sheet music.
 const C = {
-  bg: '#0d0d12',
-  panel: '#15151d',
-  panelAlt: '#1b1b25',
-  border: '#2a2a38',
-  text: '#e8e8f0',
-  dim: '#8a8a9e',
-  good: '#3ddc84',
-  bad: '#ff5c6c',
-  warn: '#ffb340',
-  accent: '#6c8cff',
+  bg: '#ffffff',
+  panel: '#f6f7f9',
+  panelAlt: '#fbfbfd',
+  border: '#e1e4ea',
+  text: '#1b1d23',
+  dim: '#6b7280',
+  good: '#0f8a4f',
+  bad: '#c62828',
+  warn: '#b26a00',
+  accent: '#2f5fd0',
 };
 
 const pct = (x) => `${(x * 100).toFixed(1)}%`;
@@ -181,6 +184,7 @@ export default function ScoreCompare() {
                 comparison={data.comparison}
                 decisions={data.decisions}
                 ticksPerQuarter={data.manifest.ticks_per_quarter || 4}
+                base={`/compare/${run}`}
               />
             </>
           )}
@@ -208,7 +212,8 @@ function Centered({ children, tone }) {
 
 function Header({ runs, run, onRunChange, view, setView, manifest }) {
   const tabs = [
-    ['stacked', 'Both scores'],
+    ['stacked', 'Compare scores'],
+    ['renderers', 'Compare renderers'],
     ['generated', 'Generated only'],
     ['reference', 'Reference only'],
     ['table', 'Note-by-note'],
@@ -330,7 +335,7 @@ const Divider = () => (
 
 function ColorLegend({ colorMode, setColorMode }) {
   const swatches = colorMode === 'diff'
-    ? [['rgba(232,232,240,0.92)', 'engraved as the reference does'],
+    ? [['#111318', 'engraved as the reference does'],
        [C.warn, 'wrong notated rhythm'],
        [C.bad, 'assigned to the wrong hand']]
     : [['linear-gradient(90deg,#ff004c,#ffb340,#3ddc84,#6c8cff)',
@@ -363,7 +368,7 @@ function ColorLegend({ colorMode, setColorMode }) {
         ))}
       </div>
       <span style={{ marginLeft: 'auto', fontSize: 11, color: C.dim }}>
-        colouring applies to the generated stave
+        colouring applies to the VexFlow pane — Verovio engraves the raw MusicXML
       </span>
     </div>
   );
@@ -408,8 +413,8 @@ function recolorByStatus(score, comparison, decisions, divisionsPerQuarter) {
             const onsetQ = Number(mt[2]) / divisionsPerQuarter;
             const s = status.get(key(pitch, onsetQ));
             const tone = s ? TONE[s] : null; // unknown => leave neutral
-            return tone ? { ...n, color: tone }
-                        : { ...n, color: 'rgba(232,232,240,0.92)' };
+            // neutral must be INK on a light page, not the dark-mode grey
+            return { ...n, color: tone || '#111318' };
           }),
         })),
       })),
@@ -418,24 +423,54 @@ function recolorByStatus(score, comparison, decisions, divisionsPerQuarter) {
 }
 
 function ScorePanes({ view, generated, reference, colorMode, comparison,
-                      decisions, ticksPerQuarter }) {
+                      decisions, ticksPerQuarter, base }) {
   const genScore = useMemo(
     () => (colorMode === 'diff'
       ? recolorByStatus(generated, comparison, decisions, ticksPerQuarter)
       : generated),
     [colorMode, generated, comparison, decisions, ticksPerQuarter]);
 
-  const panes = view === 'stacked'
-    ? [['Generated — MIDI through the engine', genScore, C.accent],
-       ['Reference — your MusicXML', reference, C.good]]
-    : view === 'generated'
-      ? [['Generated — MIDI through the engine', genScore, C.accent]]
-      : [['Reference — your MusicXML', reference, C.good]];
+  // Three panes, two renderers. Rendering the generated and the reference
+  // MusicXML through the SAME engraver (Verovio) is the controlled
+  // comparison — any difference there is ours. The VexFlow pane is kept
+  // alongside because it is what the rest of the app uses, so renderer
+  // artefacts stay visible instead of being silently attributed to the data.
+  const ALL = {
+    genVerovio: {
+      title: 'Generated — MidiTrain engine · Verovio',
+      tone: C.accent, kind: 'verovio', url: `${base}/generated.musicxml`,
+    },
+    refVerovio: {
+      title: 'Reference — your MusicXML · Verovio',
+      tone: C.good, kind: 'verovio', url: `${base}/reference.musicxml`,
+    },
+    genVexflow: {
+      title: 'Generated — MidiTrain engine · VexFlow (DreamFlow)',
+      tone: C.accent, kind: 'vexflow', score: genScore,
+    },
+    refVexflow: {
+      title: 'Reference — your MusicXML · VexFlow (DreamFlow)',
+      tone: C.good, kind: 'vexflow', score: reference,
+    },
+  };
+
+  const LAYOUTS = {
+    stacked: ['genVerovio', 'refVerovio', 'genVexflow'],
+    renderers: ['genVerovio', 'genVexflow'],
+    generated: ['genVerovio'],
+    reference: ['refVerovio'],
+  };
+  const panes = (LAYOUTS[view] || LAYOUTS.stacked).map((k) => ALL[k]);
+  const paneHeight = panes.length >= 3 ? 280 : panes.length === 2 ? 340 : 560;
 
   // Both staves scroll horizontally through the same music, so lock their
   // scroll positions together — comparing bar 20 against bar 3 is useless.
   const refs = React.useRef([]);
   const syncing = React.useRef(false);
+  // bumped when a pane's scroll extent changes after render (see VexflowPane),
+  // so the sync handlers rebind against the corrected widths
+  const [layoutTick, setLayoutTick] = useState(0);
+  const bumpLayout = useCallback(() => setLayoutTick((t) => t + 1), []);
 
   // store the wrapper; the actual scroller (.notation-view-root) is created by
   // NotationView, so resolve it when we bind rather than at ref time.
@@ -447,14 +482,26 @@ function ScorePanes({ view, generated, reference, colorMode, comparison,
     const bind = () => {
       const nodes = refs.current
         .filter(Boolean)
-        .map((el) => el.querySelector('.notation-view-root') || el);
+        .map((el) => el.querySelector('.notation-view-root')
+          || el.querySelector('.verovio-root') || el);
       if (nodes.length < 2) return false;
+      // don't bind until every pane has actually laid out its music,
+      // otherwise a not-yet-rendered pane reports scrollWidth 0 and the
+      // others snap back to 0 on the first scroll event
+      if (nodes.some((n) => n.scrollWidth <= n.clientWidth)) return false;
       handlers = nodes.map((node) => {
         const h = () => {
           if (syncing.current) return;
           syncing.current = true;
+          // Sync by FRACTION of the music, not by pixels: Verovio engraves the
+          // same piece ~5.7k px wide while VexFlow lays it out ~100k px wide,
+          // so matching scrollLeft directly would put the panes bars apart.
+          const max = node.scrollWidth - node.clientWidth;
+          const frac = max > 0 ? node.scrollLeft / max : 0;
           for (const other of nodes) {
-            if (other !== node) other.scrollLeft = node.scrollLeft;
+            if (other === node) continue;
+            const omax = other.scrollWidth - other.clientWidth;
+            if (omax > 0) other.scrollLeft = Math.round(frac * omax);
           }
           requestAnimationFrame(() => { syncing.current = false; });
         };
@@ -464,39 +511,115 @@ function ScorePanes({ view, generated, reference, colorMode, comparison,
       return true;
     };
 
+    // Verovio compiles WASM on first use, so allow a generous window (~30s)
     let tries = 0;
     const timer = setInterval(() => {
-      if (bind() || ++tries > 20) clearInterval(timer);
-    }, 100);
+      if (bind() || ++tries > 150) clearInterval(timer);
+    }, 200);
 
     return () => {
       clearInterval(timer);
       handlers.forEach(([n, h]) => n.removeEventListener('scroll', h));
     };
-  }, [view, generated, reference]);
+  }, [view, generated, reference, layoutTick]);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
-      {panes.map(([title, score, tone], i) => (
-        <div key={title} style={{ borderBottom: `1px solid ${C.border}` }}>
+      {panes.map((pane, i) => (
+        <div key={pane.title} style={{ borderBottom: `1px solid ${C.border}` }}>
           <div style={{ padding: '7px 20px', fontSize: 11, fontWeight: 600,
-            letterSpacing: 0.5, textTransform: 'uppercase', color: tone,
-            background: C.panel, borderLeft: `3px solid ${tone}`,
+            letterSpacing: 0.5, textTransform: 'uppercase', color: pane.tone,
+            background: C.panel, borderLeft: `3px solid ${pane.tone}`,
             display: 'flex', alignItems: 'center', gap: 10 }}>
-            {title}
-            {view === 'stacked' && i === 0 && (
+            {pane.title}
+            <RendererTag kind={pane.kind} />
+            {i === 0 && panes.length > 1 && (
               <span style={{ marginLeft: 'auto', color: C.dim, fontWeight: 400,
                 textTransform: 'none', letterSpacing: 0, fontSize: 10.5 }}>
-                scroll either stave — both follow
+                scroll any stave — the rest follow
               </span>
             )}
           </div>
-          <div ref={attach(i)} style={{ height: view === 'stacked' ? 300 : 560 }}>
-            <NotationView notationData={score} darkMode layoutMode="horizontal" />
+          <div ref={attach(i)} style={{ height: paneHeight, background: '#fff' }}>
+            {pane.kind === 'verovio'
+              ? <VerovioScore url={pane.url} />
+              : <VexflowPane score={pane.score} onResize={bumpLayout} />}
           </div>
         </div>
       ))}
     </div>
+  );
+}
+
+/**
+ * VexFlow pane wrapper.
+ *
+ * The DreamFlow renderer always allocates a 99999px-wide SVG regardless of how
+ * much music it draws, so the pane reports a ~100k scroll width for ~6k of
+ * actual notation. Left alone the pane looks blank at any scroll position and
+ * cannot be synced against Verovio. After it renders we measure the real
+ * content extent and crop the SVG to it.
+ */
+function VexflowPane({ score, onResize }) {
+  const hostRef = useRef(null);
+
+  useEffect(() => {
+    const el = hostRef.current;
+    if (!el) return undefined;
+    let tries = 0;
+    const timer = setInterval(() => {
+      const svg = el.querySelector('svg');
+      if (svg && svg.childElementCount > 0) {
+        try {
+          // Real extent of what was actually drawn. The renderer allocates a
+          // fixed 99999x11500 canvas regardless of content, so both axes need
+          // correcting — and width/height must agree with the viewBox or the
+          // music is scaled to near-invisibility inside an oversized box.
+          const box = svg.getBBox();
+          const pad = 12;
+          const x = Math.floor(box.x - pad);
+          const y = Math.floor(box.y - pad);
+          const w = Math.ceil(box.width + pad * 2);
+          const h = Math.ceil(box.height + pad * 2);
+          if (w > 0 && h > 0 && w < Number(svg.getAttribute('width'))) {
+            svg.setAttribute('viewBox', `${x} ${y} ${w} ${h}`);
+            svg.setAttribute('width', String(w));
+            svg.setAttribute('height', String(h));
+            svg.style.width = `${w}px`;
+            svg.style.height = `${h}px`;
+            // the scroll extent just changed under the sync handlers; tell
+            // them to rebind against the new width
+            onResize?.();
+          }
+          clearInterval(timer);
+          return;
+        } catch { /* getBBox throws while the node is still detached */ }
+      }
+      if (++tries > 60) clearInterval(timer);
+    }, 150);
+    return () => clearInterval(timer);
+  }, [score, onResize]);
+
+  return (
+    <div ref={hostRef} style={{ width: '100%', height: '100%' }}>
+      <NotationView notationData={score} darkMode={false}
+        layoutMode="horizontal" />
+    </div>
+  );
+}
+
+function RendererTag({ kind }) {
+  const isVerovio = kind === 'verovio';
+  return (
+    <span style={{
+      fontSize: 9.5, fontWeight: 600, letterSpacing: 0.4, padding: '1px 6px',
+      borderRadius: 9, textTransform: 'uppercase',
+      color: isVerovio ? '#0f5132' : '#6b3f00',
+      background: isVerovio ? '#d6f0e0' : '#ffe9c7',
+      border: `1px solid ${isVerovio ? '#a9dcc0' : '#f0cf9a'}`,
+    }}>
+      {isVerovio ? 'engraver' : 'drawing lib'}
+    </span>
   );
 }
 

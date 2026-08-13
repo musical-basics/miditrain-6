@@ -23,6 +23,9 @@ importers:
       react-dom:
         specifier: 19.2.4
         version: 19.2.4(react@19.2.4)
+      verovio:
+        specifier: ^6.2.0
+        version: 6.2.0
     devDependencies:
       '@types/node':
         specifier: 25.5.0
@@ -355,6 +358,10 @@ packages:
   undici-types@7.18.2:
     resolution: {integrity: sha512-AsuCzffGHJybSaRrmr5eHr81mwJU3kjw6M+uprWvCXiNeN9SOGwQ3Jn8jb8m3Z6izVgknn1R0FTCEAP2QrLY/w==}
 
+  verovio@6.2.0:
+    resolution: {integrity: sha512-yYU4CAik+ln4tdDOSLJPypQ24fiRsJtNgmgobsPnrSQYxesjwLrrPvth4mumeBRh3S20VERw9+GPXpRyhT1R4A==}
+    engines: {node: '>= 14.18.0'}
+
 snapshots:
 
   '@emnapi/runtime@1.9.1':
@@ -612,3 +619,5 @@ snapshots:
   typescript@6.0.2: {}
 
   undici-types@7.18.2: {}
+
+  verovio@6.2.0: {}
