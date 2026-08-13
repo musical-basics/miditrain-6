@@ -61,12 +61,78 @@ function stripMarkings(xml) {
   return out;
 }
 
+/**
+ * Draw a bar number above every measure.
+ *
+ * Verovio's own `mnumInterval` stays silent on these files (they carry no
+ * <measure-numbering> print hints), and the emitted SVG keeps no `n`
+ * attribute — but it does emit one `<g class="measure">` per bar in document
+ * order, which is exactly the sequence we need. Numbering by index also
+ * guarantees the generated and reference panes count identically, so a
+ * number means the same bar in both.
+ */
+function labelMeasures(host, firstMeasure = 1) {
+  const svg = host.querySelector('svg');
+  if (!svg) return;
+  const measures = svg.querySelectorAll('g.measure');
+  if (!measures.length) return;
+
+  const NS = 'http://www.w3.org/2000/svg';
+  const layer = document.createElementNS(NS, 'g');
+  layer.setAttribute('class', 'measure-numbers');
+
+  // Verovio works in its own internal units, so hard-coded sizes are
+  // meaningless — one staff's height is the yardstick. Anchor to the TOP
+  // STAFF (not the measure: a measure's bbox spans both staves plus the
+  // brace, so its top is not where the music starts).
+  const firstStaff = svg.querySelector('g.staff');
+  if (!firstStaff) return;
+  let staffBox;
+  try { staffBox = firstStaff.getBBox(); } catch { return; }
+  const staffH = staffBox.height;
+  if (!staffH) return;
+
+  const fontSize = Math.round(staffH * 0.34);
+  const baseline = Math.round(staffBox.y - staffH * 0.22);
+
+  measures.forEach((m, i) => {
+    let box;
+    try { box = m.getBBox(); } catch { return; }
+    if (!box || !box.width) return;
+    const t = document.createElementNS(NS, 'text');
+    t.setAttribute('x', String(Math.round(box.x)));
+    t.setAttribute('y', String(baseline));
+    t.setAttribute('font-size', String(fontSize));
+    t.setAttribute('font-family', 'Inter, system-ui, sans-serif');
+    t.setAttribute('font-weight', '600');
+    t.setAttribute('fill', '#2f5fd0');
+    t.textContent = String(firstMeasure + i);
+    layer.appendChild(t);
+  });
+
+  // The numbers sit above the top staff, which may be outside the rendered
+  // area. Verovio puts the viewBox on an INNER <svg>, so grow that one.
+  const inner = svg.querySelector('svg') || svg;
+  const vb = (inner.getAttribute('viewBox') || '').split(/\s+/).map(Number);
+  if (vb.length === 4) {
+    const top = baseline - fontSize;
+    if (top < vb[1]) {
+      const grow = Math.ceil(vb[1] - top);
+      inner.setAttribute('viewBox',
+        `${vb[0]} ${vb[1] - grow} ${vb[2]} ${vb[3] + grow}`);
+    }
+  }
+  (inner === svg ? svg : inner).appendChild(layer);
+}
+
 export default function VerovioScore({
   url,
   scale = 40,
   spacingStaff = 8,
   spacingSystem = 6,
   stripExtras = true,
+  measureNumbers = true,
+  firstMeasure = 1,
   onStatus,
 }) {
   const hostRef = useRef(null);
@@ -111,6 +177,9 @@ export default function VerovioScore({
         const svg = tk.renderToSVG(1);
         if (!alive || !hostRef.current) return;
         hostRef.current.innerHTML = svg;
+        if (measureNumbers) {
+          labelMeasures(hostRef.current, firstMeasure);
+        }
         onStatus?.({ ok: true, pages: tk.getPageCount() });
         setLoading(false);
       } catch (e) {
@@ -122,7 +191,8 @@ export default function VerovioScore({
     })();
 
     return () => { alive = false; };
-  }, [url, scale, spacingStaff, spacingSystem, stripExtras, onStatus]);
+  }, [url, scale, spacingStaff, spacingSystem, stripExtras, measureNumbers,
+      firstMeasure, onStatus]);
 
   return (
     <div style={{ width: '100%', height: '100%', overflowX: 'auto',

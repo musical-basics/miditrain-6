@@ -560,6 +560,53 @@ function ScorePanes({ view, generated, reference, colorMode, comparison,
  * cannot be synced against Verovio. After it renders we measure the real
  * content extent and crop the SVG to it.
  */
+/**
+ * Number the bars in the VexFlow pane so it can be read against the two
+ * Verovio panes. The renderer tags each measure group with a `data-measure`
+ * (or `id="measure-N"`); where it doesn't, fall back to the stave rectangles
+ * in document order.
+ */
+function labelVexflowMeasures(svg) {
+  if (svg.querySelector('.measure-numbers')) return;
+  const NS = 'http://www.w3.org/2000/svg';
+
+  let anchors = [...svg.querySelectorAll('[data-measure]')];
+  if (!anchors.length) {
+    // VexFlow draws each stave as a <g> containing 5 horizontal lines
+    anchors = [...svg.querySelectorAll('g')].filter((g) => {
+      const paths = g.querySelectorAll(':scope > path, :scope > rect');
+      return paths.length >= 5 && g.getAttribute('class') !== null;
+    });
+  }
+  if (!anchors.length) return;
+
+  // keep only the topmost stave per horizontal position (one label per bar)
+  const seen = new Set();
+  const layer = document.createElementNS(NS, 'g');
+  layer.setAttribute('class', 'measure-numbers');
+
+  let n = 0;
+  for (const a of anchors) {
+    let b;
+    try { b = a.getBBox(); } catch { continue; }
+    if (!b.width || b.width < 20) continue;
+    const key = Math.round(b.x);
+    if (seen.has(key)) continue;
+    seen.add(key);
+    n += 1;
+    const t = document.createElementNS(NS, 'text');
+    t.setAttribute('x', String(Math.round(b.x)));
+    t.setAttribute('y', String(Math.round(b.y - 8)));
+    t.setAttribute('font-size', '13');
+    t.setAttribute('font-family', 'Inter, system-ui, sans-serif');
+    t.setAttribute('font-weight', '600');
+    t.setAttribute('fill', '#2f5fd0');
+    t.textContent = String(n);
+    layer.appendChild(t);
+  }
+  if (layer.childElementCount) svg.appendChild(layer);
+}
+
 function VexflowPane({ score, onResize }) {
   const hostRef = useRef(null);
 
@@ -582,11 +629,15 @@ function VexflowPane({ score, onResize }) {
           const w = Math.ceil(box.width + pad * 2);
           const h = Math.ceil(box.height + pad * 2);
           if (w > 0 && h > 0 && w < Number(svg.getAttribute('width'))) {
-            svg.setAttribute('viewBox', `${x} ${y} ${w} ${h}`);
+            labelVexflowMeasures(svg);
+            const box2 = svg.getBBox(); // labels sit above the top stave
+            const y2 = Math.floor(box2.y - pad);
+            const h2 = Math.ceil(box2.height + pad * 2);
+            svg.setAttribute('viewBox', `${x} ${y2} ${w} ${h2}`);
             svg.setAttribute('width', String(w));
-            svg.setAttribute('height', String(h));
+            svg.setAttribute('height', String(h2));
             svg.style.width = `${w}px`;
-            svg.style.height = `${h}px`;
+            svg.style.height = `${h2}px`;
             // the scroll extent just changed under the sync handlers; tell
             // them to rebind against the new width
             onResize?.();

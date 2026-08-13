@@ -1,5 +1,37 @@
 # Session Log
 
+## 2026-08-13 (end) — Hand-split diagnosed: Phase 2, not engraving
+
+Measure numbers added to all three `/compare` panes (bar-aligned across
+renderers, so a number means the same bar everywhere). Verovio's own
+`mnumInterval` stays silent on these files — they carry no
+`<measure-numbering>` print hints and the SVG keeps no `n` attribute — so
+numbers are drawn from the emitted `g.measure` sequence in document order,
+sized off the staff bbox (Verovio's internal units make hard-coded font
+sizes meaningless; a first attempt rendered a single 776-unit "1").
+
+**Diagnosis of the 18 wrong-hand notes: all 18 are Phase 2 voice-threading
+failures. None is an engraving problem.** Full evidence in docs/debt.md.
+Headline: V1/V4 are 96–98% clean, V3 is 12/18 — a coin flip — and only fires
+18× in the piece. The inner voices are where the split breaks.
+
+**Rejected (measured, not assumed): fixing this in Phase 5C by assigning
+staves from pitch.** Current fixed VOICE_MAP 315/333; pure pitch≥C4 303/333;
+V1/V4 fixed + inner-by-pitch 317/333. Pitch models tie or lose because the
+piece has pitch-identical, hand-opposite textures (m9's D4 sits 5 semitones
+above the bass and is LH; m20's G4 sits 2 above and is RH). The real
+discriminator is line continuity, which Phase 5C cannot see — it gets one
+note at a time. The +2 hybrid is piece-specific noise. VOICE_MAP stays.
+
+Three Phase 2 leads recorded, ranked, each verified against the source and
+each requiring the benchmark gate before adoption: (1) inner voices carry a
+HEAVIER register-gravity weight than outer ones (0.75 vs 0.5), which pushes
+strays out to V1/V4 — the direct cause of m9/m11 and m30; (2) mid-line
+thread breaks where one note of a scale defects to another voice; (3)
+`_stabilize_inner_voices` only covers V2↔V3, so a V1↔V2 repeated-pitch
+flip-flop is invisible to it. Not implemented — Phase 2 changes must be
+gated, and per CLAUDE.md the decision is the user's.
+
 ## 2026-08-13 (later still) — Verovio as a second renderer; /compare in light mode
 
 User's call, and the evidence backs it: **DreamFlow/VexFlow is a drawing
