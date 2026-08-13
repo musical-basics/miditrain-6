@@ -67,6 +67,11 @@ cannot land.
   500ms), all engines + voices scored, alignment sanity-checked first.
 - **Corpus eval**: `python3 run_corpus_eval.py` (all engines, all
   pieces, runs.csv).
+- **See WHY a meter is wrong**: `python3 run_meter_diag.py --split-key val`
+  then `http://localhost:3000/meter?run=val` — per piece: notes with GT vs
+  every engine's barlines on one timeline, the GT/predicted measure ratio
+  that classifies the failure, and the bus's period-score curve with its
+  prior envelope. Diagnosis written up in docs/meter_hierarchy_spec.md.
 - **Corpus building**: needs `corpus files/venv/` (gitignored):
   `python3 -m venv "corpus files/venv" && "corpus files/venv/bin/pip"
   install music21 mido`. Then `make_ground_truth.py build --preset ...
@@ -105,11 +110,16 @@ cannot land.
    at every weight, Δη+ hurts). What's left is per-beat harmonic QUALITY
    votes, which needs DCML-style annotations (see 3). The extraction
    plumbing in `phase4_make_votes.py` is ready for richer sources.
-2. **Piecewise grids via DP with a switch penalty** — the structural
-   ceiling: one (period, phase) per piece makes meter changes
-   (chorale_010: 4/4|3/4|4/4) unwinnable and blocks the live/rubato
-   endgame (loosening the switch penalty IS the Large-Jones tracker).
-   Solves thermo's degeneracy pieces too.
+2. **Metrical hierarchy selection redesign** — THE top item, spec'd in
+   docs/meter_hierarchy_spec.md and visible at `/meter`. 59% of all val
+   error (507/863) is the bus committing to the wrong LEVEL (bar vs beat
+   vs hypermeasure), including a 106-error piano-tier piece; 242 of those
+   errors are pieces whose true beat (2000ms) is outside the hardcoded
+   240–1600ms search range — unreachable by construction. Four
+   weight/prior sweeps are exhausted; this needs an architect redesign,
+   not another parameter. Time-signature CHANGES are explicitly out of
+   scope (only 1 corpus piece has one — unmeasurable until constant-meter
+   is fixed).
 3. **External data**: ASAP (performance MIDI + downbeats — real
    velocities, real rubato) and DCML corpora (beat-level harmony labels
    → corpus-scale Phase 1 supervision + dense harmonic ground truth).

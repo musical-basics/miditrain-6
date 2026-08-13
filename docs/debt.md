@@ -107,3 +107,26 @@ two is overfitting to this piece.
   `handleNoteHover` matched notes by pitch + approximate tick-time with
   hardcoded 120 BPM assumptions; not ported to miditrain-6 (Phase 4B view has
   no note hover). Wire vfId → note identity properly if needed.
+
+
+## Meter-change detection deferred (2026-08-13) — decision, with reasoning
+
+User's call, and the data supports it: **do not add time-signature-change
+logic until constant-meter accuracy is fixed.** Reasons, so this is not
+re-litigated from the roadmap entry alone:
+
+1. The error mass is not there. 59% of validation error is wrong
+   metrical LEVEL on constant-meter pieces (docs/meter_hierarchy_spec.md);
+   only 1 of 87 corpus pieces (chorale_010) even has a meter change.
+2. It cannot be measured. A perfect implementation would move the
+   aggregate by a rounding error and the gate would read PASS-identical —
+   no signal to tune against.
+3. Its switch penalty is untunable while the constant-meter error rate is
+   this noisy: you cannot distinguish "penalty too loose" from "the engine
+   was going to miss this piece anyway", and a penalty fitted to absorb
+   unrelated failures is worse than no feature.
+
+Piecewise DP remains valuable LATER as the rubato/live tracker (loosening
+the switch penalty is the Large-Jones formulation) — but that is blocked
+on ASAP performance data regardless, since corpus MIDI is quantized and
+flat-velocity.

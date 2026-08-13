@@ -8,3 +8,5 @@ corpus files/corpus_demo.zip
 corpus files/venv/
 # regenerable comparison runs (run_xml_compare.py rebuilds these)
 visualizer/public/compare/
+# regenerable meter diagnostics (run_meter_diag.py rebuilds these)
+visualizer/public/meterdiag/
