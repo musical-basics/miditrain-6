@@ -1,5 +1,19 @@
 # Session Log
 
+## 2026-08-14 — Development moved to miditrain-7 (bottom-up rebuild)
+
+User's call: the corpus here trained parameters on chorales/folk (not
+the piano domain) and the phases are in the wrong hierarchical order.
+**miditrain-7** (../miditrain-7, github.com/musical-basics/miditrain-7)
+rebuilds bottom-up on clean 16-bar piano segments: hand separation
+FIRST (96.6% overall / 94.7% crossover — beats the phase0 spec's oracle
+bar on all metrics), downbeat inference SECOND (100% recall/precision,
+10/10 segments strict), per-phase GUI. This repo's phase0_hands_spec
+was the design brief; its meter-bus findings (channel norm, prior
+sigmas, harmonic-vote density) were reused directly. miditrain-6 stays
+as the reference implementation for phases not yet ported (quantize,
+notation, engravers, benchmark gate).
+
 ## 2026-08-13 (later) — Phase 0 scaffolding; /compare covers the whole corpus
 
 **User's call on corpus scope**, after considering and rejecting full
